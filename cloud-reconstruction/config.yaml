@@ -1,0 +1,163 @@
+# =============================================================================
+# Cloud Reconstruction System — Configuration
+# =============================================================================
+# All hyperparameters, paths, and settings are defined here.
+# Do NOT hardcode values in Python files — read from this config instead.
+
+# ---------------------------------------------------------------------------
+# Dataset
+# ---------------------------------------------------------------------------
+dataset:
+  # Root folder containing SAFE files
+  source_dir: "../dataset"
+  # Where extracted patches will be saved
+  output_dir: "dataset"
+  # Include medium-cloud scenes (10-70%) as additional training data
+  include_medium: true
+  train_ratio: 0.70
+  val_ratio:   0.15
+  test_ratio:  0.15
+  # Seed for reproducible splits
+  random_seed: 42
+
+# ---------------------------------------------------------------------------
+# Bands
+# ---------------------------------------------------------------------------
+bands:
+  # Optical bands to extract from each .SAFE.zip
+  # B02/B03/B04/B08 at 10m, B11/B12 at 20m (upsampled to target_resolution)
+  optical:
+    - B02   # Blue
+    - B03   # Green
+    - B04   # Red
+    - B08   # NIR
+    - B11   # SWIR1 (upsampled from 20m)
+    - B12   # SWIR2 (upsampled from 20m)
+  # Scene Classification Layer used to generate cloud masks
+  cloud_band: SCL
+  # Target resolution in metres (all bands resampled to this)
+  target_resolution: 10
+  # Number of optical input channels (len(optical))
+  n_optical: 6
+
+# ---------------------------------------------------------------------------
+# Sentinel-1 (future integration — set enabled: true when SAR data available)
+# ---------------------------------------------------------------------------
+sentinel1:
+  enabled: false
+  channels: 2          # VV + VH polarization
+  # Path to paired S1 data when enabled
+  data_dir: null
+
+# ---------------------------------------------------------------------------
+# Patch Extraction
+# ---------------------------------------------------------------------------
+patch:
+  size: 256            # Patch height and width in pixels
+  stride: 128          # Step between patches
+  min_cloud_fraction: 0.05   # Skip patches with < 5% cloud (not useful)
+  max_cloud_fraction: 0.99   # Skip fully-clouded patches (no ground truth)
+
+# ---------------------------------------------------------------------------
+# Model
+# ---------------------------------------------------------------------------
+model:
+  # Registry key: "unet" | "pix2pix" | "diffusion" | "vit"
+  name: unet
+  # Input channels = n_optical + 1 (cloud mask) [+ sentinel1.channels if enabled]
+  input_channels: 7
+  # Output channels: reconstruct all optical bands
+  output_channels: 6
+  # U-Net base filter count (doubles each encoder level)
+  base_filters: 64
+  # Number of encoder/decoder levels
+  depth: 4
+  # Use batch normalisation
+  use_batchnorm: true
+  # Dropout rate in bottleneck
+  dropout: 0.1
+
+# ---------------------------------------------------------------------------
+# Training
+# ---------------------------------------------------------------------------
+training:
+  epochs: 128
+  batch_size: 16
+  learning_rate: 0.0001
+  weight_decay: 0.00001
+  # Automatic Mixed Precision (requires CUDA)
+  amp: true
+  # Gradient clipping norm
+  grad_clip: 1.0
+  # Early stopping: stop if val_loss doesn't improve for N epochs
+  early_stopping_patience: 15
+  # Save checkpoint every N epochs (independent of best-model saving)
+  checkpoint_interval: 5
+  # Resume from latest checkpoint if it exists
+  resume: true
+  # Number of DataLoader workers (set to 0 on Windows to avoid memory/pagefile issues)
+  num_workers: 0
+  # Pin memory for faster GPU transfer
+  pin_memory: true
+
+# ---------------------------------------------------------------------------
+# Loss Weights
+# ---------------------------------------------------------------------------
+loss:
+  l1:         0.4    # Pixel-wise MAE
+  ssim:       0.3    # Structural similarity
+  perceptual: 0.2    # VGG16 feature matching (on RGB subset)
+  edge:       0.1    # Sobel gradient-aware (preserves roads/boundaries)
+
+# ---------------------------------------------------------------------------
+# Device
+# ---------------------------------------------------------------------------
+device:
+  # "cuda" | "cpu" | "auto" (auto selects cuda if available)
+  type: auto
+  # CUDA device index (if multiple GPUs)
+  cuda_id: 0
+
+# ---------------------------------------------------------------------------
+# Inference
+# ---------------------------------------------------------------------------
+inference:
+  # Patch parameters (can differ from training)
+  patch_size: 256
+  stride: 192          # Balanced: some overlap for blending, lower memory than 128
+  # Gaussian weight blending at patch overlaps
+  blend_overlap: true
+  # Generate per-pixel confidence map
+  output_confidence: true
+  # Cloud fraction threshold below which image is considered "clear"
+  clear_threshold: 0.05
+  # Batch inference: process multiple images at once
+  batch_mode: false
+  batch_dir: null
+
+# ---------------------------------------------------------------------------
+# Output
+# ---------------------------------------------------------------------------
+output:
+  dir: "outputs"
+  # Save multi-band GeoTIFF (all optical bands, preserves CRS/transform)
+  save_multiband_geotiff: true
+  # Save RGB JPEG for web visualisation
+  save_rgb_preview: true
+  # Save individual output files
+  save_cloud_mask: true
+  save_confidence_map: true
+  save_difference_map: true
+  save_metrics_json: true
+  save_processing_log: true
+  # 5-panel comparison image
+  save_comparison_preview: true
+
+# ---------------------------------------------------------------------------
+# Paths
+# ---------------------------------------------------------------------------
+paths:
+  checkpoints: "checkpoints_6band"
+  logs:        "logs"
+  outputs:     "outputs"
+  tensorboard: "logs/tensorboard"

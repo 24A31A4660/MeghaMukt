@@ -1,0 +1,22 @@
+{
+  "cloudy_test_1_cloud15pct.tif": {
+    "source_patch": "pair_000003_T44QPE_02048_00512",
+    "cloud_fraction": 0.1516265869140625
+  },
+  "cloudy_test_2_cloud22pct.tif": {
+    "source_patch": "pair_000003_T44QPE_00128_03712",
+    "cloud_fraction": 0.2245941162109375
+  },
+  "cloudy_test_3_cloud31pct.tif": {
+    "source_patch": "pair_000000_T44QND_03712_01280",
+    "cloud_fraction": 0.3128204345703125
+  },
+  "cloudy_test_4_cloud40pct.tif": {
+    "source_patch": "pair_000003_T44QPE_00896_01408",
+    "cloud_fraction": 0.409637451171875
+  },
+  "cloudy_test_5_cloud49pct.tif": {
+    "source_patch": "pair_000003_T44QPE_01280_02048",
+    "cloud_fraction": 0.4958648681640625
+  }
+}
