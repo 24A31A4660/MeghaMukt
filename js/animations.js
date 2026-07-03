@@ -121,16 +121,16 @@
                         textDur = 0.45;
                         bodyDur = 0.35;
                     } else if (index === 3) {
-                        delay = 1.2; // Delay text reveal until Earth cleans
-                        textDur = 1.2; // Slower cinematic text reveal
-                        bodyDur = 0.8;
+                        delay = 0.2; // Fast text reveal to match "04 Mission Complete"
+                        textDur = 0.8; // Standard text reveal speed
+                        bodyDur = 0.6;
                     }
                     
                     TR.revealChars(curr.titleWords, { delay: delay, stagger: 0.02, duration: textDur, ease: 'expo.out' });
                     TR.revealBodyWords(curr.bodyWords, { delay: delay + (index === 2 ? 0.15 : 0.4), stagger: 0.015, duration: bodyDur, ease: 'power2.out' });
                     
                     let extraDelay = delay + (index === 2 ? 0.2 : 0.5);
-                    if (index === 3) extraDelay = 3.6; // CTA appears last
+                    if (index === 3) extraDelay = 0.6; // CTA appears quickly with the text
 
                     gsap.fromTo(curr.extraEls,
                         { opacity: 0, y: 20 },
