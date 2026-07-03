@@ -5422,3 +5422,25 @@ a, button, input, select, textarea {
 #observation .cinematic-title {
     text-indent: 0 !important;
 }
+/* ============================================================
+   S02 EXACT VERTICAL ALIGNMENT FIX
+   ============================================================ */
+
+/* Push the ENTIRE S02 content block to the right to clear the side navigation perfectly, exactly like S03 */
+#foundation .section__content {
+    padding-left: clamp(5rem, 9.5vw, 12rem) !important;
+}
+
+/* Reset individual margins so everything inside perfectly aligns on the exact same vertical line */
+#foundation .section-eyebrow,
+#foundation .cinematic-title--section,
+#foundation .cinematic-title,
+#foundation .cinematic-body {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+}
+
+/* Fix any white-space indentations causing lines to indent differently */
+#foundation .cinematic-title {
+    text-indent: 0 !important;
+}
