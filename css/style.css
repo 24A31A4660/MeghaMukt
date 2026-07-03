@@ -5348,3 +5348,12 @@ a, button, input, select, textarea {
     transform: translateY(0) !important;
     margin-top: 0 !important;
 }
+/* ============================================================
+   FIX FLOATING TELEMETRY POSITION (MOVE TO RIGHT)
+   ============================================================ */
+
+.floating-telemetry {
+    /* Reset left inset so 'right' actually works */
+    left: auto !important;
+    right: clamp(4rem, 8vw, 10rem) !important; /* Position firmly on the right side */
+}
