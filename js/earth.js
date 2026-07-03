@@ -520,7 +520,7 @@
                 if (idx === 0) {
                     canvasEl.style.transform = 'translateX(180px)';
                 } else if (idx === 3) {
-                    canvasEl.style.transform = 'translateX(-60px)';
+                    canvasEl.style.transform = 'translateX(-80px)';
                 } else {
                     canvasEl.style.transform = 'translateX(0px)';
                 }
