@@ -98,6 +98,8 @@ document.addEventListener('DOMContentLoaded', () => {
             onComplete: () => {
                 // Pause heavy WebGL rendering to ensure smooth scrolling in Dashboard
                 if (window.EarthRenderer && window.EarthRenderer.pause) window.EarthRenderer.pause();
+                const canvas = document.getElementById('earth-canvas');
+                if (canvas) canvas.style.display = 'none';
             }
         });
     };
@@ -105,6 +107,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Dashboard Exit Animation
     const exitDashboard = () => {
         // Resume WebGL rendering
+        const canvas = document.getElementById('earth-canvas');
+        if (canvas) canvas.style.display = '';
         if (window.EarthRenderer && window.EarthRenderer.resume) window.EarthRenderer.resume();
 
         // Fade out Dashboard Layer

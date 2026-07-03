@@ -2474,8 +2474,8 @@ const App = () => {
     return (
         <AppContext.Provider value={contextValue}>
             <div className="flex w-full h-full min-h-screen overflow-hidden bg-[#02050A] text-slate-200 font-body selection:bg-cyan-500/30">
-                <div className="fixed top-0 left-1/4 w-[500px] h-[500px] bg-cyan-900/[0.05] rounded-full blur-[120px] pointer-events-none" />
-                <div className="fixed bottom-0 right-1/4 w-[400px] h-[400px] bg-blue-900/[0.04] rounded-full blur-[100px] pointer-events-none" />
+                <div className="fixed top-0 left-1/4 w-[500px] h-[500px] bg-cyan-900/[0.05] rounded-full pointer-events-none" />
+                <div className="fixed bottom-0 right-1/4 w-[400px] h-[400px] bg-blue-900/[0.04] rounded-full pointer-events-none" />
 
                 <Sidebar activeModule={activeModule} setActiveModule={setActiveModule} onLogout={handleLogout} />
 
