@@ -566,7 +566,7 @@ const AIPipeline = ({ steps: externalSteps }) => {
         { step: 6, title: 'Output Generated', desc: 'Cloud-Free Image Ready', status: 'done' },
     ];
     return (
-        <div className="bg-[#0A1020]/80 border border-white/[0.06] rounded-2xl p-4">
+        <div className="bg-[#0A1020]/80 border border-white/[0.06] rounded-2xl p-4 h-full flex flex-col justify-center">
             <h3 className="text-[12px] font-bold tracking-widest uppercase text-slate-300 mb-5">AI Pipeline Status</h3>
             <div className="space-y-4 relative">
                 <div className="absolute left-[11px] top-3 bottom-3 w-[2px] bg-gradient-to-b from-emerald-500/40 via-cyan-500/30 to-slate-800" />
@@ -922,7 +922,7 @@ const DataLayersGrid = ({ outputPaths }) => {
     ];
     return (
         <>
-            <div className="bg-[#0A1020]/80 border border-white/[0.06] rounded-2xl p-4">
+            <div className="bg-[#0A1020]/80 border border-white/[0.06] rounded-2xl p-4 h-full flex flex-col justify-center">
                 <h3 className="text-[12px] font-bold tracking-widest uppercase text-slate-300 mb-3">Data Layers</h3>
                 <div className="grid grid-cols-3 gap-2">
                     {layers.map((l, i) => {
