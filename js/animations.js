@@ -418,6 +418,7 @@
 
     // ---- Mouse Wheel ----
     window.addEventListener('wheel', (e) => {
+        if (e.target.closest('#spa-dashboard-layer')) return; // Don't intercept Dashboard scrolls
         if (isTransitioning) return;
         if (Math.abs(e.deltaY) > 8) {
             scrollToSection(e.deltaY > 0 ? currentSection + 1 : currentSection - 1);
@@ -426,6 +427,7 @@
 
     // ---- Keyboard ----
     document.addEventListener('keydown', (e) => {
+        if (e.target.closest('#spa-dashboard-layer')) return;
         if (isTransitioning) return;
         if (e.key === 'ArrowDown' || e.key === 'PageDown') scrollToSection(currentSection + 1);
         else if (e.key === 'ArrowUp' || e.key === 'PageUp') scrollToSection(currentSection - 1);
@@ -433,8 +435,12 @@
 
     // ---- Touch Swipe ----
     let touchStartY = 0;
-    window.addEventListener('touchstart', e => { touchStartY = e.touches[0].clientY; }, { passive: true });
+    window.addEventListener('touchstart', e => { 
+        if (e.target.closest('#spa-dashboard-layer')) return;
+        touchStartY = e.touches[0].clientY; 
+    }, { passive: true });
     window.addEventListener('touchend', e => {
+        if (e.target.closest('#spa-dashboard-layer')) return;
         if (isTransitioning) return;
         const diff = touchStartY - e.changedTouches[0].clientY;
         if (Math.abs(diff) > 50) scrollToSection(diff > 0 ? currentSection + 1 : currentSection - 1);
