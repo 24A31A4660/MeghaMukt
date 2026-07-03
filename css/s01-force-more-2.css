@@ -1,0 +1,8 @@
+/* ============================================================
+   S01 BRUTE FORCE TRANSFORM EVEN MORE LEFT
+   ============================================================ */
+
+/* Move it a little more to the left as requested */
+.hero-content-left {
+    transform: translateX(-17vw) !important;
+}
