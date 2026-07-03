@@ -5047,3 +5047,23 @@ a, button, input, select, textarea {
 #hero-title {
     margin-left: 50px !important; /* Increased from 30px to 50px */
 }
+/* ============================================================
+   FIX S01 OVERLAP: PUSH ENTIRE CONTENT BLOCK RIGHT
+   ============================================================ */
+
+/* Push the entire Hero content block to the right to clear the side navigation completely */
+.hero-ui-overlay {
+    padding-left: clamp(8rem, 12vw, 16rem) !important; 
+}
+
+/* Reset the individual margins so the entire block aligns perfectly internally */
+.hero-eyebrow,
+#hero-title {
+    margin-left: 0 !important;
+}
+
+/* Ensure the left column doesn't have extra left margins shifting it weirdly */
+.hero-content-left {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+}
