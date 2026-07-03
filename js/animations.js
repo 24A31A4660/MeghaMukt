@@ -21,7 +21,7 @@
                 id: 'hero',
                 titleId: 'hero-title',
                 bodyId: 'hero-body',
-                extras: ['.hero-eyebrow', '#hero-feature-pills', '.hero-cta-group', '#hero-scroll'],
+                extras: ['#hero-title', '#hero-body', '.hero-eyebrow', '#hero-feature-pills', '.hero-cta-group', '#hero-scroll'],
             },
             {
                 id: 'foundation',
