@@ -5022,3 +5022,19 @@ a, button, input, select, textarea {
     width: 100% !important;
     max-width: 650px !important; /* Allow slightly more room for text if needed */
 }
+/* ============================================================
+   MOVE HEADINGS 30PX TO THE RIGHT (ALL SESSIONS)
+   ============================================================ */
+
+/* Target S01 Hero Headings */
+.hero-eyebrow,
+#hero-title {
+    margin-left: 30px !important;
+}
+
+/* Target S02, S03, S04 Section Headings */
+.section-eyebrow,
+.cinematic-title--section,
+#results .cinematic-title {
+    margin-left: 30px !important;
+}
