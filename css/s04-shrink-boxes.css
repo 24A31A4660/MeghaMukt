@@ -1,0 +1,26 @@
+/* ============================================================
+   S04 DECREASE BOX SIZES
+   ============================================================ */
+
+/* Shrink the size of the 4 metric boxes in Session 4 */
+.achievement-card {
+    padding: 1.5rem 1rem !important; /* Reduce padding inside the boxes */
+}
+
+/* Reduce the font size of the large numbers inside the boxes */
+.achievement-card__value {
+    font-size: 2.2rem !important; /* Smaller numbers (was likely 3rem+) */
+    margin-bottom: 0.25rem !important;
+}
+
+/* Reduce the font size of the labels inside the boxes */
+.achievement-card__label {
+    font-size: 0.75rem !important; /* Smaller text */
+}
+
+/* Adjust the grid gap and max-width so they don't look spread too far apart */
+#results .achievement-grid {
+    gap: 0.75rem !important;
+    max-width: 600px !important; /* Prevent boxes from stretching too wide */
+    margin: 0 auto 2rem auto !important; /* Keep it centered */
+}
