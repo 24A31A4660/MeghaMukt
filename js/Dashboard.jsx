@@ -2479,9 +2479,9 @@ const App = () => {
 
                 <Sidebar activeModule={activeModule} setActiveModule={setActiveModule} onLogout={handleLogout} />
 
-                <div className="flex-1 flex flex-col overflow-hidden relative z-10">
+                <div className="flex-1 flex flex-col min-h-0 overflow-hidden relative z-10">
                     <TopBar username={username} isGuest={isGuest} onModuleChange={setActiveModule} onLogout={handleLogout} />
-                    <main className="flex-1 overflow-y-auto px-5 py-4 custom-scrollbar">
+                    <main className="flex-1 overflow-y-auto min-h-0 px-5 py-4 custom-scrollbar">
                         {renderModule()}
                     </main>
                 </div>
