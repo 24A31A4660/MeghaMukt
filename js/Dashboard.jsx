@@ -229,8 +229,8 @@ const Toast = ({ notification }) => {
 // ─── Sidebar ──────────────────────────────────────────────────────────────────
 const Sidebar = ({ activeModule, setActiveModule, onLogout }) => {
     const coreItems = [
-        { id: 'dashboard', label: 'Dashboard', icon: 'LayoutDashboard' },
         { id: 'upload', label: 'Upload Scene', icon: 'UploadCloud' },
+        { id: 'dashboard', label: 'Dashboard', icon: 'LayoutDashboard' },
         { id: 'results', label: 'Results View', icon: 'Eye' },
         { id: 'history', label: 'Mission History', icon: 'History' },
         { id: 'monitor', label: 'Live Monitor', icon: 'Radio' },
