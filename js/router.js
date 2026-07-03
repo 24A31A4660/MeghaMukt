@@ -94,12 +94,19 @@ document.addEventListener('DOMContentLoaded', () => {
             opacity: 1,
             duration: 1.5,
             delay: 0.5,
-            ease: "power2.out"
+            ease: "power2.out",
+            onComplete: () => {
+                // Pause heavy WebGL rendering to ensure smooth scrolling in Dashboard
+                if (window.EarthRenderer && window.EarthRenderer.pause) window.EarthRenderer.pause();
+            }
         });
     };
 
     // Dashboard Exit Animation
     const exitDashboard = () => {
+        // Resume WebGL rendering
+        if (window.EarthRenderer && window.EarthRenderer.resume) window.EarthRenderer.resume();
+
         // Fade out Dashboard Layer
         dashboardLayer.classList.remove('active');
         gsap.to(dashboardLayer, {

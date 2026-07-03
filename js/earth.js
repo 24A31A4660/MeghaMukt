@@ -583,9 +583,10 @@
 
         /* ---------- Render Loop ---------- */
         const clock = new THREE.Clock();
-
+        let isPaused = false;
         function animate() {
             requestAnimationFrame(animate);
+            if (isPaused) return;
             const t = clock.getElapsedTime();
 
             // Camera is now animated smoothly via GSAP in setSceneForSection
@@ -746,6 +747,13 @@
             },
             getSection() {
                 return currentSectionIdx;
+            },
+            pause() {
+                isPaused = true;
+            },
+            resume() {
+                isPaused = false;
+                clock.getElapsedTime(); // Update clock so no huge jump
             }
         };
 
