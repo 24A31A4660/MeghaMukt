@@ -4993,3 +4993,19 @@ a, button, input, select, textarea {
     justify-content: flex-start !important;
     padding: 0 !important;
 }
+/* ============================================================
+   SIDE NAVIGATION SIZE REDUCTION
+   ============================================================ */
+
+.side-nav-left__label,
+.side-nav-left__item.active .side-nav-left__label,
+.side-nav-left__item.completed .side-nav-left__label,
+.side-nav-left__item:hover .side-nav-left__label {
+    font-size: 0.45rem !important; /* Reduced side nav text size */
+    letter-spacing: 0.1em !important;
+    line-height: 1.2 !important;
+}
+
+.side-nav-left__num {
+    font-size: 0.75rem !important; /* Reduced number size */
+}
