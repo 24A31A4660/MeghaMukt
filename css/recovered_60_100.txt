@@ -1,0 +1,49 @@
+Created At: 2026-07-01T17:26:16Z
+Completed At: 2026-07-01T17:26:17Z
+File Path: `file:///c:/Users/aksha/Documents/AntiGravity/earth-satellites/css/style.css`
+Total Lines: 4069
+Total Bytes: 94814
+Showing lines 60 to 100
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+60:     box-sizing: border-box;
+61: }
+62: 
+63: html {
+64:     width: 100%;
+65:     height: 100%;
+66:     min-height: 100vh;
+67:     scroll-behavior: smooth;
+68:     -webkit-font-smoothing: antialiased;
+69:     -moz-osx-font-smoothing: grayscale;
+70:     overflow-x: hidden;
+71: }
+72: 
+73: body {
+74:     width: 100%;
+75:     height: 100%;
+76:     min-height: 100vh;
+77:     font-family: var(--font-body);
+78:     font-weight: 300;
+79:     color: var(--text-primary);
+80:     background-color: var(--space-deep);
+81:     overflow-x: hidden;
+82:     cursor: default;
+83:     line-height: 1.6;
+84: }
+85: 
+86: a {
+87:     color: inherit;
+88:     text-decoration: none;
+89: }
+90: 
+91: button {
+92:     background: none;
+93:     border: none;
+94:     cursor: pointer;
+95:     color: inherit;
+96:     font-family: inherit;
+97: }
+98: 
+99: img {
+100:     display: block;
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

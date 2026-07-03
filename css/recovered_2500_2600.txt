@@ -1,0 +1,109 @@
+Created At: 2026-07-01T17:36:12Z
+Completed At: 2026-07-01T17:36:13Z
+File Path: `file:///c:/Users/aksha/Documents/AntiGravity/earth-satellites/css/style.css`
+Total Lines: 4090
+Total Bytes: 95328
+Showing lines 2500 to 2600
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+2500: }
+2501: 
+2502: .section-eyebrow__text {
+2503:     font-family: var(--font-condensed);
+2504:     font-size: 0.8rem;
+2505:     font-weight: 600;
+2506:     letter-spacing: 0.25em;
+2507:     text-transform: uppercase;
+2508:     color: var(--text-secondary);
+2509: }
+2510: 
+2511: .section-eyebrow__text--green {
+2512:     color: rgba(57, 255, 20, 0.8);
+2513: }
+2514: 
+2515: /* --- Hero Eyebrow --- */
+2516: .hero-eyebrow {
+2517:     display: flex;
+2518:     align-items: center;
+2519:     gap: 1rem;
+2520:     margin-bottom: 2rem;
+2521: }
+2522: 
+2523: .hero-eyebrow__line {
+2524:     display: block;
+2525:     width: 50px;
+2526:     height: 1px;
+2527:     background: var(--aurora-cyan);
+2528:     opacity: 0.5;
+2529: }
+2530: 
+2531: .hero-eyebrow__text {
+2532:     font-family: var(--font-condensed);
+2533:     font-size: 0.85rem;
+2534:     font-weight: 700;
+2535:     letter-spacing: 0.3em;
+2536:     text-transform: uppercase;
+2537:     color: var(--text-secondary);
+2538: }
+2539: 
+2540: /* --- Cinematic Typography --- */
+2541: .cinematic-title {
+2542:     font-family: var(--font-heading);
+2543:     font-size: clamp(3.5rem, 8vw, 8rem);
+2544:     font-weight: 800;
+2545:     line-height: 1.1;
+2546:     letter-spacing: 0.05em;
+2547:     text-transform: uppercase;
+2548:     color: var(--text-primary);
+2549:     margin-bottom: 2.2rem;
+2550:     position: relative;
+2551:     user-select: none;
+2552:     -webkit-font-smoothing: antialiased;
+2553: }
+2554: 
+2555: /* Subtle light sweep animation over the text */
+2556: .cinematic-title::after {
+2557:     content: '';
+2558:     position: absolute;
+2559:     top: 0;
+2560:     left: -100%;
+2561:     width: 50%;
+2562:     height: 100%;
+2563:     background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.15), transparent);
+2564:     animation: lightSweep 6s ease-in-out infinite;
+2565:     pointer-events: none;
+2566:     mix-blend-mode: screen;
+2567: }
+2568: 
+2569: @keyframes lightSweep {
+2570:     0% { left: -100%; opacity: 0; }
+2571:     20% { opacity: 1; }
+2572:     80% { left: 200%; opacity: 0; }
+2573:     100% { left: 200%; opacity: 0; }
+2574: }
+2575: 
+2576: .cinematic-title--section {
+2577:     font-size: clamp(3rem, 6.5vw, 7rem);
+2578: }
+2579: 
+2580: .cinematic-title--centered {
+2581:     text-align: center;
+2582: }
+2583: 
+2584: .cinematic-body {
+2585:     font-family: var(--font-body);
+2586:     font-size: clamp(0.95rem, 1.15vw, 1.15rem);
+2587:     font-weight: 300;
+2588:     line-height: 1.7;
+2589:     color: rgba(255, 255, 255, 0.85);
+2590:     max-width: 480px;
+2591:     margin-bottom: 2.5rem;
+2592: }
+2593: 
+2594: .cinematic-body--centered {
+2595:     text-align: center;
+2596:     max-width: 520px;
+2597:     margin-left: auto;
+2598:     margin-right: auto;
+2599: }
+2600: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

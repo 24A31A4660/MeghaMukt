@@ -4687,3 +4687,106 @@ a, button, input, select, textarea {
     max-width: 780px !important;
     margin: 0.75rem auto 1.5rem !important;
 }
+/* ============================================================
+   RESTORED S01 HERO LAYOUT (USER FEEDBACK FIXES)
+   ============================================================ */
+
+/* 1. Move Meghāmukt logo and hamburger menu slightly downward */
+.nav__logo,
+.nav-menu-btn {
+    transform: translateY(6px) !important;
+}
+
+/* Ensure hero container creates a true two-column feel */
+.hero-ui-overlay {
+    justify-content: center !important;
+    align-items: flex-start !important;
+    padding-left: clamp(4rem, 8vw, 12rem) !important;
+}
+
+/* Ensure left column wrapper is perfectly aligned */
+.hero-content-left {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+    max-width: 600px !important;
+    width: 100% !important;
+    position: relative !important;
+    z-index: 10 !important;
+    margin: 0 !important;
+    text-align: left !important;
+}
+
+/* 2. Position the eyebrow text directly above the main title on the left side, DO NOT center */
+.hero-eyebrow {
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    width: 100% !important;
+    margin: 0 0 20px 0 !important;
+    padding: 0 !important;
+    left: 0 !important;
+}
+
+.hero-eyebrow__line {
+    position: relative !important;
+    left: 0 !important;
+    margin-right: 15px !important;
+    width: 40px !important;
+    display: block !important;
+}
+
+.hero-eyebrow__text {
+    margin: 0 !important;
+    padding: 0 !important;
+    text-align: left !important;
+}
+
+/* 3. Reduce the size of the "BEYOND THE CLOUDS" heading slightly to match original */
+/* 4. Keep title aligned to left column */
+#hero-title {
+    font-size: clamp(3.2rem, 6.5vw, 6.5rem) !important; /* Reduced */
+    line-height: 0.9 !important;
+    text-align: left !important;
+    margin: 0 0 1.5rem 0 !important;
+    padding: 0 !important;
+}
+
+/* 5, 6, 7, 8: Restore proper spacing between Title, Description, Feature tags, CTA buttons */
+#hero-body {
+    text-align: left !important;
+    margin: 0 0 2rem 0 !important;
+    max-width: 520px !important;
+    font-size: 1.1rem !important;
+    line-height: 1.6 !important;
+    padding: 0 !important;
+}
+
+#hero-feature-pills {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 0.75rem !important;
+    margin: 0 0 2.5rem 0 !important;
+    justify-content: flex-start !important;
+    padding: 0 !important;
+    width: 100% !important;
+}
+
+.hero-cta-group {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 1rem !important;
+    justify-content: flex-start !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* 9. Earth - Ensure the canvas has left set properly on large screens to balance */
+@media (min-width: 1025px) {
+    .earth-canvas, .earth-canvas--fixed {
+        left: 5vw !important; /* Adjust default left offset so JS translateX pushes it perfectly to the right */
+    }
+}

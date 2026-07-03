@@ -1,0 +1,630 @@
+Created At: 2026-07-01T22:09:21Z
+Completed At: 2026-07-01T22:09:21Z
+File Path: `file:///c:/Users/aksha/Documents/AntiGravity/earth-satellites/index.html`
+Total Lines: 622
+Total Bytes: 36107
+Showing lines 1 to 622
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: <!DOCTYPE html>
+2: <html lang="en">
+3: <head>
+4:     <meta charset="UTF-8">
+5:     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+6:     <title>MeghaMukt - Beyond The Clouds.</title>
+7:     <meta name="description" content="MeghaMukt — AI Powered Cloud Removal & Reconstruction for LISS-IV Satellite Imagery. ISRO Hackathon 2026.">
+8:     <meta name="theme-color" content="#020912">
+9: 
+10:     <!-- Fonts: Syncopate & Syne (Pioneer Resn titles) + Orbitron + Rajdhani + Inter + Space Grotesk -->
+11:     <link rel="preconnect" href="https://fonts.googleapis.com">
+12:     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+13:     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Syne:wght@700;800&family=Orbitron:wght@700;800;900&family=Rajdhani:wght@600;700&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+14: 
+15:     <link rel="stylesheet" href="css/style.css?v=2026b">
+16:     <!-- Three.js for WebGL Earth & Particles -->
+17:     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+18:     <!-- GSAP for timeline animations -->
+19:     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+20:     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+21: 
+22:     <!-- SPA Dependencies (React, Babel, Tailwind, Lucide, Chart.js, Google Auth) -->
+23:     <script src="https://cdn.tailwindcss.com"></script>
+24:     <script>
+25:         tailwind.config = {
+26:             theme: {
+27:                 extend: {
+28:                     colors: {
+29:                         space: { deep: '#020912', dark: '#0a1628', mid: '#1c2541' },
+30:                         aurora: { cyan: '#00d4ff', green: '#39ff14', violet: '#7c3aed', glow: 'rgba(0, 212, 255, 0.15)' }
+31:                     },
+32:                     fontFamily: {
+33:                         heading: ['Space Grotesk', 'Syncopate', 'Syne', 'sans-serif'],
+34:                         body: ['Inter', 'sans-serif']
+35:                     }
+36:                 }
+37:             }
+38:         }
+39:     </script>
+40:     <script src="https://unpkg.com/lucide@latest"></script>
+41:     <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+42:     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+43:     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+44:     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+45:     <script src="https://accounts.google.com/gsi/client" async defer></script>
+46: </head>
+47: <body>
+48: 
+49:     <!-- ============================================ -->
+50:     <!-- PARTICLE CANVAS OVERLAY                      -->
+51:     <!-- ============================================ -->
+52:     <canvas id="particle-canvas"></canvas>
+53: 
+54:     <!-- Custom Cursor elements -->
+55:     <div id="custom-cursor" class="custom-cursor"></div>
+56:     <div id="custom-cursor-dot" class="custom-cursor-dot"></div>
+57: 
+58:     <!-- Back to Top Button (visible on sections 2,3,4) -->
+59:     <button id="back-to-top" class="back-to-top" aria-label="Back to top" title="Back to Home">
+60:         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+61:     </button>
+62: 
+63:     <!-- ============================================ -->
+64:     <!-- FIXED NAVIGATION — Glassmorphism Navbar      -->
+65:     <!-- ============================================ -->
+66:     <nav id="main-nav" class="nav">
+67:         <button id="nav-hamburger" class="nav__hamburger" aria-label="Open menu">
+68:             <span></span>
+69:             <span></span>
+70:             <span></span>
+71:         </button>
+72:         <div class="nav__logo">
+73:             <svg class="nav__logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+74:                 <circle cx="20" cy="20" r="8" stroke="currentColor" stroke-width="1.5" fill="none">
+75:                     <animateTransform attributeName="transform" type="rotate" from="0 20 20" to="360 20 20" dur="20s" repeatCount="indefinite"/>
+76:                 </circle>
+77:                 <ellipse cx="20" cy="20" rx="18" ry="8" stroke="currentColor" stroke-width="1" fill="none" transform="rotate(-30 20 20)">
+78:                     <animateTransform attributeName="transform" type="rotate" from="-30 20 20" to="330 20 20" dur="30s" repeatCount="indefinite"/>
+79:                 </ellipse>
+80:                 <ellipse cx="20" cy="20" rx="18" ry="8" stroke="currentColor" stroke-width="1" fill="none" transform="rotate(30 20 20)">
+81:                     <animateTransform attributeName="transform" type="rotate" from="30 20 20" to="390 20 20" dur="25s" repeatCount="indefinite"/>
+82:                 </ellipse>
+83:                 <circle cx="20" cy="20" r="3" fill="currentColor"/>
+84:             </svg>
+85:             <span class="nav__logo-text">MEGHĀMUKT</span>
+86:         </div>
+87:         <div class="nav__center-links" id="nav-center-links">
+88:             <!-- Navigation links removed as requested to clean up the UI -->
+89:         </div>
+90:         <div class="nav__auth-group">
+91:             <button class="nav__btn nav__btn--outline" id="nav-btn-guest">
+92:                 <span>CONTINUE AS GUEST</span>
+93:             </button>
+94:             <button class="nav__btn nav__btn--outline" id="nav-btn-signin">
+95:                 <span>SIGN IN</span>
+96:             </button>
+97:             <button class="nav__btn nav__btn--outline" id="nav-btn-signup">
+98:                 <span>SIGN UP</span>
+99:             </button>
+100:             <button class="nav__btn" id="nav-btn-launch">
+101:                 <span>LAUNCH MEGHĀMUKT</span>
+102:                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px; height:16px;">
+103:                     <line x1="22" y1="2" x2="11" y2="13"></line>
+104:                     <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+105:                 </svg>
+106:             </button>
+107:         </div>
+108:     </nav>
+109: 
+110:     <!-- ============================================ -->
+111:     <!-- LEFT SIDE NAVIGATION                         -->
+112:     <!-- ============================================ -->
+113:     <nav class="side-nav-left">
+114:         <div class="side-nav-left__track">
+115:             <div class="side-nav-left__progress"></div>
+116:         </div>
+117:         <div class="side-nav-left__items">
+118:             <div class="side-nav-left__item active" data-section="0">
+119:                 <span class="side-nav-left__num">01</span>
+120:                 <span class="side-nav-left__label">MISSION<br>START</span>
+121:             </div>
+122:             <div class="side-nav-left__item" data-section="1">
+123:                 <span class="side-nav-left__num">02</span>
+124:                 <span class="side-nav-left__label">CLOUD<br>DETECTION</span>
+125:             </div>
+126:             <div class="side-nav-left__item" data-section="2">
+127:                 <span class="side-nav-left__num">03</span>
+128:                 <span class="side-nav-left__label">AI<br>RECONSTRUCTION</span>
+129:             </div>
+130:             <div class="side-nav-left__item" data-section="3">
+131:                 <span class="side-nav-left__num">04</span>
+132:                 <span class="side-nav-left__label">MISSION<br>COMPLETE</span>
+133:             </div>
+134:         </div>
+135:     </nav>
+136: 
+137:     <!-- Full-screen menu overlay -->
+138:     <div id="menu-overlay" class="menu-overlay">
+139:         <div class="menu-overlay__bg"></div>
+140:         <div class="menu-overlay__content">
+141:             <a class="menu-overlay__link" style="color: var(--aurora-cyan); font-size: clamp(1.2rem, 3.5vw, 2.2rem); cursor:pointer;" onclick="document.getElementById('nav-btn-launch').click()">🛰️ Launch Dashboard</a>
+142:         </div>
+143:     </div>
+144: 
+145:     <!-- Earth Canvas — Fixed behind all sections -->
+146:     <canvas id="earth-canvas" class="earth-canvas earth-canvas--fixed"></canvas>
+147: 
+148:     <!-- ============================================ -->
+149:     <!-- HERO UI OVERLAY (FIXED) — Two-Column         -->
+150:     <!-- ============================================ -->
+151:     <div id="hero-ui-overlay" class="hero-ui-overlay">
+152:         <div class="hero-content-left">
+153:             <div class="hero-eyebrow">
+154:                 <span class="hero-eyebrow__line"></span>
+155:                 <span class="hero-eyebrow__text">AI-POWERED SATELLITE INTELLIGENCE PLATFORM</span>
+156:             </div>
+157: 
+158:             <h1 class="cinematic-title" id="hero-title">
+159:                 BEYOND<br>
+160:                 <span class="text-outline">THE CLOUDS</span>
+161:             </h1>
+162: 
+163:             <p class="cinematic-body" id="hero-body">
+164:                 AI Powered Cloud Removal & Reconstruction for LISS-IV Satellite Imagery. Uncover critical ground intelligence hidden beneath the clouds.
+165:             </p>
+166: 
+167:             <!-- Feature Highlight Pills -->
+168:             <div class="feature-pills" id="hero-feature-pills">
+169:                 <div class="feature-pill">
+170:                     <span class="feature-pill__icon">🛰</span>
+171:                     <span class="feature-pill__text">LISS-IV Imagery</span>
+172:                 </div>
+173:                 <div class="feature-pill">
+174:                     <span class="feature-pill__icon">🤖</span>
+175:                     <span class="feature-pill__text">Neural Reconstruction</span>
+176:                 </div>
+177:                 <div class="feature-pill">
+178:                     <span class="feature-pill__icon">☁</span>
+179:                     <span class="feature-pill__text">Cloud Removal</span>
+180:                 </div>
+181:             </div>
+182: 
+183:             <!-- Two Premium CTAs -->
+184:             <div class="hero-cta-group">
+185:                 <button class="cta-primary" id="cta-launch-hero" onclick="document.getElementById('nav-btn-launch').click()">
+186:                     <span>LAUNCH DASHBOARD</span>
+187:                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+188:                 </button>
+189:                 <button class="cta-ghost" id="cta-learn-more" onclick="if(window.AnimationEngine) window.AnimationEngine.scrollToSection(1)">
+190:                     <span>LEARN MORE</span>
+191:                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><polyline points="6 9 12 15 18 9"/></svg>
+192:                 </button>
+193:             </div>
+194:         </div>
+195: 
+196:         <!-- Scanning Frame Corners (Glassmorphism decorative) -->
+197:         <div class="scan-frame">
+198:             <div class="scan-frame__corner scan-frame__corner--tl"></div>
+199:             <div class="scan-frame__corner scan-frame__corner--tr"></div>
+200:             <div class="scan-frame__corner scan-frame__corner--bl"></div>
+201:             <div class="scan-frame__corner scan-frame__corner--br"></div>
+202:         </div>
+203: 
+204:         <div class="scroll-indicator" id="hero-scroll">
+205:             <div class="scroll-indicator__track">
+206:                 <div class="scroll-indicator__thumb"></div>
+207:             </div>
+208:             <span class="scroll-indicator__text">SCROLL</span>
+209:         </div>
+210:     </div>
+211: 
+212:     <!-- ============================================ -->
+213:     <!-- SCROLL CONTAINER                             -->
+214:     <!-- ============================================ -->
+215:     <main id="scroll-container" class="scroll-container">
+216: 
+217:         <!-- ===== SECTION 01: HERO — MISSION START ===== -->
+218:         <section id="hero" class="section section--hero">
+219:             <!-- Content moved to hero-ui-overlay for fixed positioning -->
+220:         </section>
+221: 
+222:         <!-- ===== SECTION 02: CLOUD DETECTION — THE PROBLEM ===== -->
+223:         <section id="foundation" class="section section--cinematic section--foundation-rebuild">
+224:             <!-- Scanning Beam Overlay -->
+225:             <div class="scanning-beam"></div>
+226: 
+227:             <div class="section__content section__content--cinematic section__content--foundation-rebuild">
+228:                 <div class="foundation-columns">
+229:                     
+230:                     <!-- LEFT COLUMN (Text Content) -->
+231:                     <div class="foundation-left-column">
+232:                         <div class="section-eyebrow">
+233:                             <span class="section-eyebrow__num">02</span>
+234:                             <span class="section-eyebrow__line"></span>
+235:                             <span class="section-eyebrow__text">THE CHALLENGE</span>
+236:                         </div>
+237: 
+238:                         <h2 class="cinematic-title cinematic-title--section" id="foundation-title">
+239:                             67% OF EARTH<br><span class="text-accent">IS HIDDEN.</span>
+240:                         </h2>
+241: 
+242:                         <p class="cinematic-body" id="foundation-body">
+243:                             Clouds obscure critical satellite data across two-thirds of Earth's surface. Agricultural monitoring delayed. Disaster response compromised. The mission begins here.
+244:                         </p>
+245: 
+246:                         <!-- Timeline Progress -->
+247:                         <div class="detection-timeline" id="detection-timeline">
+248:                             <div class="timeline-step active">
+249:                                 <span class="timeline-step__num">01</span>
+250:                                 <span class="timeline-step__label">Image Capture</span>
+251:                             </div>
+252:                             <div class="timeline-step">
+253:                                 <span class="timeline-step__num">02</span>
+254:                                 <span class="timeline-step__label">Cloud Detection</span>
+255:                             </div>
+256:                             <div class="timeline-step">
+257:                                 <span class="timeline-step__num">03</span>
+258:                                 <span class="timeline-step__label">Mask Generation</span>
+259:                             </div>
+260:                         </div>
+261:                     </div>
+262: 
+263:                     <!-- RIGHT COLUMN (Information Cards) -->
+264:                     <div class="foundation-right-column">
+265:                         <!-- Floating Telemetry HUD — Glassmorphism Cards -->
+266:                         <div class="floating-telemetry foundation-telemetry-col" id="telemetry-s02">
+267:                             
+268:                             <div class="telemetry-card telemetry-card--status" id="tel-status">
+269:                                 <span class="telemetry-card__icon">
+270:                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+271:                                 </span>
+272:                                 <div class="telemetry-card__content">
+273:                                     <span class="telemetry-card__label">STATUS</span>
+274:                                     <span class="telemetry-card__value telemetry-card__value--green">SCANNING</span>
+275:                                 </div>
+276:                                 <div class="telemetry-card__pulse"></div>
+277:                             </div>
+278: 
+279:                             <div class="telemetry-card telemetry-card--satellite" id="tel-satellite">
+280:                                 <span class="telemetry-card__icon">🛰</span>
+281:                                 <div class="telemetry-card__content">
+282:                                     <span class="telemetry-card__label">SATELLITE</span>
+283:                                     <span class="telemetry-card__value">RESOURCESAT-2</span>
+284:                                 </div>
+285:                             </div>
+286: 
+287:                             <div class="telemetry-card telemetry-card--cloud" id="tel-cloud">
+288:                                 <span class="telemetry-card__icon">☁</span>
+289:                                 <div class="telemetry-card__content">
+290:                                     <span class="telemetry-card__label">CLOUD COVERAGE</span>
+291:                                     <span class="telemetry-card__value telemetry-card__value--warn" id="hud-cloud-pct">0%</span>
+292:                                 </div>
+293:                                 <!-- Radial Progress SVG -->
+294:                                 <svg class="telemetry-card__radial" viewBox="0 0 60 60">
+295:                                     <circle cx="30" cy="30" r="26" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="3"/>
+296:                                     <circle id="cloud-radial-fill" cx="30" cy="30" r="26" fill="none" stroke="var(--sunset-orange)" stroke-width="3" stroke-linecap="round"
+297:                                         stroke-dasharray="163.36" stroke-dashoffset="163.36" transform="rotate(-90 30 30)"/>
+298:                                 </svg>
+299:                             </div>
+300: 
+301:                             <div class="telemetry-card telemetry-card--scan" id="tel-scan">
+302:                                 <div class="telemetry-card__content" style="width:100%">
+303:                                     <span class="telemetry-card__label">SCAN PROGRESS</span>
+304:                                     <span class="telemetry-card__value" id="hud-scan-prog">0%</span>
+305:                                     <div class="telemetry-bar">
+306:                                         <div class="telemetry-bar__fill" id="hud-progress-bar"></div>
+307:                                     </div>
+308:                                 </div>
+309:                             </div>
+310: 
+311:                             <div class="telemetry-card telemetry-card--types" id="tel-cloud-types">
+312:                                 <span class="telemetry-card__label">CLOUD TYPE</span>
+313:                                 <div class="cloud-type-pills">
+314:                                     <span class="cloud-type-pill cloud-type-pill--cirrus">Cirrus</span>
+315:                                     <span class="cloud-type-pill cloud-type-pill--cumulus">Cumulus</span>
+316:                                     <span class="cloud-type-pill cloud-type-pill--stratus">Stratus</span>
+317:                                 </div>
+318:                             </div>
+319:                             
+320:                         </div>
+321:                     </div>
+322:                 </div>
+323:             </div>
+324:         </section>
+325: 
+326:         <!-- ===== SECTION 03: AI RECONSTRUCTION — THE INTELLIGENCE ===== -->
+327:         <section id="observation" class="section section--cinematic section--observation-rebuild">
+328:             <div class="section__content section__content--cinematic section__content--observation-rebuild">
+329:                 
+330:                 <!-- 2-COLUMN LAYOUT -->
+331:                 <div class="obs-columns">
+332:                     <!-- LEFT COLUMN (Text) -->
+333:                     <div class="obs-left-column">
+334:                         
+335:                         <!-- TOP BLOCK -->
+336:                         <div class="obs-top-block">
+337:                             <div class="section-eyebrow">
+338:                                 <span class="section-eyebrow__num">03</span>
+339:                                 <span class="section-eyebrow__line"></span>
+340:                                 <span class="section-eyebrow__text">AI RECONSTRUCTION</span>
+341:                             </div>
+342:                             <h2 class="cinematic-title cinematic-title--section cinematic-title--obs-rebuild" id="observation-title">
+343:                                 NEURAL<br><span class="text-accent">RECONSTRUCTION.</span>
+344:                             </h2>
+345:                             <p class="cinematic-body" id="observation-body">
+346:                                 A generative neural network analyzes multi-temporal LISS-IV data. The AI wraps the globe — masking, reconstructing every hidden pixel.
+347:                             </p>
+348:                         </div>
+349: 
+350:                     </div>
+351:                     
+352:                     <!-- RIGHT COLUMN (Cards) -->
+353:                     <div class="obs-right-column">
+354:                         
+355:                         <!-- 1. Metric Cards -->
+356:                         <div class="floating-telemetry obs-telemetry-col" id="telemetry-s03">
+357:                             <div class="telemetry-card telemetry-card--status" id="tel-model">
+358:                                 <span class="telemetry-card__icon">🧠</span>
+359:                                 <div class="telemetry-card__content">
+360:                                     <span class="telemetry-card__label">MODEL</span>
+361:                                     <span class="telemetry-card__value">U-NET + GAN</span>
+362:                                 </div>
+363:                             </div>
+364:                             <div class="telemetry-card" id="tel-confidence">
+365:                                 <div class="telemetry-card__content">
+366:                                     <span class="telemetry-card__label">CONFIDENCE</span>
+367:                                     <span class="telemetry-card__value telemetry-card__value--green" id="hud-ai-conf">0%</span>
+368:                                 </div>
+369:                             </div>
+370:                             <div class="telemetry-card" id="tel-inference">
+371:                                 <div class="telemetry-card__content">
+372:                                     <span class="telemetry-card__label">INFERENCE</span>
+373:                                     <span class="telemetry-card__value" id="hud-infer-time">—</span>
+374:                                 </div>
+375:                             </div>
+376:                             <div class="telemetry-card" id="tel-pixels">
+377:                                 <div class="telemetry-card__content">
+378:                                     <span class="telemetry-card__label">CLOUD PIXELS</span>
+379:                                     <span class="telemetry-card__value" id="hud-cloud-px">—</span>
+380:                                 </div>
+381:                             </div>
+382:                         </div>
+383: 
+384:                         <!-- 2. Spectral Bars -->
+385:                         <div class="spectral-bands obs-spectral-block" id="spectral-bands">
+386:                             <div class="spectral-band">
+387:                                 <span class="spectral-band__label">RED</span>
+388:                                 <div class="spectral-band__track"><div class="spectral-band__fill spectral-band__fill--red"></div></div>
+389:                             </div>
+390:                             <div class="spectral-band">
+391:                                 <span class="spectral-band__label">GREEN</span>
+392:                                 <div class="spectral-band__track"><div class="spectral-band__fill spectral-band__fill--green"></div></div>
+393:                             </div>
+394:                             <div class="spectral-band">
+395:                                 <span class="spectral-band__label">NIR</span>
+396:                                 <div class="spectral-band__track"><div class="spectral-band__fill spectral-band__fill--nir"></div></div>
+397:                             </div>
+398:                         </div>
+399: 
+400:                         <!-- 3. Workflow Cards -->
+401:                         <div class="holo-cards obs-workflow-row" id="holo-cards">
+402:                             <div class="holo-card holo-card--before">
+403:                                 <div class="holo-card__header">BEFORE</div>
+404:                                 <div class="holo-card__visual">
+405:                                     <div class="holo-card__cloud-icon">☁️</div>
+406:                                     <span>Cloud Obscured</span>
+407:                                 </div>
+408:                             </div>
+409: 
+410:                             <div class="workflow-arrow">
+411:                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+412:                             </div>
+413: 
+414:                             <div class="holo-card holo-card--process">
+415:                                 <div class="holo-card__header">PROCESSING</div>
+416:                                 <div class="holo-card__visual">
+417:                                     <!-- Neural Network Mini Animation -->
+418:                                     <svg class="neural-graph" viewBox="0 0 100 80" fill="none">
+419:                                         <circle cx="15" cy="20" r="4" fill="var(--aurora-cyan)" opacity="0.8"/>
+420:                                         <circle cx="15" cy="40" r="4" fill="var(--aurora-cyan)" opacity="0.8"/>
+421:                                         <circle cx="15" cy="60" r="4" fill="var(--aurora-cyan)" opacity="0.8"/>
+422:                                         <circle cx="50" cy="15" r="5" fill="var(--aurora-cyan)"/>
+423:                                         <circle cx="50" cy="40" r="5" fill="var(--aurora-violet)"/>
+424:                                         <circle cx="50" cy="65" r="5" fill="var(--aurora-cyan)"/>
+425:                                         <circle cx="85" cy="30" r="4" fill="var(--aurora-green)" opacity="0.9"/>
+426:                                         <circle cx="85" cy="50" r="4" fill="var(--aurora-green)" opacity="0.9"/>
+427:                                         <line x1="19" y1="20" x2="45" y2="15" stroke="var(--aurora-cyan)" stroke-width="0.8" class="neural-line"/>
+428:                                         <line x1="19" y1="20" x2="45" y2="40" stroke="var(--aurora-cyan)" stroke-width="0.8" class="neural-line"/>
+429:                                         <line x1="19" y1="40" x2="45" y2="15" stroke="var(--aurora-cyan)" stroke-width="0.8" class="neural-line"/>
+430:                                         <line x1="19" y1="40" x2="45" y2="40" stroke="var(--aurora-cyan)" stroke-width="0.8" class="neural-line"/>
+431:                                         <line x1="19" y1="40" x2="45" y2="65" stroke="var(--aurora-cyan)" stroke-width="0.8" class="neural-line"/>
+432:                                         <line x1="19" y1="60" x2="45" y2="40" stroke="var(--aurora-cyan)" stroke-width="0.8" class="neural-line"/>
+433:                                         <line x1="19" y1="60" x2="45" y2="65" stroke="var(--aurora-cyan)" stroke-width="0.8" class="neural-line"/>
+434:                                         <line x1="55" y1="15" x2="81" y2="30" stroke="var(--aurora-green)" stroke-width="0.8" class="neural-line"/>
+435:                                         <line x1="55" y1="15" x2="81" y2="50" stroke="var(--aurora-green)" stroke-width="0.8" class="neural-line"/>
+436:                                         <line x1="55" y1="40" x2="81" y2="30" stroke="var(--aurora-green)" stroke-width="0.8" class="neural-line"/>
+437:                                         <line x1="55" y1="40" x2="81" y2="50" stroke="var(--aurora-green)" stroke-width="0.8" class="neural-line"/>
+438:                                         <line x1="55" y1="65" x2="81" y2="30" stroke="var(--aurora-green)" stroke-width="0.8" class="neural-line"/>
+439:                                         <line x1="55" y1="65" x2="81" y2="50" stroke="var(--aurora-green)" stroke-width="0.8" class="neural-line"/>
+440:                                     </svg>
+441:                                     <span>U-NET + GAN</span>
+442:                                 </div>
+443:                             </div>
+444: 
+445:                             <div class="workflow-arrow">
+446:                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+447:                             </div>
+448: 
+449:                             <div class="holo-card holo-card--after">
+450:                                 <div class="holo-card__header">AFTER</div>
+451:                                 <div class="holo-card__visual">
+452:                                     <div class="holo-card__clear-icon">🌍</div>
+453:                                     <span>Reconstructed</span>
+454:                                 </div>
+455:                             </div>
+456:                         </div>
+457: 
+458:                     </div>
+459:                 </div>
+460:                 
+461:             </div>
+462:         </section>
+463: 
+464:         <!-- ===== SECTION 04: MISSION COMPLETE — THE RESULT ===== -->
+465:         <section id="results" class="section section--cinematic section--centered">
+466:             <div class="section__content section__content--cinematic section__content--centered">
+467:                 <div class="cinematic-text-block cinematic-text-block--centered">
+468: 
+469:                     <!-- Success Animation Icon -->
+470:                     <div class="success-icon" id="success-icon">
+471:                         <svg viewBox="0 0 120 120" fill="none">
+472:                             <circle cx="60" cy="60" r="50" stroke="var(--aurora-green)" stroke-width="2" opacity="0.3"/>
+473:                             <circle cx="60" cy="60" r="42" stroke="var(--aurora-green)" stroke-width="2" opacity="0.5" class="success-icon__ring"/>
+474:                             <polyline points="40 62 54 76 82 48" stroke="var(--aurora-green)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="success-icon__check"/>
+475:                         </svg>
+476:                     </div>
+477: 
+478:                     <div class="section-eyebrow section-eyebrow--centered">
+479:                         <span class="section-eyebrow__num section-eyebrow__num--green">04</span>
+480:                         <span class="section-eyebrow__line section-eyebrow__line--green"></span>
+481:                         <span class="section-eyebrow__text section-eyebrow__text--green">MISSION COMPLETE</span>
+482:                     </div>
+483: 
+484:                     <h2 class="cinematic-title cinematic-title--section cinematic-title--centered" id="results-title">
+485:                         EARTH<br><span class="text-outline text-outline--green">REVEALED.</span>
+486:                     </h2>
+487: 
+488:                     <p class="cinematic-body cinematic-body--centered" id="results-body">
+489:                         Cloud-free. Analysis-ready. Every pixel reconstructed with photorealistic fidelity.
+490:                     </p>
+491: 
+492:                     <!-- Achievement Grid — 4 Animated Metric Cards -->
+493:                     <div class="achievement-grid" id="results-cta">
+494:                         <div class="achievement-card">
+495:                             <span class="achievement-card__value" id="metric-psnr">—</span>
+496:                             <span class="achievement-card__label">PSNR (dB)</span>
+497:                         </div>
+498:                         <div class="achievement-card">
+499:                             <span class="achievement-card__value" id="metric-ssim">—</span>
+500:                             <span class="achievement-card__label">SSIM</span>
+501:                         </div>
+502:                         <div class="achievement-card">
+503:                             <span class="achievement-card__value" id="metric-rmse">—</span>
+504:                             <span class="achievement-card__label">RMSE</span>
+505:                         </div>
+506:                         <div class="achievement-card achievement-card--accent">
+507:                             <span class="achievement-card__value" id="metric-removal">—</span>
+508:                             <span class="achievement-card__label">CLOUD REMOVED</span>
+509:                         </div>
+510:                     </div>
+511: 
+512:                     <!-- Launch CTA -->
+513:                     <button class="cta-launch" id="cta-results" onclick="document.getElementById('nav-btn-launch').click()">
+514:                         <span>🚀</span>
+515:                         <span>LAUNCH MEGHĀMUKT DASHBOARD</span>
+516:                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+517:                     </button>
+518:                 </div>
+519:             </div>
+520: 
+521:             <footer class="footer">
+522:                 <p class="footer__text">&copy; 2026 Team MeghaMukt &mdash; AI-Powered Satellite Imagery Reconstruction Platform. All rights reserved.</p>
+523:                 <div class="footer__links">
+524:                     <a href="#" class="footer__link">Privacy</a>
+525:                     <a href="#" class="footer__link">Terms</a>
+526:                     <a href="#" class="footer__link">Contact</a>
+527:                 </div>
+528:             </footer>
+529:         </section>
+530: 
+531:     </main>
+532: 
+533: 
+534: 
+535:     <!-- ============================================ -->
+536:     <!-- SPA OVERLAYS (Auth & Dashboard)              -->
+537:     <!-- ============================================ -->
+538:     
+539:     <!-- Auth Layer -->
+540:     <div id="spa-auth-layer">
+541:         <!-- Login Modal -->
+542:         <div id="auth-modal-login" class="auth-modal">
+543:             <h3 class="auth-title">Sign In</h3>
+544:             <div class="auth-input-group">
+545:                 <input type="email" class="auth-input" id="login-email" placeholder=" " autocomplete="off">
+546:                 <label class="auth-label">Email Address</label>
+547:             </div>
+548:             <div class="auth-input-group">
+549:                 <input type="password" class="auth-input" id="login-password" placeholder=" " autocomplete="off">
+550:                 <label class="auth-label">Password</label>
+551:             </div>
+552:             <button class="auth-btn auth-btn-primary" id="btn-submit-login">SIGN IN</button>
+553:             <div class="google-auth-wrapper">
+554:                 <div id="g_id_signin_login"></div>
+555:             </div>
+556:             <div class="auth-footer">
+557:                 <a href="#" class="auth-back" id="back-from-login">← Back</a><br><br>
+558:                 Don't have an account? <a href="#" id="switch-to-signup">Create Account</a>
+559:             </div>
+560:         </div>
+561: 
+562:         <!-- Signup Modal -->
+563:         <div id="auth-modal-signup" class="auth-modal">
+564:             <h3 class="auth-title">Sign Up</h3>
+565:             <div class="auth-input-group">
+566:                 <input type="text" class="auth-input" id="signup-name" placeholder=" " autocomplete="off">
+567:                 <label class="auth-label">Full Name</label>
+568:             </div>
+569:             <div class="auth-input-group">
+570:                 <input type="email" class="auth-input" id="signup-email" placeholder=" " autocomplete="off">
+571:                 <label class="auth-label">Email Address</label>
+572:             </div>
+573:             <div class="auth-input-group">
+574:                 <input type="password" class="auth-input" id="signup-password" placeholder=" " autocomplete="off">
+575:                 <label class="auth-label">Password</label>
+576:             </div>
+577:             <button class="auth-btn auth-btn-primary" id="btn-submit-signup">CREATE ACCOUNT</button>
+578:             <div class="google-auth-wrapper">
+579:                 <div id="g_id_signin_signup"></div>
+580:             </div>
+581:             <div class="auth-footer">
+582:                 <a href="#" class="auth-back" id="back-from-signup">← Back</a><br><br>
+583:                 Already have an account? <a href="#" id="switch-to-login">Sign In</a>
+584:             </div>
+585:         </div>
+586: 
+587:         <!-- Launch Console Modal -->
+588:         <div id="auth-modal-launch" class="auth-modal">
+589:             <h3 class="auth-title">MeghaMukt Mission Control</h3>
+590:             <button class="auth-btn auth-btn-primary" id="btn-launch-guest">CONTINUE AS GUEST</button>
+591:             <button class="auth-btn auth-btn-secondary" id="btn-launch-login">SIGN IN</button>
+592:             <button class="auth-btn auth-btn-secondary" id="btn-launch-signup">CREATE ACCOUNT</button>
+593:             <div class="google-auth-wrapper">
+594:                 <div id="g_id_signin_launch"></div>
+595:             </div>
+596:             <div class="auth-footer">
+597:                 <a href="#" class="auth-back" id="back-from-launch">← Close</a>
+598:             </div>
+599:         </div>
+600:     </div>
+601: 
+602:     <!-- Dashboard Layer -->
+603:     <div id="spa-dashboard-layer">
+604:         <!-- React App mounts here -->
+605:         <div id="dashboard-root"></div>
+606:     </div>
+607: 
+608:     <!-- ============================================ -->
+609:     <!-- SCRIPTS                                      -->
+610:     <!-- ============================================ -->
+611:     <script src="js/particles.js?v=2026b"></script>
+612:     <script src="js/earth.js?v=2026b"></script>
+613:     <script src="js/animations.js?v=2026b"></script>
+614:     <script src="js/main.js?v=2026b"></script>
+615:     
+616:     <!-- SPA Router & React Dashboard -->
+617:     <script src="js/router.js?v=2026b"></script>
+618:     <script type="text/babel" src="js/Dashboard.jsx?v=2026c"></script>
+619: 
+620: </body>
+621: </html>
+622: 
+The above content shows the entire, complete file contents of the requested file.

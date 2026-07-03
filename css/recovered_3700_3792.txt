@@ -1,0 +1,101 @@
+Created At: 2026-07-01T11:15:17Z
+Completed At: 2026-07-01T11:15:17Z
+File Path: `file:///c:/Users/aksha/Documents/AntiGravity/earth-satellites/css/style.css`
+Total Lines: 3792
+Total Bytes: 88405
+Showing lines 3700 to 3792
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+3700:     border-bottom: 1px solid rgba(0, 212, 255, 0.08) !important;
+3701: }
+3702: 
+3703: /* Elements that hide on scroll: logo + auth buttons */
+3704: .nav__logo,
+3705: .nav__auth-group {
+3706:     transition:
+3707:         opacity .35s ease,
+3708:         transform .35s ease,
+3709:         visibility .35s;
+3710:     opacity: 1;
+3711:     transform: translateY(0);
+3712:     visibility: visible;
+3713:     pointer-events: auto;
+3714: }
+3715: 
+3716: .nav--scrolled .nav__logo,
+3717: .nav--scrolled .nav__auth-group {
+3718:     opacity: 0;
+3719:     transform: translateY(-20px);
+3720:     visibility: hidden;
+3721:     pointer-events: none;
+3722: }
+3723: 
+3724: /* Mission nav shifts left when logo/auth disappear */
+3725: .nav__center-links {
+3726:     transition: margin .35s ease;
+3727: }
+3728: 
+3729: .nav--scrolled .nav__center-links {
+3730:     margin: 0 auto 0 1rem;
+3731: }
+3732: 
+3733: /* ---- Scan Frame Corners (Hero) ---- */
+3734: .scan-frame {
+3735:     position: fixed;
+3736:     inset: 0;
+3737:     pointer-events: none;
+3738:     z-index: 3;
+3739:     opacity: 0.3;
+3740: }
+3741: 
+3742: .scan-frame__corner {
+3743:     position: absolute;
+3744:     width: 40px;
+3745:     height: 40px;
+3746:     border-color: rgba(0, 212, 255, 0.25);
+3747:     border-style: solid;
+3748:     border-width: 0;
+3749: }
+3750: 
+3751: .scan-frame__corner--tl { top: 3rem; left: 3rem; border-top-width: 1px; border-left-width: 1px; }
+3752: .scan-frame__corner--tr { top: 3rem; right: 3rem; border-top-width: 1px; border-right-width: 1px; }
+3753: .scan-frame__corner--bl { bottom: 3rem; left: 3rem; border-bottom-width: 1px; border-left-width: 1px; }
+3754: .scan-frame__corner--br { bottom: 3rem; right: 3rem; border-bottom-width: 1px; border-right-width: 1px; }
+3755: 
+3756: /* ---- Cursor Click Reaction ---- */
+3757: .custom-cursor.clicking {
+3758:     width: 16px !important;
+3759:     height: 16px !important;
+3760:     background-color: rgba(0, 212, 255, 0.15) !important;
+3761: }
+3762: 
+3763: /* ---- Responsive Overrides for New Components ---- */
+3764: @media (max-width: 1024px) {
+3765:     .floating-telemetry { display: none; }
+3766:     .holo-cards { flex-direction: column; max-width: 300px; }
+3767:     .achievement-grid { grid-template-columns: repeat(2, 1fr); }
+3768:     .nav__center-links { display: none; }
+3769:     .scan-frame { display: none; }
+3770:     #nav-btn-guest, #nav-btn-signin, #nav-btn-signup { display: none; }
+3771:     .hero-ui-overlay { padding-left: 6rem; }
+3772:     .hero-content-left { max-width: 450px; }
+3773: }
+3774: 
+3775: @media (max-width: 768px) {
+3776:     .feature-pills { flex-direction: column; }
+3777:     .detection-timeline { flex-direction: column; gap: 0.5rem; }
+3778:     .achievement-grid { grid-template-columns: 1fr 1fr; max-width: 300px; }
+3779:     .spectral-bands { max-width: 100%; }
+3780:     .holo-cards { max-width: 100%; }
+3781:     .hero-ui-overlay { padding-left: 2rem; justify-content: flex-start; padding-top: calc(var(--nav-height) + 2rem); }
+3782:     .hero-content-left { max-width: 100%; z-index: 20; position: relative; }
+3783:     .cinematic-title { font-size: clamp(2.8rem, 10vw, 3.5rem); margin-bottom: 1.5rem; line-height: 0.95; }
+3784:     .side-nav-left { display: none; }
+3785:     .hero-cta-group { flex-direction: column; width: 100%; }
+3786:     .cta-primary, .cta-ghost { width: 100%; max-width: 300px; }
+3787: }
+3788: 
+3789: @media (max-width: 480px) {
+3790:     .achievement-grid { grid-template-columns: 1fr; max-width: 200px; }
+3791: }
+3792: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

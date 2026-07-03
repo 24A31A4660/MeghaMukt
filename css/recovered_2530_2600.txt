@@ -1,0 +1,79 @@
+Created At: 2026-07-01T17:26:01Z
+Completed At: 2026-07-01T17:26:01Z
+File Path: `file:///c:/Users/aksha/Documents/AntiGravity/earth-satellites/css/style.css`
+Total Lines: 4069
+Total Bytes: 94814
+Showing lines 2530 to 2600
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+2530: .hero-eyebrow__text {
+2531:     font-family: var(--font-condensed);
+2532:     font-size: 0.85rem;
+2533:     font-weight: 700;
+2534:     letter-spacing: 0.3em;
+2535:     text-transform: uppercase;
+2536:     color: var(--text-secondary);
+2537: }
+2538: 
+2539: /* --- Cinematic Typography --- */
+2540: .cinematic-title {
+2541:     font-family: var(--font-heading);
+2542:     font-size: clamp(3.2rem, 7.5vw, 7.5rem);
+2543:     font-weight: 900;
+2544:     line-height: 0.88;
+2545:     letter-spacing: 0.02em;
+2546:     text-transform: uppercase;
+2547:     color: var(--text-primary);
+2548:     margin-bottom: 2.2rem;
+2549:     position: relative;
+2550:     user-select: none;
+2551:     perspective: 1000px;
+2552: }
+2553: 
+2554: .cinematic-title--section {
+2555:     font-size: clamp(2.8rem, 6vw, 6.5rem);
+2556: }
+2557: 
+2558: .cinematic-title--centered {
+2559:     text-align: center;
+2560: }
+2561: 
+2562: .cinematic-body {
+2563:     font-family: var(--font-body);
+2564:     font-size: clamp(0.95rem, 1.15vw, 1.15rem);
+2565:     font-weight: 300;
+2566:     line-height: 1.7;
+2567:     color: rgba(255, 255, 255, 0.85);
+2568:     max-width: 480px;
+2569:     margin-bottom: 2.5rem;
+2570: }
+2571: 
+2572: .cinematic-body--centered {
+2573:     text-align: center;
+2574:     max-width: 520px;
+2575:     margin-left: auto;
+2576:     margin-right: auto;
+2577: }
+2578: 
+2579: /* --- Premium CTAs --- */
+2580: .cta-primary {
+2581:     display: inline-flex;
+2582:     align-items: center;
+2583:     justify-content: center;
+2584:     gap: 0.75rem;
+2585:     height: 48px;
+2586:     padding: 0 2.4rem;
+2587:     font-family: var(--font-condensed);
+2588:     font-size: 0.85rem;
+2589:     font-weight: 700;
+2590:     letter-spacing: 0.2em;
+2591:     text-transform: uppercase;
+2592:     color: #020b1a;
+2593:     background: var(--aurora-cyan);
+2594:     border: none;
+2595:     border-radius: 2px;
+2596:     cursor: pointer;
+2597:     position: relative;
+2598:     overflow: hidden;
+2599:     transition: all 0.4s var(--ease-out-expo);
+2600: }
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

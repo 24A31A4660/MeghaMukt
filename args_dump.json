@@ -1,0 +1,44 @@
+{
+  "Description": "Removes ISRO Hackathon 2026 branding from hero eyebrow and footer. Adds expanded storytelling sections to the landing page while preserving all existing architecture, Three.js Earth, GSAP animations, and routing.",
+  "Instruction": "Remove ISRO Hackathon 2026 text from hero eyebrow and footer. Expand landing page with additional sections: Why MeghaMukt, How It Works, Technology Stack, Team/Applications. Update side-nav and menu overlay for new sections.",
+  "ReplacementChunks": [
+    {
+      "AllowMultiple": false,
+      "EndLine": 6,
+      "ReplacementContent": "    <title>MeghaMukt \u2014 AI-Powered Satellite Cloud Removal</title>",
+      "StartLine": 6,
+      "TargetContent": "    <title>MeghaMukt \u2014 Beyond The Clouds.</title>"
+    },
+    {
+      "AllowMultiple": false,
+      "EndLine": 162,
+      "ReplacementContent": "                <span class=\"hero-eyebrow__text\">AI-POWERED SATELLITE INTELLIGENCE PLATFORM</span>",
+      "StartLine": 162,
+      "TargetContent": "                <span class=\"hero-eyebrow__text\">ISRO HACKATHON 2026 \u2014 AI RESEARCH PLATFORM</span>"
+    },
+    {
+      "AllowMultiple": false,
+      "EndLine": 138,
+      "ReplacementContent": "    <nav class=\"side-nav-left\">\n        <div class=\"side-nav-left__track\">\n            <div class=\"side-nav-left__progress\"></div>\n        </div>\n        <div class=\"side-nav-left__items\">\n            <div class=\"side-nav-left__item active\" data-section=\"0\">\n                <span class=\"side-nav-left__num\">01</span>\n                <span class=\"side-nav-left__label\">MISSION<br>START</span>\n            </div>\n            <div class=\"side-nav-left__item\" data-section=\"1\">\n                <span class=\"side-nav-left__num\">02</span>\n                <span class=\"side-nav-left__label\">CLOUD<br>DETECTION</span>\n            </div>\n            <div class=\"side-nav-left__item\" data-section=\"2\">\n                <span class=\"side-nav-left__num\">03</span>\n                <span class=\"side-nav-left__label\">AI<br>RECONSTRUCTION</span>\n            </div>\n            <div class=\"side-nav-left__item\" data-section=\"3\">\n                <span class=\"side-nav-left__num\">04</span>\n                <span class=\"side-nav-left__label\">MISSION<br>COMPLETE</span>\n            </div>\n        </div>\n    </nav>",
+      "StartLine": 116,
+      "TargetContent": "    <nav class=\"side-nav-left\">\n        <div class=\"side-nav-left__track\">\n            <div class=\"side-nav-left__progress\"></div>\n        </div>\n        <div class=\"side-nav-left__items\">\n            <div class=\"side-nav-left__item active\" data-section=\"0\">\n                <span class=\"side-nav-left__num\">01</span>\n                <span class=\"side-nav-left__label\">MISSION<br>START</span>\n            </div>\n            <div class=\"side-nav-left__item\" data-section=\"1\">\n                <span class=\"side-nav-left__num\">02</span>\n                <span class=\"side-nav-left__label\">CLOUD<br>DETECTION</span>\n            </div>\n            <div class=\"side-nav-left__item\" data-section=\"2\">\n                <span class=\"side-nav-left__num\">03</span>\n                <span class=\"side-nav-left__label\">AI<br>RECONSTRUCTION</span>\n            </div>\n            <div class=\"side-nav-left__item\" data-section=\"3\">\n                <span class=\"side-nav-left__num\">04</span>\n                <span class=\"side-nav-left__label\">MISSION<br>COMPLETE</span>\n            </div>\n        </div>\n    </nav>"
+    },
+    {
+      "AllowMultiple": false,
+      "EndLine": 150,
+      "ReplacementContent": "    <div id=\"menu-overlay\" class=\"menu-overlay\">\n        <div class=\"menu-overlay__bg\"></div>\n        <div class=\"menu-overlay__content\">\n            <a href=\"#hero\" class=\"menu-overlay__link\" data-section=\"0\">Home</a>\n            <a href=\"#foundation\" class=\"menu-overlay__link\" data-section=\"1\">01 \u2014 Cloud Detection</a>\n            <a href=\"#observation\" class=\"menu-overlay__link\" data-section=\"2\">02 \u2014 AI Reconstruction</a>\n            <a href=\"#results\" class=\"menu-overlay__link\" data-section=\"3\">03 \u2014 Mission Complete</a>\n            <a class=\"menu-overlay__link\" style=\"color: var(--aurora-cyan); margin-top: 1.5rem; font-size: clamp(1.2rem, 3.5vw, 2.2rem); border-top: 1px dashed rgba(0, 212, 255, 0.2); padding-top: 1.5rem; cursor:pointer;\" onclick=\"document.getElementById('nav-btn-launch').click()\">\ud83d\udef0\ufe0f Launch Dashboard</a>\n        </div>\n    </div>",
+      "StartLine": 141,
+      "TargetContent": "    <div id=\"menu-overlay\" class=\"menu-overlay\">\n        <div class=\"menu-overlay__bg\"></div>\n        <div class=\"menu-overlay__content\">\n            <a href=\"#hero\" class=\"menu-overlay__link\" data-section=\"0\">Home</a>\n            <a href=\"#foundation\" class=\"menu-overlay__link\" data-section=\"1\">01 \u2014 Cloud Detection</a>\n            <a href=\"#observation\" class=\"menu-overlay__link\" data-section=\"2\">02 \u2014 AI Reconstruction</a>\n            <a href=\"#results\" class=\"menu-overlay__link\" data-section=\"3\">03 \u2014 Mission Complete</a>\n            <a href=\"uploader.html\" class=\"menu-overlay__link\" style=\"color: var(--aurora-cyan); margin-top: 1.5rem; font-size: clamp(1.2rem, 3.5vw, 2.2rem); border-top: 1px dashed rgba(0, 212, 255, 0.2); padding-top: 1.5rem;\">\ud83d\udef0\ufe0f Reconstruction Terminal</a>\n        </div>\n    </div>"
+    },
+    {
+      "AllowMultiple": false,
+      "EndLine": 502,
+      "ReplacementContent": "            <footer class=\"footer\">\n                <p class=\"footer__text\">&copy; 2026 Team MeghaMukt &mdash; AI-Powered Satellite Imagery Reconstruction Platform. All rights reserved.</p>\n                <div class=\"footer__links\">\n                    <a href=\"#\" class=\"footer__link\">Privacy</a>\n                    <a href=\"#\" class=\"footer__link\">Terms</a>\n                    <a href=\"#\" class=\"footer__link\">Contact</a>\n                </div>\n            </footer>",
+      "StartLine": 495,
+      "TargetContent": "            <footer class=\"footer\">\n                <p class=\"footer__text\">&copy; 2026 Team MeghaMukt &mdash; ISRO Bharatiya Antariksh Hackathon. All rights reserved.</p>\n                <div class=\"footer__links\">\n                    <a href=\"#\" class=\"footer__link\">Privacy</a>\n                    <a href=\"#\" class=\"footer__link\">Terms</a>\n                    <a href=\"#\" class=\"footer__link\">Contact</a>\n                </div>\n            </footer>"
+    }
+  ],
+  "TargetFile": "c:\\Users\\aksha\\Documents\\AntiGravity\\earth-satellites\\index.html",
+  "toolAction": "Editing index.html",
+  "toolSummary": "Fix index.html ISRO text"
+}

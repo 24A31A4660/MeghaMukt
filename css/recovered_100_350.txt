@@ -1,0 +1,259 @@
+Created At: 2026-07-01T11:15:04Z
+Completed At: 2026-07-01T11:15:04Z
+File Path: `file:///c:/Users/aksha/Documents/AntiGravity/earth-satellites/css/style.css`
+Total Lines: 3792
+Total Bytes: 88405
+Showing lines 100 to 350
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+100:     display: block;
+101:     width: 100%;
+102:     height: 100%;
+103:     object-fit: cover;
+104: }
+105: 
+106: 
+107: /* ---- Scroll Container ---- */
+108: .scroll-container {
+109:     width: 100%;
+110:     height: 100%;
+111:     min-height: 100vh;
+112:     overflow-x: hidden;
+113: }
+114: 
+115: /* Hide scrollbar */
+116: .scroll-container::-webkit-scrollbar {
+117:     width: 0;
+118:     display: none;
+119: }
+120: 
+121: .scroll-container {
+122:     -ms-overflow-style: none;
+123:     scrollbar-width: none;
+124: }
+125: 
+126: 
+127: /* ---- Section Base ---- */
+128: .section {
+129:     position: relative;
+130:     width: 100%;
+131:     height: 100%;
+132:     min-height: 100vh;
+133:     overflow-x: hidden;
+134:     display: flex;
+135:     align-items: center;
+136: }
+137: 
+138: .section__bg {
+139:     position: absolute;
+140:     inset: 0;
+141:     z-index: var(--z-bg);
+142:     overflow: hidden;
+143: }
+144: 
+145: .section__bg--gradient {
+146:     background: linear-gradient(180deg,
+147:             #0a0520 0%,
+148:             #020b1a 30%,
+149:             #0d1f3a 60%,
+150:             #020b1a 100%);
+151: }
+152: 
+153: .section__bg-img {
+154:     position: absolute;
+155:     top: 0;
+156:     left: 0;
+157:     width: 100vw;
+158:     height: 100vh;
+159:     background-size: cover;
+160:     background-position: center;
+161:     background-repeat: no-repeat;
+162:     object-fit: cover;
+163:     opacity: 0.6;
+164:     transition: transform 1.2s var(--ease-out-expo), opacity 1s ease;
+165:     will-change: transform;
+166: }
+167: 
+168: .section.is-active .section__bg-img {
+169:     transform: scale(1.05);
+170: }
+171: 
+172: .section__bg-overlay {
+173:     position: absolute;
+174:     inset: 0;
+175:     background: linear-gradient(135deg,
+176:             rgba(2, 11, 26, 0.85) 0%,
+177:             rgba(2, 11, 26, 0.4) 40%,
+178:             rgba(2, 11, 26, 0.3) 60%,
+179:             rgba(10, 22, 40, 0.7) 100%);
+180: }
+181: 
+182: .section__bg-overlay--dark {
+183:     background: linear-gradient(135deg,
+184:             rgba(2, 11, 26, 0.9) 0%,
+185:             rgba(5, 13, 26, 0.5) 40%,
+186:             transparent 60%,
+187:             rgba(2, 11, 26, 0.6) 100%);
+188: }
+189: 
+190: .section__bg-overlay--green {
+191:     background: linear-gradient(135deg,
+192:             rgba(2, 11, 26, 0.85) 0%,
+193:             rgba(13, 40, 24, 0.4) 40%,
+194:             transparent 60%,
+195:             rgba(2, 11, 26, 0.5) 100%);
+196: }
+197: 
+198: .section__bg-overlay--warm {
+199:     background: linear-gradient(135deg,
+200:             rgba(2, 11, 26, 0.7) 0%,
+201:             rgba(26, 10, 0, 0.3) 40%,
+202:             transparent 60%,
+203:             rgba(26, 10, 0, 0.5) 100%);
+204: }
+205: 
+206: .section__bg-overlay--future {
+207:     background: radial-gradient(ellipse at 50% 30%,
+208:             rgba(0, 229, 255, 0.05) 0%,
+209:             rgba(2, 11, 26, 0.95) 70%);
+210: }
+211: 
+212: 
+213: /* ---- Section Content Layout ---- */
+214: .section__content {
+215:     position: relative;
+216:     z-index: var(--z-content);
+217:     padding: var(--section-padding);
+218:     width: 100%;
+219:     max-width: 1600px;
+220:     margin: 0 auto;
+221: }
+222: 
+223: .hero-ui-overlay {
+224:     position: fixed;
+225:     inset: 0;
+226:     z-index: 5; /* Above canvas, below nav */
+227:     display: flex;
+228:     flex-direction: column;
+229:     align-items: flex-start;
+230:     justify-content: center;
+231:     text-align: left;
+232:     padding-top: var(--nav-height);
+233:     padding-left: clamp(6rem, 12vw, 15rem);
+234:     pointer-events: none; /* Let canvas be interactive where empty */
+235:     opacity: 0; /* Hidden until app-ready to prevent FOUC */
+236:     visibility: hidden;
+237: }
+238: 
+239: .hero-ui-overlay > * {
+240:     pointer-events: auto;
+241: }
+242: 
+243: .hero-content-left {
+244:     max-width: 520px;
+245:     position: relative;
+246:     z-index: 10;
+247: }
+248: 
+249: .section__content--split {
+250:     display: grid;
+251:     grid-template-columns: 1.2fr 0.8fr;
+252:     gap: clamp(2rem, 4vw, 6rem);
+253:     align-items: center;
+254:     padding-top: var(--nav-height);
+255:     padding-left: calc(var(--section-padding) + 1.5rem);
+256: }
+257: 
+258: .section__text {
+259:     display: flex;
+260:     flex-direction: column;
+261:     align-items: flex-start;
+262:     max-width: 620px;
+263:     z-index: 10;
+264: }
+265: 
+266: .section__cta-wrap {
+267:     display: flex;
+268:     justify-content: center;
+269:     align-items: center;
+270:     z-index: 10;
+271: }
+272: 
+273: .section__content--center {
+274:     display: flex;
+275:     flex-direction: column;
+276:     align-items: center;
+277:     justify-content: center;
+278:     text-align: center;
+279:     padding-top: var(--nav-height);
+280: }
+281: 
+282: 
+283: /* ---- Chapter Indicator ---- */
+284: .section__chapter {
+285:     position: absolute;
+286:     top: 50%;
+287:     left: var(--section-padding);
+288:     transform: translateY(-50%) rotate(-90deg);
+289:     transform-origin: left center;
+290:     z-index: var(--z-content);
+291:     display: flex;
+292:     align-items: center;
+293:     gap: 1rem;
+294:     opacity: 0;
+295:     transition: opacity 0.8s ease 0.3s;
+296: }
+297: 
+298: .section.is-active .section__chapter {
+299:     opacity: 1;
+300: }
+301: 
+302: .section__chapter-num {
+303:     font-family: var(--font-body);
+304:     font-size: var(--chapter-num-size);
+305:     font-weight: 500;
+306:     letter-spacing: 0.2em;
+307:     color: var(--text-secondary);
+308: }
+309: 
+310: .section__chapter-line {
+311:     display: block;
+312:     width: 40px;
+313:     height: 1px;
+314:     background: var(--text-tertiary);
+315: }
+316: 
+317: .section__chapter-label {
+318:     font-family: var(--font-body);
+319:     font-size: 0.7rem;
+320:     font-weight: 500;
+321:     letter-spacing: 0.3em;
+322:     text-transform: uppercase;
+323:     color: var(--text-tertiary);
+324: }
+325: 
+326: 
+327: /* ---- Typography ---- */
+328: /* Hide text before JS split to prevent FOUC flash */
+329: .cinematic-title:not([data-split="done"]), 
+330: .cinematic-body:not([data-split="done"]) {
+331:     opacity: 0;
+332: }
+333: 
+334: .hero__title {
+335:     font-family: var(--font-heading);
+336:     font-size: var(--hero-title-size);
+337:     font-weight: 400;
+338:     line-height: 0.95;
+339:     letter-spacing: 0.03em;
+340:     text-transform: uppercase;
+341:     color: var(--text-primary);
+342:     margin-bottom: 1.5rem;
+343: }
+344: 
+345: .hero__subtitle {
+346:     font-family: var(--font-body);
+347:     font-size: var(--body-size);
+348:     font-weight: 300;
+349:     color: var(--text-secondary);
+350:     max-width: 600px;
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

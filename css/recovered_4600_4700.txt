@@ -1,0 +1,109 @@
+Created At: 2026-07-03T15:22:03Z
+Completed At: 2026-07-03T15:22:03Z
+File Path: `file:///c:/Users/aksha/Documents/AntiGravity/earth-satellites/css/style.css`
+Total Lines: 4813
+Total Bytes: 114208
+Showing lines 4600 to 4700
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+4600:    
+4601:  width: 100% !important;
+4602:     max-width: 450px !important;
+4603: }
+4604: 
+4605: /* 
+4606: ==========================================================================
+4607:    7. TELEMETRY HUD CARDS (S02 & S03) - 
+4608: RIGHT-EDGE VERTICAL STACK
+4609:    ========================================================================== 
+4610: */
+4611: #telemetry-s03 {
+4612:     position: absolute !important;
+4613:     left: auto !important;
+4614:     right: 
+4615: clamp(3rem, 5vw, 6rem) !important;
+4616:     top: 50% !important;
+4617:     transform: translateY(-50%) !important;
+4618:    
+4619:  z-index: 20 !important;
+4620:     width: 330px !important;
+4621:     display: flex !important;
+4622:     flex-direction: 
+4623: column !important;
+4624:     gap: 0.85rem !important;
+4625:     pointer-events: auto !important;
+4626:     margin: 0 
+4627: !important;
+4628:     padding: 0 !important;
+4629: }
+4630: 
+4631: /* Telemetry HUD Cards inside S02 Right Column - natural 
+4632: vertical centering via flex parent */
+4633: #foundation .s02-right-col #telemetry-s02 {
+4634:     position: relative 
+4635: !important;
+4636:     left: auto !important;
+4637:     right: auto !important;
+4638:     top: auto !important;
+4639:     
+4640: transform: none !important;
+4641:     z-index: 20 !important;
+4642:     width: 330px !important;
+4643:     display: flex 
+4644: !important;
+4645:     flex-direction: column !important;
+4646:     gap: 0.85rem !important;
+4647:     pointer-events: auto 
+4648: !important;
+4649:     margin: 0 !important;
+4650:     padding: 0 !important;
+4651: }
+4652: 
+4653: /* Keep cards glassmorphic, 
+4654: clean and high contrast */
+4655: #telemetry-s02 .telemetry-card,
+4656: #telemetry-s03 .telemetry-card {
+4657:     
+4658: background: rgba(8, 16, 28, 0.7) !important;
+4659:     backdrop-filter: blur(12px) !important;
+4660:     
+4661: -webkit-backdrop-filter: blur(12px) !important;
+4662:     border: 1px solid rgba(0, 229, 255, 0.2) !important;
+4663:     
+4664: border-radius: 12px !important;
+4665:     padding: 1rem 1.25rem !important;
+4666:     box-shadow: 0 8px 32px rgba(0, 0, 0, 
+4667: 0.4) !important;
+4668: }
+4669: 
+4670: /* ==========================================================================
+4671:    
+4672: 8. HOLOGRAPHIC CARDS (S03) - BOTTOM HORIZONTAL ROW
+4673:    
+4674: ========================================================================== */
+4675: #observation #holo-cards {
+4676:     
+4677: position: relative !important;
+4678:     bottom: auto !important;
+4679:     left: auto !important;
+4680:     transform: none 
+4681: !important;
+4682:     width: 100% !important;
+4683:     max-width: 480px !important;
+4684:     margin: 1.5rem 0 0 0 
+4685: !important;
+4686:     padding: 0 !important;
+4687:     display: flex !important;
+4688:     flex-direction: row 
+4689: !important;
+4690:     justify-content: flex-start !important;
+4691:     align-items: stretch !important;
+4692:     gap: 
+4693: 0.75rem !important;
+4694:     z-index: 25 !important;
+4695: }
+4696: 
+4697: #observation #holo-cards .holo-card {
+4698:     flex: 
+4699: 1 !important;
+4700:     min-width: 0 !important;
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

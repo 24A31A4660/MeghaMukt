@@ -1,0 +1,33 @@
+Created At: 2026-07-01T17:26:22Z
+Completed At: 2026-07-01T17:26:23Z
+File Path: `file:///c:/Users/aksha/Documents/AntiGravity/earth-satellites/css/style.css`
+Total Lines: 4069
+Total Bytes: 94814
+Showing lines 1 to 25
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: /* ============================================
+2:    EARTH & SATELLITES — Design System
+3:    Inspired by cornrevolution.resn.global
+4:    ============================================ */
+5: 
+6: /* ---- CSS Custom Properties (Design Tokens) ---- */
+7: :root {
+8:     /* Colors */
+9:     --space-deep: #09162e;
+10:     --space-dark: #12223c;
+11:     --space-mid: #1b2f52;
+12:     --nebula-teal: #0d4f4f;
+13:     --aurora-cyan: #00e5ff;
+14:     --aurora-green: #39ff14;
+15:     --star-white: #e8f0ff;
+16:     --sunset-orange: #ff6b35;
+17:     --sunset-gold: #ffb347;
+18:     --warm-dark: #221205;
+19: 
+20:     --text-primary: #ffffff;
+21:     --text-secondary: rgba(255, 255, 255, 0.65);
+22:     --text-tertiary: rgba(255, 255, 255, 0.4);
+23: 
+24:     /* Typography */
+25:     --font-heading: 'Syncopate', 'Syne', 'Orbitron', sans-serif;
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

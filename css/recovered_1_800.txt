@@ -1,0 +1,808 @@
+Created At: 2026-07-02T12:03:19Z
+Completed At: 2026-07-02T12:03:19Z
+File Path: `file:///c:/Users/aksha/Documents/AntiGravity/earth-satellites/css/style.css`
+Total Lines: 4072
+Total Bytes: 94808
+Showing lines 1 to 800
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: /* ============================================
+2:    EARTH & SATELLITES — Design System
+3:    Inspired by cornrevolution.resn.global
+4:    ============================================ */
+5: 
+6: /* ---- CSS Custom Properties (Design Tokens) ---- */
+7: :root {
+8:     /* Colors */
+9:     --space-deep: #09162e;
+10:     --space-dark: #12223c;
+11:     --space-mid: #1b2f52;
+12:     --nebula-teal: #0d4f4f;
+13:     --aurora-cyan: #00e5ff;
+14:     --aurora-green: #39ff14;
+15:     --star-white: #e8f0ff;
+16:     --sunset-orange: #ff6b35;
+17:     --sunset-gold: #ffb347;
+18:     --warm-dark: #221205;
+19: 
+20:     --text-primary: #ffffff;
+21:     --text-secondary: rgba(255, 255, 255, 0.65);
+22:     --text-tertiary: rgba(255, 255, 255, 0.4);
+23: 
+24:     /* Typography */
+25:     --font-heading: 'Inter', sans-serif;
+26:     --font-body: 'Inter', sans-serif;
+27:     --font-condensed: 'Inter', sans-serif;
+28:     --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+29: 
+30:     /* Sizes */
+31:     --hero-title-size: clamp(4rem, 10vw, 11rem);
+32:     --section-title-size: clamp(3rem, 7vw, 7rem);
+33:     --body-size: clamp(0.9rem, 1.1vw, 1.1rem);
+34:     --chapter-num-size: 0.85rem;
+35: 
+36:     /* Spacing */
+37:     --nav-height: 80px;
+38:     --section-padding: clamp(2rem, 5vw, 6rem);
+39: 
+40:     /* Transitions */
+41:     --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+42:     --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+43:     --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+44: 
+45:     /* Z-indices */
+46:     --z-bg: 1;
+47:     --z-earth: 2;
+48:     --z-content: 5;
+49:     --z-particles: 10;
+50:     --z-nav: 50;
+51:     --z-menu: 100;
+52: }
+53: 
+54: 
+55: /* ---- Reset & Base ---- */
+56: *,
+57: *::before,
+58: *::after {
+59:     margin: 0;
+60:     padding: 0;
+61:     box-sizing: border-box;
+62: }
+63: 
+64: html {
+65:     width: 100%;
+66:     height: 100%;
+67:     min-height: 100vh;
+68:     scroll-behavior: smooth;
+69:     -webkit-font-smoothing: antialiased;
+70:     -moz-osx-font-smoothing: grayscale;
+71:     overflow-x: hidden;
+72: }
+73: 
+74: body {
+75:     width: 100%;
+76:     height: 100%;
+77:     min-height: 100vh;
+78:     font-family: var(--font-body);
+79:     font-weight: 300;
+80:     color: var(--text-primary);
+81:     background-color: var(--space-deep);
+82:     overflow-x: hidden;
+83:     cursor: default;
+84:     line-height: 1.6;
+85: }
+86: 
+87: a {
+88:     color: inherit;
+89:     text-decoration: none;
+90: }
+91: 
+92: button {
+93:     background: none;
+94:     border: none;
+95:     cursor: pointer;
+96:     color: inherit;
+97:     font-family: inherit;
+98: }
+99: 
+100: img {
+101:     display: block;
+102:     width: 100%;
+103:     height: 100%;
+104:     object-fit: cover;
+105: }
+106: 
+107: 
+108: /* ---- Scroll Container ---- */
+109: .scroll-container {
+110:     width: 100%;
+111:     height: 100%;
+112:     min-height: 100vh;
+113:     overflow-x: hidden;
+114: }
+115: 
+116: /* Hide scrollbar */
+117: .scroll-container::-webkit-scrollbar {
+118:     width: 0;
+119:     display: none;
+120: }
+121: 
+122: .scroll-container {
+123:     -ms-overflow-style: none;
+124:     scrollbar-width: none;
+125: }
+126: 
+127: 
+128: /* ---- Section Base ---- */
+129: .section {
+130:     position: relative;
+131:     width: 100%;
+132:     height: 100%;
+133:     min-height: 100vh;
+134:     overflow-x: hidden;
+135:     display: flex;
+136:     align-items: center;
+137: }
+138: 
+139: .section__bg {
+140:     position: absolute;
+141:     inset: 0;
+142:     z-index: var(--z-bg);
+143:     overflow: hidden;
+144: }
+145: 
+146: .section__bg--gradient {
+147:     background: linear-gradient(180deg,
+148:             #0a0520 0%,
+149:             #020b1a 30%,
+150:             #0d1f3a 60%,
+151:             #020b1a 100%);
+152: }
+153: 
+154: .section__bg-img {
+155:     position: absolute;
+156:     top: 0;
+157:     left: 0;
+158:     width: 100vw;
+159:     height: 100vh;
+160:     background-size: cover;
+161:     background-position: center;
+162:     background-repeat: no-repeat;
+163:     object-fit: cover;
+164:     opacity: 0.6;
+165:     transition: transform 1.2s var(--ease-out-expo), opacity 1s ease;
+166:     will-change: transform;
+167: }
+168: 
+169: .section.is-active .section__bg-img {
+170:     transform: scale(1.05);
+171: }
+172: 
+173: .section__bg-overlay {
+174:     position: absolute;
+175:     inset: 0;
+176:     background: linear-gradient(135deg,
+177:             rgba(2, 11, 26, 0.85) 0%,
+178:             rgba(2, 11, 26, 0.4) 40%,
+179:             rgba(2, 11, 26, 0.3) 60%,
+180:             rgba(10, 22, 40, 0.7) 100%);
+181: }
+182: 
+183: .section__bg-overlay--dark {
+184:     background: linear-gradient(135deg,
+185:             rgba(2, 11, 26, 0.9) 0%,
+186:             rgba(5, 13, 26, 0.5) 40%,
+187:             transparent 60%,
+188:             rgba(2, 11, 26, 0.6) 100%);
+189: }
+190: 
+191: .section__bg-overlay--green {
+192:     background: linear-gradient(135deg,
+193:             rgba(2, 11, 26, 0.85) 0%,
+194:             rgba(13, 40, 24, 0.4) 40%,
+195:             transparent 60%,
+196:             rgba(2, 11, 26, 0.5) 100%);
+197: }
+198: 
+199: .section__bg-overlay--warm {
+200:     background: linear-gradient(135deg,
+201:             rgba(2, 11, 26, 0.7) 0%,
+202:             rgba(26, 10, 0, 0.3) 40%,
+203:             transparent 60%,
+204:             rgba(26, 10, 0, 0.5) 100%);
+205: }
+206: 
+207: .section__bg-overlay--future {
+208:     background: radial-gradient(ellipse at 50% 30%,
+209:             rgba(0, 229, 255, 0.05) 0%,
+210:             rgba(2, 11, 26, 0.95) 70%);
+211: }
+212: 
+213: 
+214: /* ---- Section Content Layout ---- */
+215: .section__content {
+216:     position: relative;
+217:     z-index: var(--z-content);
+218:     padding: var(--section-padding);
+219:     width: 100%;
+220:     max-width: 1600px;
+221:     margin: 0 auto;
+222: }
+223: 
+224: .hero-ui-overlay {
+225:     position: fixed;
+226:     inset: 0;
+227:     z-index: 5; /* Above canvas, below nav */
+228:     display: flex;
+229:     flex-direction: column;
+230:     align-items: flex-start;
+231:     justify-content: center;
+232:     text-align: left;
+233:     padding-top: var(--nav-height);
+234:     padding-left: clamp(6rem, 12vw, 15rem);
+235:     pointer-events: none; /* Let canvas be interactive where empty */
+236:     opacity: 0; /* Hidden until app-ready to prevent FOUC */
+237:     visibility: hidden;
+238: }
+239: 
+240: .hero-ui-overlay > * {
+241:     pointer-events: auto;
+242: }
+243: 
+244: .hero-content-left {
+245:     max-width: 520px;
+246:     position: relative;
+247:     z-index: 10;
+248: }
+249: 
+250: .section__content--split {
+251:     display: grid;
+252:     grid-template-columns: 1.2fr 0.8fr;
+253:     gap: clamp(2rem, 4vw, 6rem);
+254:     align-items: center;
+255:     padding-top: var(--nav-height);
+256:     padding-left: calc(var(--section-padding) + 1.5rem);
+257: }
+258: 
+259: .section__text {
+260:     display: flex;
+261:     flex-direction: column;
+262:     align-items: flex-start;
+263:     max-width: 620px;
+264:     z-index: 10;
+265: }
+266: 
+267: .section__cta-wrap {
+268:     display: flex;
+269:     justify-content: center;
+270:     align-items: center;
+271:     z-index: 10;
+272: }
+273: 
+274: .section__content--center {
+275:     display: flex;
+276:     flex-direction: column;
+277:     align-items: center;
+278:     justify-content: center;
+279:     text-align: center;
+280:     padding-top: var(--nav-height);
+281: }
+282: 
+283: 
+284: /* ---- Chapter Indicator ---- */
+285: .section__chapter {
+286:     position: absolute;
+287:     top: 50%;
+288:     left: var(--section-padding);
+289:     transform: translateY(-50%) rotate(-90deg);
+290:     transform-origin: left center;
+291:     z-index: var(--z-content);
+292:     display: flex;
+293:     align-items: center;
+294:     gap: 1rem;
+295:     opacity: 0;
+296:     transition: opacity 0.8s ease 0.3s;
+297: }
+298: 
+299: .section.is-active .section__chapter {
+300:     opacity: 1;
+301: }
+302: 
+303: .section__chapter-num {
+304:     font-family: var(--font-body);
+305:     font-size: var(--chapter-num-size);
+306:     font-weight: 500;
+307:     letter-spacing: 0.2em;
+308:     color: var(--text-secondary);
+309: }
+310: 
+311: .section__chapter-line {
+312:     display: block;
+313:     width: 40px;
+314:     height: 1px;
+315:     background: var(--text-tertiary);
+316: }
+317: 
+318: .section__chapter-label {
+319:     font-family: var(--font-body);
+320:     font-size: 0.7rem;
+321:     font-weight: 500;
+322:     letter-spacing: 0.3em;
+323:     text-transform: uppercase;
+324:     color: var(--text-tertiary);
+325: }
+326: 
+327: 
+328: /* ---- Typography ---- */
+329: /* Hide text before JS split to prevent FOUC flash */
+330: .cinematic-title:not([data-split="done"]), 
+331: .cinematic-body:not([data-split="done"]) {
+332:     opacity: 0;
+333: }
+334: 
+335: .hero__title {
+336:     font-family: var(--font-heading);
+337:     font-size: var(--hero-title-size);
+338:     font-weight: 400;
+339:     line-height: 0.95;
+340:     letter-spacing: 0.03em;
+341:     text-transform: uppercase;
+342:     color: var(--text-primary);
+343:     margin-bottom: 1.5rem;
+344: }
+345: 
+346: .hero__subtitle {
+347:     font-family: var(--font-body);
+348:     font-size: var(--body-size);
+349:     font-weight: 300;
+350:     color: var(--text-secondary);
+351:     max-width: 600px;
+352:     letter-spacing: 0.02em;
+353:     line-height: 1.7;
+354: }
+355: 
+356: .section__title {
+357:     font-family: var(--font-heading);
+358:     font-size: var(--section-title-size);
+359:     font-weight: 400;
+360:     line-height: 0.95;
+361:     letter-spacing: 0.02em;
+362:     text-transform: uppercase;
+363:     color: var(--text-primary);
+364:     margin-bottom: 2rem;
+365: }
+366: 
+367: /* Outlined alternate lines - Resn styling */
+368: .reveal-text__line:nth-child(even) .char-unit {
+369:     color: transparent !important;
+370:     -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.85);
+371:     text-shadow: none;
+372: }
+373: 
+374: /* Interactive Cursor Hover Effects on individual characters */
+375: .char-unit {
+376:     transition:
+377:         transform 0.15s var(--ease-out-quart),
+378:         opacity 0.4s ease,
+379:         color 0.3s ease,
+380:         -webkit-text-stroke 0.3s ease,
+381:         text-shadow 0.3s ease !important;
+382: }
+383: 
+384: .char-unit:hover {
+385:     color: transparent !important;
+386:     -webkit-text-stroke: 1.2px #ffffff !important;
+387:     text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+388:     transform: translateY(-8px) scale(1.18) skewX(-6deg) !important;
+389:     z-index: 10;
+390: }
+391: 
+392: .section__title--center {
+393:     text-align: center;
+394: }
+395: 
+396: .section__desc {
+397:     font-family: var(--font-body);
+398:     font-size: var(--body-size);
+399:     font-weight: 300;
+400:     color: var(--text-secondary);
+401:     max-width: 550px;
+402:     line-height: 1.8;
+403:     letter-spacing: 0.01em;
+404: }
+405: 
+406: .section__desc--center {
+407:     text-align: center;
+408:     max-width: 500px;
+409:     margin: 0 auto 3rem;
+410: }
+411: 
+412: 
+413: /* ---- Text Reveal Animation (Character Split) ---- */
+414: /* Line wrapper — clips the characters so they slide in from below */
+415: .reveal-text__line {
+416:     display: block;
+417:     overflow: hidden;
+418:     /* THE clip that hides chars below the baseline */
+419:     line-height: 1.05;
+420:     padding-bottom: 0.08em;
+421:     /* Give a little breathing room so descenders aren't clipped */
+422: }
+423: 
+424: /* Inner span becomes a block container for char-words */
+425: .reveal-text__inner {
+426:     display: block;
+427:     /* JS takes over — no CSS transition here */
+428: }
+429: 
+430: /* Word container — keeps chars inline with no wrapping */
+431: .char-word {
+432:     display: inline-block;
+433:     white-space: nowrap;
+434: }
+435: 
+436: /* Individual character unit — JS sets transform & transition */
+437: .char-unit {
+438:     display: inline-block;
+439:     will-change: transform, opacity, color;
+440:     backface-visibility: hidden;
+441:     /* Base hidden state — JS overrides these per-character */
+442:     transform: translateY(115%) skewX(-8deg);
+443:     opacity: 0;
+444:     transition: color 0.4s ease;
+445: }
+446: 
+447: 
+448: /* ---- Fade-in Animation (JS-driven) ---- */
+449: .fade-in {
+450:     opacity: 0;
+451:     transform: translateY(30px);
+452:     /* JS sets individual transitions with proper delays */
+453:     will-change: opacity, transform;
+454: }
+455: 
+456: 
+457: /* ---- Navigation Bar ---- */
+458: .nav {
+459:     position: fixed;
+460:     top: 0;
+461:     left: 0;
+462:     right: 0;
+463:     height: var(--nav-height);
+464:     z-index: var(--z-nav);
+465:     display: flex;
+466:     align-items: center;
+467:     padding: 0 var(--section-padding);
+468:     pointer-events: none;
+469: }
+470: 
+471: .nav>* {
+472:     pointer-events: auto;
+473: }
+474: 
+475: .nav__hamburger {
+476:     width: 32px;
+477:     height: 24px;
+478:     display: flex;
+479:     flex-direction: column;
+480:     justify-content: space-between;
+481:     padding: 0;
+482:     position: relative;
+483:     z-index: calc(var(--z-menu) + 1);
+484: }
+485: 
+486: .nav__hamburger span {
+487:     display: block;
+488:     width: 100%;
+489:     height: 2px;
+490:     background: var(--text-primary);
+491:     border-radius: 2px;
+492:     transition: transform 0.4s var(--ease-out-expo), opacity 0.3s ease;
+493:     transform-origin: center;
+494: }
+495: 
+496: .nav__hamburger.is-open span:nth-child(1) {
+497:     transform: translateY(11px) rotate(45deg);
+498: }
+499: 
+500: .nav__hamburger.is-open span:nth-child(2) {
+501:     opacity: 0;
+502: }
+503: 
+504: .nav__hamburger.is-open span:nth-child(3) {
+505:     transform: translateY(-11px) rotate(-45deg);
+506: }
+507: 
+508: .nav__logo {
+509:     display: flex;
+510:     align-items: center;
+511:     gap: 0.75rem;
+512:     margin-left: 2rem;
+513: }
+514: 
+515: .nav__logo-icon {
+516:     width: 36px;
+517:     height: 36px;
+518:     color: var(--text-primary);
+519: }
+520: 
+521: .nav__logo-text {
+522:     font-family: var(--font-heading);
+523:     font-size: 1.5rem;
+524:     letter-spacing: 0.15em;
+525:     color: var(--text-primary);
+526: }
+527: 
+528: .nav__btn {
+529:     font-family: var(--font-condensed);
+530:     font-size: 0.9rem;
+531:     font-weight: 700;
+532:     letter-spacing: 0.15em;
+533:     color: var(--aurora-cyan);
+534:     background: rgba(0, 229, 255, 0.08);
+535:     border: 1px solid rgba(0, 229, 255, 0.25);
+536:     height: 42px;
+537:     padding: 0 1.5rem;
+538:     border-radius: 2px;
+539:     display: flex;
+540:     align-items: center;
+541:     justify-content: center;
+542:     gap: 0.5rem;
+543:     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+544:     box-shadow: 0 0 15px rgba(0, 229, 255, 0.05);
+545: }
+546: 
+547: .nav__btn:hover {
+548:     background: rgba(0, 229, 255, 0.2);
+549:     border-color: var(--aurora-cyan);
+550:     color: #ffffff;
+551:     box-shadow: 0 0 25px rgba(0, 229, 255, 0.25);
+552:     transform: translateY(-1px);
+553: }
+554: 
+555: 
+556: /* ---- Navigation Dots (Right Side) ---- */
+557: .nav-dots {
+558:     position: fixed;
+559:     right: clamp(1.5rem, 3vw, 2.5rem);
+560:     top: 50%;
+561:     transform: translateY(-50%);
+562:     z-index: var(--z-nav);
+563:     display: flex;
+564:     flex-direction: column;
+565:     gap: 1.2rem;
+566:     align-items: center;
+567: }
+568: 
+569: .nav-dots__dot {
+570:     width: 10px;
+571:     height: 10px;
+572:     border-radius: 50%;
+573:     border: 1.5px solid var(--text-tertiary);
+574:     background: transparent;
+575:     position: relative;
+576:     transition: all 0.4s var(--ease-out-expo);
+577:     cursor: pointer;
+578:     padding: 0;
+579: }
+580: 
+581: .nav-dots__dot::before {
+582:     content: '';
+583:     position: absolute;
+584:     inset: -6px;
+585:     border-radius: 50%;
+586:     border: 1px solid transparent;
+587:     transition: border-color 0.4s ease;
+588: }
+589: 
+590: .nav-dots__dot.active {
+591:     border-color: var(--aurora-cyan);
+592:     background: var(--aurora-cyan);
+593:     transform: scale(1.3);
+594:     box-shadow: 0 0 10px rgba(0, 229, 255, 0.8);
+595: }
+596: 
+597: .nav-dots__dot.active::before {
+598:     border-color: rgba(0, 229, 255, 0.4);
+599: }
+600: 
+601: /* Pulse animation for active dot */
+602: .nav-dots__dot.active::after {
+603:     content: '';
+604:     position: absolute;
+605:     inset: -4px;
+606:     border-radius: 50%;
+607:     border: 1px solid rgba(0, 229, 255, 0.6);
+608:     animation: dotPulse 2s ease-in-out infinite;
+609: }
+610: 
+611: @keyframes dotPulse {
+612: 
+613:     0%,
+614:     100% {
+615:         transform: scale(1);
+616:         opacity: 0.8;
+617:     }
+618: 
+619:     50% {
+620:         transform: scale(1.6);
+621:         opacity: 0;
+622:     }
+623: }
+624: 
+625: 
+626: /* ---- Menu Overlay ---- */
+627: .menu-overlay {
+628:     position: fixed;
+629:     inset: 0;
+630:     z-index: var(--z-menu);
+631:     pointer-events: none;
+632:     opacity: 0;
+633:     visibility: hidden;
+634:     transition: opacity 0.5s ease, visibility 0.5s ease;
+635: }
+636: 
+637: .menu-overlay.is-open {
+638:     pointer-events: auto;
+639:     opacity: 1;
+640:     visibility: visible;
+641: }
+642: 
+643: .menu-overlay__bg {
+644:     position: absolute;
+645:     inset: 0;
+646:     background: rgba(2, 11, 26, 0.92);
+647:     backdrop-filter: blur(20px);
+648:     -webkit-backdrop-filter: blur(20px);
+649: }
+650: 
+651: .menu-overlay__content {
+652:     position: relative;
+653:     z-index: 2;
+654:     display: flex;
+655:     flex-direction: column;
+656:     justify-content: center;
+657:     align-items: center;
+658:     height: 100%;
+659:     gap: 0;
+660: }
+661: 
+662: .menu-overlay__link {
+663:     font-family: var(--font-heading);
+664:     font-size: clamp(2rem, 5vw, 4rem);
+665:     letter-spacing: 0.05em;
+666:     text-transform: uppercase;
+667:     color: var(--text-secondary);
+668:     padding: 0.5rem 2rem;
+669:     transition: color 0.3s ease, transform 0.4s var(--ease-out-expo);
+670:     transform: translateY(20px);
+671:     opacity: 0;
+672: }
+673: 
+674: .menu-overlay.is-open .menu-overlay__link {
+675:     transform: translateY(0);
+676:     opacity: 1;
+677: }
+678: 
+679: /* Stagger menu links */
+680: .menu-overlay.is-open .menu-overlay__link:nth-child(1) {
+681:     transition-delay: 0.1s;
+682: }
+683: 
+684: .menu-overlay.is-open .menu-overlay__link:nth-child(2) {
+685:     transition-delay: 0.15s;
+686: }
+687: 
+688: .menu-overlay.is-open .menu-overlay__link:nth-child(3) {
+689:     transition-delay: 0.2s;
+690: }
+691: 
+692: .menu-overlay.is-open .menu-overlay__link:nth-child(4) {
+693:     transition-delay: 0.25s;
+694: }
+695: 
+696: .menu-overlay.is-open .menu-overlay__link:nth-child(5) {
+697:     transition-delay: 0.3s;
+698: }
+699: 
+700: .menu-overlay__link:hover {
+701:     color: var(--text-primary);
+702:     transform: translateX(10px);
+703: }
+704: 
+705: 
+706: /* ---- CTA Circle Button (Double-Ring) ---- */
+707: .cta-circle {
+708:     position: relative;
+709:     display: flex;
+710:     align-items: center;
+711:     justify-content: center;
+712:     width: 160px;
+713:     height: 160px;
+714:     cursor: pointer;
+715:     text-decoration: none;
+716: }
+717: 
+718: .cta-circle--large {
+719:     width: 180px;
+720:     height: 180px;
+721: }
+722: 
+723: .cta-circle__ring {
+724:     position: absolute;
+725:     inset: 0;
+726:     border-radius: 50%;
+727:     border: 1px solid rgba(255, 255, 255, 0.3);
+728:     transition: all 0.6s var(--ease-out-expo);
+729: }
+730: 
+731: .cta-circle__ring--outer {
+732:     inset: -8px;
+733:     border-color: rgba(255, 255, 255, 0.15);
+734: }
+735: 
+736: .cta-circle__ring--inner {
+737:     inset: 0;
+738:     border-color: rgba(255, 255, 255, 0.4);
+739: }
+740: 
+741: .cta-circle:hover .cta-circle__ring--outer {
+742:     inset: -14px;
+743:     border-color: rgba(255, 255, 255, 0.3);
+744: }
+745: 
+746: .cta-circle:hover .cta-circle__ring--inner {
+747:     border-color: rgba(255, 255, 255, 0.7);
+748:     background: rgba(255, 255, 255, 0.05);
+749: }
+750: 
+751: .cta-circle__text {
+752:     font-family: var(--font-body);
+753:     font-size: 0.7rem;
+754:     font-weight: 500;
+755:     letter-spacing: 0.25em;
+756:     text-transform: uppercase;
+757:     text-align: center;
+758:     line-height: 1.6;
+759:     color: var(--text-primary);
+760:     transition: transform 0.4s var(--ease-out-expo);
+761: }
+762: 
+763: .cta-circle:hover .cta-circle__text {
+764:     transform: scale(1.05);
+765: }
+766: 
+767: 
+768: /* ---- Hero Scroll Prompt ---- */
+769: .hero__scroll-prompt {
+770:     position: absolute;
+771:     bottom: clamp(2rem, 4vh, 4rem);
+772:     left: calc(var(--section-padding) + 2rem);
+773:     z-index: var(--z-content);
+774:     display: flex;
+775:     flex-direction: column;
+776:     align-items: center;
+777:     gap: 1rem;
+778: }
+779: 
+780: .hero__scroll-text {
+781:     font-family: var(--font-body);
+782:     font-size: 0.7rem;
+783:     font-weight: 500;
+784:     letter-spacing: 0.3em;
+785:     color: var(--text-secondary);
+786:     text-transform: uppercase;
+787: }
+788: 
+789: .hero__scroll-line {
+790:     width: 1px;
+791:     height: 40px;
+792:     background: linear-gradient(to bottom, var(--text-secondary), transparent);
+793:     animation: scrollPulse 2s ease-in-out infinite;
+794: }
+795: 
+796: @keyframes scrollPulse {
+797: 
+798:     0%,
+799:     100% {
+800:         opacity: 0.3;
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
