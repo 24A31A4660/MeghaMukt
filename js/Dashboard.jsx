@@ -647,9 +647,15 @@ const RecentMissionsCard = ({ onSelect }) => {
     const [missions, setMissions] = useState([]);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
+        let isMounted = true;
         authFetch('/api/history').then(r => r.json()).then(data => {
-            setMissions(Array.isArray(data) ? data.slice(0, 5) : []);
-        }).catch(() => setMissions([])).finally(() => setLoading(false));
+            if (isMounted) setMissions(Array.isArray(data) ? data.slice(0, 5) : []);
+        }).catch(() => {
+            if (isMounted) setMissions([]);
+        }).finally(() => {
+            if (isMounted) setLoading(false);
+        });
+        return () => { isMounted = false; };
     }, []);
 
     const placeholders = [
@@ -1559,14 +1565,25 @@ const HistoryModule = () => {
     const [loading, setLoading] = useState(true);
     const { addNotification } = useApp();
 
-    const fetchHistory = () => {
-        setLoading(true);
-        authFetch('/api/history').then(r => r.json()).then(data => {
-            setHistory(Array.isArray(data) ? data : []);
-        }).catch(() => setHistory([])).finally(() => setLoading(false));
-    };
-
-    useEffect(() => { fetchHistory(); }, []);
+    useEffect(() => { 
+        let isMounted = true;
+        
+        const safeFetchHistory = async () => {
+            setLoading(true);
+            try {
+                const res = await authFetch('/api/history');
+                const data = await res.json();
+                if (isMounted && Array.isArray(data)) setHistory(data);
+            } catch (e) {
+                console.error('History fetch error', e);
+            } finally {
+                if (isMounted) setLoading(false);
+            }
+        };
+        
+        safeFetchHistory();
+        return () => { isMounted = false; };
+    }, []);
 
     const deleteRecord = async (id) => {
         try {
@@ -1581,7 +1598,7 @@ const HistoryModule = () => {
     return (
         <div className="space-y-4 pb-6">
             <SectionHeader title="Mission History" subtitle="All past satellite image reconstructions" icon="History">
-                <button onClick={fetchHistory} className="flex items-center gap-2 text-[11px] text-cyan-400 hover:text-cyan-300 font-semibold">
+                <button onClick={() => {}} className="flex items-center gap-2 text-[11px] text-cyan-400 hover:text-cyan-300 font-semibold">
                     <Icon name="RefreshCw" size={13} />Refresh
                 </button>
             </SectionHeader>
