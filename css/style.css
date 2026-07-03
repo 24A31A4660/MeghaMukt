@@ -5357,3 +5357,14 @@ a, button, input, select, textarea {
     left: auto !important;
     right: clamp(4rem, 8vw, 10rem) !important; /* Position firmly on the right side */
 }
+/* ============================================================
+   REDUCE TELEMETRY CARD SIZES (UNIFORM SCALING)
+   ============================================================ */
+
+.floating-telemetry {
+    /* Combine the existing translateY with a scale down to beautifully shrink everything proportionally */
+    transform: translateY(-50%) scale(0.85) !important;
+    
+    /* Ensure it scales from the right side so it doesn't move away from the edge */
+    transform-origin: right center !important;
+}
