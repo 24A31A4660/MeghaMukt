@@ -5327,3 +5327,24 @@ a, button, input, select, textarea {
     left: -40px !important; 
     width: 30px !important;
 }
+/* ============================================================
+   FIX NAVBAR VERTICAL ALIGNMENT (MEGHAMUKT LOGO)
+   ============================================================ */
+
+/* Remove any previous translateY pushing the logo down */
+.nav__logo {
+    transform: translateY(0) !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+/* Ensure the navbar items are all vertically centered */
+.nav {
+    display: flex !important;
+    align-items: center !important;
+}
+
+.nav__hamburger {
+    transform: translateY(0) !important;
+    margin-top: 0 !important;
+}
