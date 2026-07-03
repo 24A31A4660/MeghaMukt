@@ -5572,3 +5572,44 @@ a, button, input, select, textarea {
 .hero-content-left {
     transform: translateX(-17vw) !important;
 }
+/* ============================================================
+   S04 (MISSION COMPLETE) ALIGNMENT AND OVERLAP FIX
+   ============================================================ */
+
+/* Fix footer overlapping with S04 content */
+#results .section__content {
+    padding-bottom: 100px !important; /* Make room for the absolute footer */
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+/* Ensure the text block in S04 is perfectly centered */
+#results .cinematic-text-block {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    width: 100% !important;
+}
+
+/* Add spacing between elements to arrange them properly */
+#results-title {
+    margin-bottom: 1rem !important;
+}
+
+#results-body {
+    margin-bottom: 3rem !important;
+}
+
+#results-cta { /* This is the achievement grid */
+    margin-bottom: 3rem !important;
+    justify-content: center !important;
+}
+
+/* Force the button to be perfectly centered under the boxes */
+#cta-results {
+    align-self: center !important;
+    margin: 0 auto !important;
+}
