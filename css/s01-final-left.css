@@ -1,0 +1,32 @@
+/* ============================================================
+   S01 DEFINITIVE LEFT ALIGN FIX
+   ============================================================ */
+
+/* Force the entire Hero container to the absolute left edge of the page */
+.hero-ui-overlay {
+    padding-left: 4vw !important; /* Align exactly with the hamburger menu/side nav */
+    margin-left: 0 !important;
+}
+
+/* Ensure the left column has no hidden margins pushing it right */
+.hero-content-left {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+}
+
+/* Specifically target the IDs to override any previous margin-left rules! */
+#hero-title,
+#hero-body,
+#hero-feature-pills,
+.hero-eyebrow {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+}
+
+/* Reset the cyan line so it sits exactly where it belongs, not pushed arbitrarily left */
+.hero-eyebrow__line {
+    position: relative !important;
+    left: 0 !important;
+    margin-right: 15px !important;
+    width: 30px !important;
+}
