@@ -501,7 +501,7 @@
             
             let camDur = 2.5;
             if (idx === 2) camDur = 1.5; // ~40% faster for Section 03
-            if (idx === 3) camDur = 4.0; // Slower cinematic reveal for Section 04
+            if (idx === 3) camDur = 2.0; // Faster reveal for Section 04
 
             if (typeof gsap !== 'undefined') {
                 gsap.to(curCam, {
