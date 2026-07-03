@@ -1,0 +1,69 @@
+/* ============================================================
+   HERO LAYOUT REDESIGN (TWO-COLUMN BALANCE)
+   ============================================================ */
+
+/* 1. Container: Vertically centered, restricting left content to ~40% */
+.hero-ui-overlay {
+    display: flex !important;
+    align-items: center !important; /* Vertically center the content */
+    justify-content: flex-start !important;
+    padding-left: clamp(5rem, 8vw, 12rem) !important; /* Space for side-nav */
+}
+
+/* 2. Left Column: 40% visual width, clear constraints */
+.hero-content-left {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+    width: 40vw !important; /* Exactly 40% of viewport width */
+    min-width: 500px !important;
+    max-width: 600px !important;
+    margin: 0 !important;
+}
+
+/* 3. Subtitle / Eyebrow: ~30px above the title */
+.hero-eyebrow {
+    margin-top: 0 !important;
+    margin-bottom: 30px !important;
+}
+
+/* 4. Typography: Reduce BEYOND slightly, make cohesive block */
+#hero-title {
+    font-size: clamp(3rem, 5.5vw, 6rem) !important; /* Reduced */
+    line-height: 0.8 !important; /* Cohesive block */
+    margin-bottom: 30px !important; /* ~30px below title */
+}
+
+/* 5. Description: 550px max width, increased line height, 30px below title */
+#hero-body {
+    max-width: 550px !important;
+    line-height: 1.7 !important; /* Better readability */
+    font-size: 1.15rem !important;
+    margin-top: 0 !important;
+    margin-bottom: 2.5rem !important; /* Space before feature tags */
+}
+
+/* 6. Feature Tags: One row if space allows, equal spacing */
+#hero-feature-pills {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    gap: 1.2rem !important;
+    margin-top: 0 !important;
+    margin-bottom: 2.5rem !important; /* Space before buttons */
+}
+
+/* 7. Buttons: One horizontal row, equal spacing, left aligned */
+.hero-cta-group {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 1.5rem !important;
+    width: auto !important; /* Prevent stretching */
+    margin-top: 0 !important;
+}
+
+/* Earth implicit balance: 
+   Because .hero-content-left is restricted to 40% width, 
+   the right 60% is naturally empty and accommodates the existing 
+   Earth translation without overlap or cramped feeling. */
