@@ -1,0 +1,41 @@
+/* ============================================================
+   S04 CLEAN LAYOUT RE-ARRANGE
+   ============================================================ */
+
+/* Reset the clumsy negative margin on the title */
+#results-title {
+    margin-top: 0 !important; 
+    margin-bottom: 0.5rem !important; /* Small gap between title and subtitle */
+}
+
+/* Ensure subtitle has proper spacing */
+#results-body {
+    margin-bottom: 2rem !important; /* Gap between subtitle and metric boxes */
+}
+
+/* Re-adjust the metric boxes to look neat and not too tall */
+.achievement-card {
+    padding: 1rem 0.5rem !important;
+    min-height: auto !important; /* Remove the weird tall height */
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+#results .achievement-grid {
+    gap: 1rem !important;
+    margin-bottom: 2.5rem !important; /* Space between boxes and button */
+}
+
+/* Give the entire S04 block a clean upward shift without clumping elements */
+#results .cinematic-text-block {
+    padding-top: 5vh !important; /* Push the whole group up slightly */
+    justify-content: flex-start !important;
+    gap: 0 !important; /* We control gaps with margins above */
+}
+
+/* Ensure button is clear of the footer */
+#cta-results {
+    margin-bottom: 4rem !important; /* Lots of space below the button to clear footer */
+}
