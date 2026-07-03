@@ -5681,3 +5681,11 @@ a, button, input, select, textarea {
     z-index: 100 !important; /* Ensure footer text is above any overlaps */
     bottom: 10px !important; /* Keep it glued to the very bottom */
 }
+/* ============================================================
+   S04 TITLE MOVE UP
+   ============================================================ */
+
+/* Move the heading text up a little bit */
+#results-title {
+    margin-top: -4vh !important; /* Pull the heading up */
+}
