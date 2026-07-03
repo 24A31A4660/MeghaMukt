@@ -1,0 +1,8 @@
+/* ============================================================
+   S01 ALIGN MATCH WITH S02 AND S03
+   ============================================================ */
+
+/* Make S01 (Hero) use the exact same padding as S02 and S03 so their headings align vertically */
+.hero-ui-overlay {
+    padding-left: clamp(5rem, 9.5vw, 12rem) !important;
+}
