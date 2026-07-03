@@ -21,7 +21,7 @@
                 id: 'hero',
                 titleId: 'hero-title',
                 bodyId: 'hero-body',
-                extras: ['#hero-scroll'],
+                extras: ['.hero-eyebrow', '#hero-feature-pills', '.hero-cta-group', '#hero-scroll'],
             },
             {
                 id: 'foundation',
@@ -112,7 +112,7 @@
 
                 const curr = sectionData[index];
                 if (curr) {
-                    let delay = prevIndex === -1 ? 0.15 : 0.1;
+                    let delay = prevIndex === -1 ? (index === 0 ? 3.0 : 0.15) : 0.1;
                     let textDur = 0.75;
                     let bodyDur = 0.55;
                     
