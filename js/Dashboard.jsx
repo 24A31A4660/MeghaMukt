@@ -271,7 +271,7 @@ const Sidebar = ({ activeModule, setActiveModule, onLogout }) => {
     const { lastResult } = useApp();
 
     return (
-        <aside className="w-[220px] min-w-[220px] bg-[#060B16]/90 backdrop-blur-2xl border-r border-white/[0.06] flex flex-col h-full overflow-hidden">
+        <aside className="w-[220px] min-w-[220px] bg-[#060B16]/90  border-r border-white/[0.06] flex flex-col h-full overflow-hidden">
             <div className="px-4 pt-5 pb-3 border-b border-white/[0.04]">
                 <div className="flex items-center gap-2">
                     <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500/20 to-blue-600/20 border border-cyan-500/30 flex items-center justify-center">
@@ -344,7 +344,7 @@ const TopBar = ({ username, isGuest, onModuleChange, onLogout }) => {
     const unreadCount = notifications.filter(n => !n.read).length;
 
     return (
-        <header className="h-14 bg-[#060B16]/80 backdrop-blur-2xl border-b border-white/[0.05] flex items-center justify-between px-5 z-20 flex-shrink-0 relative">
+        <header className="h-14 bg-[#060B16]/80  border-b border-white/[0.05] flex items-center justify-between px-5 z-20 flex-shrink-0 relative">
             <div className="flex items-center gap-4">
                 <div>
                     <h2 className="text-[14px] font-bold text-white tracking-wide">AI RECONSTRUCTION DASHBOARD</h2>
@@ -496,12 +496,12 @@ const ComparisonViewer = ({ beforeUrl, groundTruthUrl }) => {
                     <Icon name="ChevronsLeftRight" size={14} className="text-cyan-400" />
                 </div>
             </div>
-            <div className="absolute top-3 left-3 bg-black/60 backdrop-blur-sm px-2.5 py-1 rounded-lg text-[9px] font-bold tracking-widest text-amber-400 border border-amber-500/20 uppercase">Cloudy Input</div>
-            <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-sm px-2.5 py-1 rounded-lg text-[9px] font-bold tracking-widest uppercase border text-emerald-400 border-emerald-500/20">
+            <div className="absolute top-3 left-3 bg-black/60  px-2.5 py-1 rounded-lg text-[9px] font-bold tracking-widest text-amber-400 border border-amber-500/20 uppercase">Cloudy Input</div>
+            <div className="absolute top-3 right-3 bg-black/60  px-2.5 py-1 rounded-lg text-[9px] font-bold tracking-widest uppercase border text-emerald-400 border-emerald-500/20">
                 Ground Truth · Cloud-Free Reference Image
             </div>
             {zoom > 1 && (
-                <div className="absolute bottom-3 left-1/2 -translate-x-1/2 bg-black/70 backdrop-blur-sm px-3 py-1 rounded-full text-[10px] font-bold text-cyan-300 border border-cyan-500/20">
+                <div className="absolute bottom-3 left-1/2 -translate-x-1/2 bg-black/70  px-3 py-1 rounded-full text-[10px] font-bold text-cyan-300 border border-cyan-500/20">
                     {zoom.toFixed(1)}×
                 </div>
             )}
@@ -527,7 +527,7 @@ const ComparisonViewer = ({ beforeUrl, groundTruthUrl }) => {
 
             {/* Fullscreen Overlay */}
             {isFullscreen && (
-                <div className="fixed inset-0 z-[9999] bg-[#020912]/95 backdrop-blur-md flex flex-col" style={{ animation: 'fadeIn 0.2s ease-out' }}>
+                <div className="fixed inset-0 z-[9999] bg-[#020912]/95  flex flex-col" style={{ animation: 'fadeIn 0.2s ease-out' }}>
                     <div className="flex justify-between items-center px-6 py-3 border-b border-white/[0.06]">
                         <h3 className="text-[13px] font-bold tracking-widest uppercase text-slate-200">
                             <Icon name="Maximize" size={14} className="text-cyan-400 inline mr-2" />
@@ -954,7 +954,7 @@ const DataLayersGrid = ({ outputPaths }) => {
 
             {/* Lightbox Modal */}
             {selectedLayer && outputPaths?.[selectedLayer.key] && (
-                <div className="fixed inset-0 z-[9999] bg-[#020912]/90 backdrop-blur-lg flex flex-col" 
+                <div className="fixed inset-0 z-[9999] bg-[#020912]/90  flex flex-col" 
                     onClick={(e) => { if (e.target === e.currentTarget) setSelectedLayer(null); }}
                     style={{ animation: 'fadeIn 0.15s ease-out' }}>
                     <div className="flex justify-between items-center px-6 py-3 border-b border-white/[0.06]">
