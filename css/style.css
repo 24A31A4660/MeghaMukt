@@ -5639,3 +5639,45 @@ a, button, input, select, textarea {
     max-width: 600px !important; /* Prevent boxes from stretching too wide */
     margin: 0 auto 2rem auto !important; /* Keep it centered */
 }
+/* ============================================================
+   S04 EXTRA SHRINK & FOOTER FIX
+   ============================================================ */
+
+/* 1. Further shrink the 4 metric boxes */
+.achievement-card {
+    padding: 0.8rem 0.5rem !important; /* Even smaller padding */
+    min-height: 80px !important;
+}
+
+.achievement-card__value {
+    font-size: 1.6rem !important; /* Smaller numbers */
+    margin-bottom: 0.15rem !important;
+}
+
+.achievement-card__label {
+    font-size: 0.65rem !important; /* Smaller text */
+}
+
+#results .achievement-grid {
+    gap: 0.5rem !important;
+    max-width: 500px !important; /* Keep boxes tight */
+    margin-bottom: 1.5rem !important; /* Less margin below boxes */
+}
+
+/* 2. Decrease the size of the Launch Dashboard Button */
+.cta-launch {
+    padding: 0.7rem 1.5rem !important; /* Smaller button padding */
+    font-size: 0.8rem !important; /* Smaller font size */
+    margin-bottom: 1.5rem !important; /* Give space above footer */
+}
+
+/* 3. Make sure the footer text is pushed down and visible */
+#results .cinematic-text-block {
+    justify-content: flex-start !important; /* Stop pushing elements too far down */
+    padding-top: 10vh !important; /* Bring everything up slightly */
+}
+
+.footer {
+    z-index: 100 !important; /* Ensure footer text is above any overlaps */
+    bottom: 10px !important; /* Keep it glued to the very bottom */
+}
