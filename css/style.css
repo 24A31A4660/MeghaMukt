@@ -5468,3 +5468,11 @@ a, button, input, select, textarea {
 .hero-ui-overlay {
     padding-left: 5rem !important; /* Move it very close to the left edge of the page */
 }
+/* ============================================================
+   S01 EXACT 40PX LEFT POSITION
+   ============================================================ */
+
+/* Move the S01 hero content to exactly 40px from the left edge */
+.hero-ui-overlay {
+    padding-left: 40px !important; 
+}
