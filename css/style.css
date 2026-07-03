@@ -5233,3 +5233,49 @@ a, button, input, select, textarea {
     font-size: 0.95rem !important;
     color: rgba(255, 255, 255, 0.4) !important;
 }
+/* ============================================================
+   ALIGN NAVBAR LOGO AND HERO CONTENT EXACTLY
+   ============================================================ */
+
+/* 1. Ensure the Nav has fixed padding on the left */
+.nav {
+    padding-left: 4vw !important; /* Hamburger position */
+}
+
+/* 2. Position the Logo at an exact distance from the left */
+/* Hamburger is at 4vw. Let's place the Logo text exactly where the Hero content starts */
+.nav__logo {
+    margin-left: 3vw !important; /* Distance from Hamburger to Logo Icon */
+}
+
+/* 3. Make the Hero content start at exactly the same X coordinate as the Nav Logo Text */
+/* Nav Logo Text X = 4vw (nav padding) + 24px (hamburger) + 3vw (logo margin) + 24px (icon) + 16px (gap)
+   Total ≈ 7vw + 64px
+*/
+.hero-ui-overlay {
+    padding-left: calc(7vw + 64px) !important;
+}
+
+/* Ensure the hero content itself doesn't add extra margins */
+.hero-content-left {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+}
+
+/* Also ensure eyebrow text starts perfectly flush left */
+.hero-eyebrow {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+}
+.hero-eyebrow__line {
+    /* If the line needs to hang out to the left like in the image, we pull it left using absolute positioning or negative margin.
+       In the reference image, the line is on the left, but the text is aligned with the logo.
+       Let's align the text with the logo, and pull the line to the left.
+    */
+    position: absolute !important;
+    left: -45px !important;
+    width: 30px !important;
+}
+.hero-eyebrow__text {
+    margin-left: 0 !important;
+}
