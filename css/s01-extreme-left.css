@@ -1,0 +1,26 @@
+/* ============================================================
+   S01 EXTREME LEFT POSITION
+   ============================================================ */
+
+/* Move the entire Session 1 content extremely close to the left edge */
+.hero-ui-overlay {
+    padding-left: 20px !important; /* Extremely close to the left edge */
+    justify-content: flex-start !important; /* Ensure it is not centered */
+    align-content: center !important;
+}
+
+/* Ensure the left column itself is perfectly flush left */
+.hero-content-left {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    align-items: flex-start !important;
+}
+
+/* Make sure the text and info boxes inside don't have stray margins */
+.hero-title,
+.hero-body,
+.hero-feature-pills,
+.hero-cta-group {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+}
