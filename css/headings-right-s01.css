@@ -1,0 +1,9 @@
+/* ============================================================
+   MOVE S01 HEADINGS A BIT MORE TO THE RIGHT
+   ============================================================ */
+
+/* Push the S01 Hero Headings slightly more to the right */
+.hero-eyebrow,
+#hero-title {
+    margin-left: 50px !important; /* Increased from 30px to 50px */
+}
