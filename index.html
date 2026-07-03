@@ -7,12 +7,12 @@
     <meta name="description" content="MeghaMukt — AI Powered Cloud Removal & Reconstruction for LISS-IV Satellite Imagery. ISRO Hackathon 2026.">
     <meta name="theme-color" content="#020912">
 
-    <!-- Fonts: Syncopate & Syne (Pioneer Resn titles) + Orbitron + Rajdhani + Inter + Space Grotesk -->
+    <!-- Fonts: Kelly Slab, Wallpoet, Chakra Petch, Orbitron, Quantico, Keania One, Black Ops One, Syncopate, Syne, Space Grotesk -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Syne:wght@700;800&family=Orbitron:wght@700;800;900&family=Rajdhani:wght@600;700&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700;800&family=Syncopate:wght@700&family=Syne:wght@700;800&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/style.css?v=2026b">
+    <link rel="stylesheet" href="css/style.css?v=transparent_nav_v25">
     <!-- Three.js for WebGL Earth & Particles -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <!-- GSAP for timeline animations -->
@@ -156,8 +156,8 @@
             </div>
 
             <h1 class="cinematic-title" id="hero-title">
-                MEGHA<br>
-                <span class="text-outline">MUKT.</span>
+                BEYOND<br>
+                <span class="text-outline text-outline--cyan">THE<br>CLOUDS</span>
             </h1>
 
             <p class="cinematic-body" id="hero-body">
@@ -183,7 +183,7 @@
             <!-- Two Premium CTAs -->
             <div class="hero-cta-group">
                 <button class="cta-primary" id="cta-launch-hero" onclick="document.getElementById('nav-btn-launch').click()">
-                    <span>LAUNCH DASHBOARD</span>
+                    <span>🚀 LAUNCH DASHBOARD</span>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                 </button>
                 <button class="cta-ghost" id="cta-learn-more" onclick="if(window.AnimationEngine) window.AnimationEngine.scrollToSection(1)">
@@ -233,28 +233,12 @@
                     </div>
 
                     <h2 class="cinematic-title cinematic-title--section" id="foundation-title">
-                        67% OF EARTH<br><span class="text-accent">IS HIDDEN.</span>
+                        67% OF<br><span class="text-outline text-outline--cyan">EARTH</span><br><span class="text-outline text-outline--cyan">IS</span><br><span class="text-outline text-outline--cyan">HIDDEN</span>
                     </h2>
 
                     <p class="cinematic-body" id="foundation-body">
                         Clouds obscure critical satellite data across two-thirds of Earth's surface. Agricultural monitoring delayed. Disaster response compromised. The mission begins here.
                     </p>
-
-                    <!-- Timeline Progress -->
-                    <div class="detection-timeline" id="detection-timeline">
-                        <div class="timeline-step active">
-                            <span class="timeline-step__num">01</span>
-                            <span class="timeline-step__label">Image Capture</span>
-                        </div>
-                        <div class="timeline-step">
-                            <span class="timeline-step__num">02</span>
-                            <span class="timeline-step__label">Cloud Detection</span>
-                        </div>
-                        <div class="timeline-step">
-                            <span class="timeline-step__num">03</span>
-                            <span class="timeline-step__label">Mask Generation</span>
-                        </div>
-                    </div>
                 </div>
 
                 <!-- Floating Telemetry HUD — Glassmorphism Cards -->
@@ -294,7 +278,7 @@
 
                     <div class="telemetry-card telemetry-card--scan" id="tel-scan">
                         <div class="telemetry-card__content" style="width:100%">
-                            <span class="telemetry-card__label">SCAN PROGRESS</span>
+                            <span class="telemetry-card__label">CLOUD DETECTION</span>
                             <span class="telemetry-card__value" id="hud-scan-prog">0%</span>
                             <div class="telemetry-bar">
                                 <div class="telemetry-bar__fill" id="hud-progress-bar"></div>
@@ -325,7 +309,7 @@
                     </div>
 
                     <h2 class="cinematic-title cinematic-title--section" id="observation-title">
-                        NEURAL<br><span class="text-accent">RECONSTRUCTION.</span>
+                        NEURAL<br><span class="text-outline text-outline--cyan">RECONSTRUCTION.</span>
                     </h2>
 
                     <p class="cinematic-body" id="observation-body">
@@ -347,82 +331,82 @@
                             <div class="spectral-band__track"><div class="spectral-band__fill spectral-band__fill--nir"></div></div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Holographic Cards -->
-                <div class="holo-cards" id="holo-cards">
-                    <div class="holo-card holo-card--before">
-                        <div class="holo-card__header">BEFORE</div>
-                        <div class="holo-card__visual">
-                            <div class="holo-card__cloud-icon">☁️</div>
-                            <span>Cloud Obscured</span>
+                    <!-- Holographic Cards -->
+                    <div class="holo-cards" id="holo-cards">
+                        <div class="holo-card holo-card--before">
+                            <div class="holo-card__header">BEFORE</div>
+                            <div class="holo-card__visual">
+                                <div class="holo-card__cloud-icon">☁️</div>
+                                <span>Cloud Obscured</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="holo-card holo-card--process">
-                        <div class="holo-card__header">PROCESSING</div>
-                        <div class="holo-card__visual">
-                            <!-- Neural Network Mini Animation -->
-                            <svg class="neural-graph" viewBox="0 0 100 80" fill="none">
-                                <circle cx="15" cy="20" r="4" fill="var(--aurora-cyan)" opacity="0.8"/>
-                                <circle cx="15" cy="40" r="4" fill="var(--aurora-cyan)" opacity="0.8"/>
-                                <circle cx="15" cy="60" r="4" fill="var(--aurora-cyan)" opacity="0.8"/>
-                                <circle cx="50" cy="15" r="5" fill="var(--aurora-cyan)"/>
-                                <circle cx="50" cy="40" r="5" fill="var(--aurora-violet)"/>
-                                <circle cx="50" cy="65" r="5" fill="var(--aurora-cyan)"/>
-                                <circle cx="85" cy="30" r="4" fill="var(--aurora-green)" opacity="0.9"/>
-                                <circle cx="85" cy="50" r="4" fill="var(--aurora-green)" opacity="0.9"/>
-                                <line x1="19" y1="20" x2="45" y2="15" stroke="var(--aurora-cyan)" stroke-width="0.8" class="neural-line"/>
-                                <line x1="19" y1="20" x2="45" y2="40" stroke="var(--aurora-cyan)" stroke-width="0.8" class="neural-line"/>
-                                <line x1="19" y1="40" x2="45" y2="15" stroke="var(--aurora-cyan)" stroke-width="0.8" class="neural-line"/>
-                                <line x1="19" y1="40" x2="45" y2="40" stroke="var(--aurora-cyan)" stroke-width="0.8" class="neural-line"/>
-                                <line x1="19" y1="40" x2="45" y2="65" stroke="var(--aurora-cyan)" stroke-width="0.8" class="neural-line"/>
-                                <line x1="19" y1="60" x2="45" y2="40" stroke="var(--aurora-cyan)" stroke-width="0.8" class="neural-line"/>
-                                <line x1="19" y1="60" x2="45" y2="65" stroke="var(--aurora-cyan)" stroke-width="0.8" class="neural-line"/>
-                                <line x1="55" y1="15" x2="81" y2="30" stroke="var(--aurora-green)" stroke-width="0.8" class="neural-line"/>
-                                <line x1="55" y1="15" x2="81" y2="50" stroke="var(--aurora-green)" stroke-width="0.8" class="neural-line"/>
-                                <line x1="55" y1="40" x2="81" y2="30" stroke="var(--aurora-green)" stroke-width="0.8" class="neural-line"/>
-                                <line x1="55" y1="40" x2="81" y2="50" stroke="var(--aurora-green)" stroke-width="0.8" class="neural-line"/>
-                                <line x1="55" y1="65" x2="81" y2="30" stroke="var(--aurora-green)" stroke-width="0.8" class="neural-line"/>
-                                <line x1="55" y1="65" x2="81" y2="50" stroke="var(--aurora-green)" stroke-width="0.8" class="neural-line"/>
-                            </svg>
-                            <span>U-NET + GAN</span>
+                        <div class="holo-card holo-card--process">
+                            <div class="holo-card__header">PROCESSING</div>
+                            <div class="holo-card__visual">
+                                <!-- Neural Network Mini Animation -->
+                                <svg class="neural-graph" viewBox="0 0 100 80" fill="none">
+                                    <circle cx="15" cy="20" r="4" fill="var(--aurora-cyan)" opacity="0.8"/>
+                                    <circle cx="15" cy="40" r="4" fill="var(--aurora-cyan)" opacity="0.8"/>
+                                    <circle cx="15" cy="60" r="4" fill="var(--aurora-cyan)" opacity="0.8"/>
+                                    <circle cx="50" cy="15" r="5" fill="var(--aurora-cyan)"/>
+                                    <circle cx="50" cy="40" r="5" fill="var(--aurora-violet)"/>
+                                    <circle cx="50" cy="65" r="5" fill="var(--aurora-cyan)"/>
+                                    <circle cx="85" cy="30" r="4" fill="var(--aurora-green)" opacity="0.9"/>
+                                    <circle cx="85" cy="50" r="4" fill="var(--aurora-green)" opacity="0.9"/>
+                                    <line x1="19" y1="20" x2="45" y2="15" stroke="var(--aurora-cyan)" stroke-width="0.8" class="neural-line"/>
+                                    <line x1="19" y1="20" x2="45" y2="40" stroke="var(--aurora-cyan)" stroke-width="0.8" class="neural-line"/>
+                                    <line x1="19" y1="40" x2="45" y2="15" stroke="var(--aurora-cyan)" stroke-width="0.8" class="neural-line"/>
+                                    <line x1="19" y1="40" x2="45" y2="40" stroke="var(--aurora-cyan)" stroke-width="0.8" class="neural-line"/>
+                                    <line x1="19" y1="40" x2="45" y2="65" stroke="var(--aurora-cyan)" stroke-width="0.8" class="neural-line"/>
+                                    <line x1="19" y1="60" x2="45" y2="40" stroke="var(--aurora-cyan)" stroke-width="0.8" class="neural-line"/>
+                                    <line x1="19" y1="60" x2="45" y2="65" stroke="var(--aurora-cyan)" stroke-width="0.8" class="neural-line"/>
+                                    <line x1="55" y1="15" x2="81" y2="30" stroke="var(--aurora-green)" stroke-width="0.8" class="neural-line"/>
+                                    <line x1="55" y1="15" x2="81" y2="50" stroke="var(--aurora-green)" stroke-width="0.8" class="neural-line"/>
+                                    <line x1="55" y1="40" x2="81" y2="30" stroke="var(--aurora-green)" stroke-width="0.8" class="neural-line"/>
+                                    <line x1="55" y1="40" x2="81" y2="50" stroke="var(--aurora-green)" stroke-width="0.8" class="neural-line"/>
+                                    <line x1="55" y1="65" x2="81" y2="30" stroke="var(--aurora-green)" stroke-width="0.8" class="neural-line"/>
+                                    <line x1="55" y1="65" x2="81" y2="50" stroke="var(--aurora-green)" stroke-width="0.8" class="neural-line"/>
+                                </svg>
+                                <span>U-NET + GAN</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="holo-card holo-card--after">
-                        <div class="holo-card__header">AFTER</div>
-                        <div class="holo-card__visual">
-                            <div class="holo-card__clear-icon">🌍</div>
-                            <span>Reconstructed</span>
+                        <div class="holo-card holo-card--after">
+                            <div class="holo-card__header">AFTER</div>
+                            <div class="holo-card__visual">
+                                <div class="holo-card__clear-icon">🌍</div>
+                                <span>Reconstructed</span>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Floating AI Metrics -->
-                <div class="floating-telemetry" id="telemetry-s03">
-                    <div class="telemetry-card telemetry-card--status" id="tel-model">
-                        <span class="telemetry-card__icon">🧠</span>
-                        <div class="telemetry-card__content">
-                            <span class="telemetry-card__label">MODEL</span>
-                            <span class="telemetry-card__value">U-NET + GAN</span>
-                        </div>
+            <!-- Floating AI Metrics -->
+            <div class="floating-telemetry" id="telemetry-s03">
+                <div class="telemetry-card telemetry-card--status" id="tel-model">
+                    <span class="telemetry-card__icon">🧠</span>
+                    <div class="telemetry-card__content">
+                        <span class="telemetry-card__label">MODEL</span>
+                        <span class="telemetry-card__value">U-NET + GAN</span>
                     </div>
-                    <div class="telemetry-card" id="tel-confidence">
-                        <div class="telemetry-card__content">
-                            <span class="telemetry-card__label">CONFIDENCE</span>
-                            <span class="telemetry-card__value telemetry-card__value--green" id="hud-ai-conf">0%</span>
-                        </div>
+                </div>
+                <div class="telemetry-card" id="tel-confidence">
+                    <div class="telemetry-card__content">
+                        <span class="telemetry-card__label">CONFIDENCE</span>
+                        <span class="telemetry-card__value telemetry-card__value--green" id="hud-ai-conf">0%</span>
                     </div>
-                    <div class="telemetry-card" id="tel-inference">
-                        <div class="telemetry-card__content">
-                            <span class="telemetry-card__label">INFERENCE</span>
-                            <span class="telemetry-card__value" id="hud-infer-time">—</span>
-                        </div>
+                </div>
+                <div class="telemetry-card" id="tel-inference">
+                    <div class="telemetry-card__content">
+                        <span class="telemetry-card__label">INFERENCE</span>
+                        <span class="telemetry-card__value" id="hud-infer-time">—</span>
                     </div>
-                    <div class="telemetry-card" id="tel-pixels">
-                        <div class="telemetry-card__content">
-                            <span class="telemetry-card__label">CLOUD PIXELS</span>
-                            <span class="telemetry-card__value" id="hud-cloud-px">—</span>
-                        </div>
+                </div>
+                <div class="telemetry-card" id="tel-pixels">
+                    <div class="telemetry-card__content">
+                        <span class="telemetry-card__label">CLOUD PIXELS</span>
+                        <span class="telemetry-card__value" id="hud-cloud-px">—</span>
                     </div>
                 </div>
             </div>
@@ -575,15 +559,15 @@
     <!-- ============================================ -->
     <!-- SCRIPTS                                      -->
     <!-- ============================================ -->
-    <script src="js/particles.js?v=2026b"></script>
-    <script src="js/earth.js?v=2026b"></script>
-    <script src="js/text-reveal.js?v=2026b"></script>
-    <script src="js/animations.js?v=2026b"></script>
-    <script src="js/main.js?v=2026b"></script>
+    <script src="js/particles.js?v=2026j"></script>
+    <script src="js/earth.js?v=2026j"></script>
+    <script src="js/text-reveal.js?v=2026j"></script>
+    <script src="js/animations.js?v=2026j"></script>
+    <script src="js/main.js?v=2026j"></script>
     
     <!-- SPA Router & React Dashboard -->
-    <script src="js/router.js?v=2026b"></script>
-    <script type="text/babel" src="js/Dashboard.jsx?v=2026c"></script>
+    <script src="js/router.js?v=transparent_nav_v23"></script>
+    <script type="text/babel" src="js/Dashboard.jsx?v=transparent_nav_v23"></script>
 
 </body>
 </html>

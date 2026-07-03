@@ -326,10 +326,10 @@ img {
 
 
 /* ---- Typography ---- */
-/* Hide text before JS split to prevent FOUC flash */
+/* Text animations are disabled, ensure text remains visible */
 .cinematic-title:not([data-split="done"]), 
 .cinematic-body:not([data-split="done"]) {
-    opacity: 0;
+    opacity: 1;
 }
 
 .hero__title {
@@ -4069,3 +4069,621 @@ a, button, input, select, textarea {
     animation: spin-slow 0.7s linear infinite;
 }
 
+
+    text-align: left !important;\r
+    margin: 0 !important;\r
+    padding: 0 !important;\r
+}\r
+\r
+/* Align Eyebrow label above main title with approx 24px spacing */\r
+.hero-eyebrow {\r
+    position: relative !important;\r
+    margin-top: 0 !important;\r
+    margin-bottom: 24px !important; /* ~24px spacing above main title */\r
+    margin-left: 0 !important;\r
+    padding-left: 0 !important;\r
+    display: flex !important;\r
+    align-items: center !important;\r
+}\r
+.hero-eyebrow__line {\r
+    position: absolute !important;\r
+    left: -36px !important;\r
+    width: 24px !important;\r
+}\r
+.hero-eyebrow__text {\r
+    margin-left: 0 !important;\r
+    padding-left: 0 !important;\r
+    font-family: 'Inter', -apple-system, sans-serif !important;\r
+    font-weight: 500 !important;\r
+    letter-spacing: 0.22em !important;\r
+}\r
+\r
+#hero-body {\r
+    font-size: clamp(0.95rem, 1.1vw, 1.15rem) !important;\r
+    line-height: 1.6 !important;\r
+    max-width: 100% !important;\r
+    margin-top: 0 !important;\r
+    margin-bottom: 28px !important; /* Equal spacing: 28px below description to badges */\r
+    margin-left: 0 !important;\r
+    padding-left: 0 !important;\r
+    color: rgba(255, 255, 255, 0.85) !important;\r
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9) !important;\r
+}\r
+\r
+/* Feature badges flex row directly below description */\r
+.feature-pills {\r
+    display: flex !important;\r
+    flex-direction: row !important;\r
+    flex-wrap: wrap !important;\r
+    justify-content: flex-start !important;\r
+    align-items: center !important;\r
+    gap: 12px !important;\r
+    margin-top: 0 !important;\r
+    margin-bottom: 24px !important; /* ~24px spacing below badges to button */\r
+    margin-left: 0 !important;\r
+    padding-left: 0 !important;\r
+}\r
+\r
+/* CTA buttons directly below badges */\r
+.hero-cta-group {\r
+    display: flex !important;\r
+    flex-direction: row !important;\r
+    flex-wrap: wrap !important;\r
+    justify-content: flex-start !important;\r
+    align-items: center !important;\r
+    gap: 16px !important;\r
+    margin-top: 0 !important;\r
+    margin-bottom: 0 !important;\r
+    margin-left: 0 !important;\r
+    padding-left: 0 !important;\r
+}\r
+\r
+@media (max-width: 1024px) {\r
+    .hero-ui-overlay {\r
+        padding-left: clamp(2.5rem, 4vw, 3.5rem) !important;\r
+    }\r
+    .earth-canvas,\r
+    .earth-canvas--fixed {\r
+        left: 3vw !important;\r
+    }\r
+    .feature-pills {\r
+        flex-wrap: wrap !important;\r
+    }\r
+    .hero-content-left {\r
+        max-width: 600px !important;\r
+    }\r
+}\r
+\r
+@media (max-width: 768px) {\r
+    .hero-ui-overlay {\r
+        padding-left: 2rem !important;\r
+        justify-content: flex-start !important;\r
+        padding-top: calc(var(--nav-height) + 2rem) !important;\r
+    }\r
+    .earth-canvas,\r
+    .earth-canvas--fixed {\r
+        left: 0 !important;\r
+    }\r
+}\r
+\r
+/* 4. Navbar Buttons & Logo Alignment */\r
+.nav__logo {\r
+    margin-left: 30px !important; /* Move logo group 25-35px to RIGHT */\r
+    gap: 16px !important; /* Equal spacing between hamburger, logo icon, and MEGHAMUKT text */\r
+}\r
+\r
+#nav-btn-launch {\r
+    background: rgba(0, 229, 255, 0.1) !important;\r
+    color: var(--aurora-cyan) !important;\r
+    font-weight: 700 !important;\r
+    border: 1px solid rgba(0, 229, 255, 0.6) !important;\r
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.15) !important;\r
+    animation: none !important;\r
+}\r
+#nav-btn-launch:hover {\r
+    background: rgba(0, 229, 255, 0.25) !important;\r
+    color: #ffffff !important;\r
+    border-color: var(--aurora-cyan) !important;\r
+    box-shadow: 0 0 25px rgba(0, 229, 255, 0.4) !important;\r
+    transform: translateY(-1px) !important;\r
+}\r
+\r
+/* 5. Left HUD / Side Nav — Vertical centering and exact alignment without shifting */\r
+.side-nav-left {\r
+    top: 50% !important;\r
+    transform: translateY(-50%) !important;\r
+}\r
+.side-nav-left__track {\r
+    margin-top: 0 !important;\r
+    margin-bottom: 0 !important;\r
+}\r
+.side-nav-left__item,\r
+.side-nav-left__item.active {\r
+    transform: none !important; /* Prevent left/right shift when active */\r
+}\r
+.side-nav-left__num {\r
+    font-size: 0.95rem !important;\r
+}\r
+.side-nav-left__item.completed .side-nav-left__num::after {\r
+    display: none !important;\r
+    content: none !important;\r
+}\r
+.side-nav-left__label,\r
+.side-nav-left__item.active .side-nav-left__label,\r
+.side-nav-left__item.completed .side-nav-left__label,\r
+.side-nav-left__item:hover .side-nav-left__label {\r
+    transform: none !important; /* Keep mission labels at exact same horizontal position */\r
+    font-size: 0.52rem !important; /* Reduced delicate font size for side navigation */\r
+    letter-spacing: 0.05em !important; /* Normal letter spacing to prevent stretching */\r
+    line-height: 1.2 !important;\r
+    max-width: 85px !important; /* Allow long words like RECONSTRUCTION to fit without breaking */\r
+    white-space: normal !important;\r
+    word-break: keep-all !important; /* NEVER break words */\r
+    overflow-wrap: normal !important;\r
+    text-align: left !important;\r
+}\r
+.side-nav-left__item:not(.active):not(:hover) .side-nav-left__label {\r
+    opacity: 0 !important;\r
+    visibility: hidden !important;\r
+    pointer-events: none !important;\r
+}\r
+.side-nav-left__item.active .side-nav-left__num {\r
+    color: var(--aurora-green) !important;\r
+    text-shadow: 0 0 15px rgba(0, 255, 102, 0.8) !important;\r
+}\r
+.side-nav-left__item.active .side-nav-left__label {\r
+    opacity: 1 !important;\r
+    visibility: visible !important;\r
+    color: var(--aurora-cyan) !important;\r
+}\r
+\r
+/* ==========================================================================\r
+   6. SESSION 02 & SESSION 03 — TWO-COLUMN GRID & REFERENCE ALIGNMENT\r
+   ========================================================================== */\r
+\r
+/* Section 02: PROPER TWO-COLUMN GRID LAYOUT (42% / 58%) */\r
+#foundation .section__content.s02-parent-grid {\r
+    display: grid !important;\r
+    grid-template-columns: 42% 58% !important;\r
+    align-items: center !important;\r
+    width: 100% !important;\r
+    max-width: 100% !important;\r
+    min-height: 100vh !important;\r
+    padding: 0 !important;\r
+    padding-top: var(--nav-height) !important;\r
+    padding-bottom: 2rem !important;\r
+    margin: 0 !important;\r
+    box-sizing: border-box !important;\r
+    position: relative !important;\r
+    z-index: 10 !important;\r
+}\r
+\r
+/* Left Column (42%) */\r
+#foundation .s02-left-col {\r
+    display: flex !important;\r
+    flex-direction: column !important;\r
+    justify-content: center !important;\r
+    align-items: flex-start !important;\r
+    width: 100% !important;\r
+    height: 100% !important;\r
+    padding-left: clamp(9.5rem, 10.5vw, 12rem) !important; /* Shifted slightly right for more side-nav gap */\r
+    padding-right: 1.5rem !important;\r
+    box-sizing: border-box !important;\r
+    pointer-events: auto !important;\r
+    overflow: visible !important;\r
+}\r
+\r
+#foundation .s02-left-col .cinematic-text-block {\r
+    display: flex !important;\r
+    flex-direction: column !important;\r
+    align-items: flex-start !important;\r
+    text-align: left !important;\r
+    width: 100% !important;\r
+    max-width: 500px !important;\r
+    margin: 0 !important;\r
+    padding: 0 !important;\r
+    overflow: visible !important;\r
+}\r
+\r
+/* Right Column (58%) */\r
+#foundation .s02-right-col {\r
+    display: flex !important;\r
+    flex-direction: column !important;\r
+    justify-content: center !important;\r
+    align-items: flex-end !important;\r
+    width: 100% !important;\r
+    height: 100% !important;\r
+    position: relative !important;\r
+    padding-right: clamp(2.5rem, 4vw, 4.5rem) !important;\r
+    box-sizing: border-box !important;\r
+    pointer-events: none !important;\r
+}\r
+\r
+/* Section 03: Observation Layout */\r
+#observation .section__content {\r
+    display: flex !important;\r
+    flex-direction: column !important;\r
+    justify-content: center !important;\r
+    align-items: flex-start !important;\r
+    width: 48% !important;\r
+    max-width: 48% !important;\r
+    padding-left: clamp(9.5rem, 10.5vw, 12rem) !important; /* Shifted slightly right for more side-nav gap */\r
+    padding-right: 0 !important;\r
+    padding-top: var(--nav-height) !important;\r
+    padding-bottom: 7.5rem !important; /* Extra bottom space so pipeline cards never overlap paragraph */\r
+    margin: 0 !important;\r
+    min-height: 100vh !important;\r
+    box-sizing: border-box !important;\r
+}\r
+\r
+#observation .cinematic-text-block {\r
+    max-width: 520px !important;\r
+    width: 100% !important;\r
+    margin: 0 !important;\r
+    padding: 0 !important;\r
+    display: flex !important;\r
+    flex-direction: column !important;\r
+    align-items: flex-start !important;\r
+    text-align: left !important;\r
+}\r
+\r
+/* Section Eyebrow (02 THE CHALLENGE, 03 AI RECONSTRUCTION) alignment */\r
+#foundation .section-eyebrow,\r
+#observation .section-eyebrow {\r
+    position: relative !important;\r
+    margin-left: 0 !important;\r
+    padding-left: 0 !important;\r
+    display: flex !important;\r
+    align-items: center !important;\r
+    margin-bottom: 1.25rem !important;\r
+}\r
+#foundation .section-eyebrow__line,\r
+#observation .section-eyebrow__line {\r
+    position: absolute !important;\r
+    left: -58px !important;\r
+    width: 42px !important;\r
+}\r
+\r
+/* Titles and body paragraphs inside S02 and S03 — exact original sizing without word stretching */\r
+#foundation .cinematic-title,\r
+#observation .cinematic-title {\r
+    margin-left: 0 !important;\r
+    padding-left: 0 !important;\r
+    text-align: left !important;\r
+    font-size: clamp(3.8rem, 6.5vw, 7rem) !important;\r
+    line-height: 0.88 !important;\r
+    letter-spacing: 0.01em !important;\r
+    margin-bottom: 2rem !important; /* Exactly ~36px gap between HIDDEN and paragraph */\r
+}\r
+\r
+#foundation .cinematic-title .pioneer-line,\r
+#observation .cinematic-title .pioneer-line {\r
+    white-space: nowrap !important;\r
+    display: block !important;\r
+    line-height: 1.05 !important;\r
+    padding-bottom: 0.04em !important;\r
+    margin-bottom: 0.04em !important;\r
+}\r
+\r
+#foundation .cinematic-body,\r
+#observation .cinematic-body {\r
+    margin-left: 0 !important;\r
+    padding-left: 0 !important;\r
+    text-align: left !important;\r
+    max-width: 480px !important;\r
+    width: 100% !important;\r
+    line-height: 1.65 !important;\r
+    color: rgba(255, 255, 255, 0.85) !important;\r
+    margin-top: 0 !important;\r
+}\r
+\r
+/* Spectral bands inside S03 text block */\r
+#observation .spectral-bands {\r
+    margin-top: 1.5rem !important;\r
+    margin-left: 0 !important;\r
+    padding-left: 0 !important;\r
+    width: 100% !important;\r
+    max-width: 450px !important;\r
+}\r
+\r
+/* ==========================================================================\r
+   7. TELEMETRY HUD CARDS (S02 & S03) — RIGHT-EDGE VERTICAL STACK\r
+   ========================================================================== */\r
+#telemetry-s03 {\r
+    position: absolute !important;\r
+    left: auto !important;\r
+    right: clamp(3rem, 5vw, 6rem) !important;\r
+    top: 50% !important;\r
+    transform: translateY(-50%) !important;\r
+    z-index: 20 !important;\r
+    width: 330px !important;\r
+    display: flex !important;\r
+    flex-direction: column !important;\r
+    gap: 0.85rem !important;\r
+    pointer-events: auto !important;\r
+    margin: 0 !important;\r
+    padding: 0 !important;\r
+}\r
+\r
+/* Telemetry HUD Cards inside S02 Right Column — natural vertical centering via flex parent */\r
+#foundation .s02-right-col #telemetry-s02 {\r
+    position: relative !important;\r
+    left: auto !important;\r
+    right: auto !important;\r
+    top: auto !important;\r
+    transform: none !important;\r
+    z-index: 20 !important;\r
+    width: 330px !important;\r
+    display: flex !important;\r
+    flex-direction: column !important;\r
+    gap: 0.85rem !important;\r
+    pointer-events: auto !important;\r
+    margin: 0 !important;\r
+    padding: 0 !important;\r
+}\r
+\r
+/* Keep cards glassmorphic, clean and high contrast */\r
+#telemetry-s02 .telemetry-card,\r
+#telemetry-s03 .telemetry-card {\r
+    background: rgba(8, 16, 28, 0.7) !important;\r
+    backdrop-filter: blur(12px) !important;\r
+    -webkit-backdrop-filter: blur(12px) !important;\r
+    border: 1px solid rgba(0, 229, 255, 0.2) !important;\r
+    border-radius: 12px !important;\r
+    padding: 1rem 1.25rem !important;\r
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;\r
+}\r
+\r
+/* ==========================================================================\r
+   8. HOLOGRAPHIC CARDS (S03) — BOTTOM HORIZONTAL ROW\r
+   ========================================================================== */\r
+#observation #holo-cards {\r
+    position: relative !important;\r
+    bottom: auto !important;\r
+    left: auto !important;\r
+    transform: none !important;\r
+    width: 100% !important;\r
+    max-width: 480px !important;\r
+    margin: 1.5rem 0 0 0 !important;\r
+    padding: 0 !important;\r
+    display: flex !important;\r
+    flex-direction: row !important;\r
+    justify-content: flex-start !important;\r
+    align-items: stretch !important;\r
+    gap: 0.75rem !important;\r
+    z-index: 25 !important;\r
+}\r
+\r
+#observation #holo-cards .holo-card {\r
+    flex: 1 !important;\r
+    min-width: 0 !important;\r
+    max-width: none !important;\r
+    background: rgba(8, 16, 28, 0.75) !important;\r
+    backdrop-filter: blur(16px) !important;\r
+    -webkit-backdrop-filter: blur(16px) !important;\r
+    border: 1px solid rgba(0, 229, 255, 0.3) !important;\r
+    border-radius: 12px !important;\r
+    padding: 0.85rem 0.5rem !important;\r
+    display: flex !important;\r
+    flex-direction: column !important;\r
+    align-items: center !important;\r
+    justify-content: center !important;\r
+    text-align: center !important;\r
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4) !important;\r
+}\r
+\r
+/* ==========================================================================\r
+   9. SESSION 04 — TRUE CENTERED MISSION COMPLETE & 4-COLUMN ACHIEVEMENT GRID\r
+   ========================================================================== */\r
+#results .section__content {\r
+    display: flex !important;\r
+    flex-direction: column !important;\r
+    align-items: center !important;\r
+    justify-content: center !important;\r
+    text-align: center !important;\r
+    width: 100% !important;\r
+    max-width: 100% !important;\r
+    padding-left: clamp(2rem, 4vw, 4rem) !important; /* True visual centering */\r
+    width: 100% !important;
+    max-width: 780px !important;
+    margin: 0.75rem auto 1.5rem !important;
+}
+
+#results .achievement-grid .achievement-card {
+    background: rgba(8, 16, 28, 0.75) !important;
+    backdrop-filter: blur(14px) !important;
+    -webkit-backdrop-filter: blur(14px) !important;
+    border: 1px solid rgba(0, 229, 255, 0.2) !important;
+    border-radius: 12px !important;
+    padding: 1.5rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
+}
+
+.achievement-card__value {
+    font-family: var(--font-heading) !important;
+    font-size: 2.5rem !important;
+    font-weight: 700 !important;
+    color: var(--aurora-cyan) !important;
+    margin-bottom: 0.5rem !important;
+}
+
+.achievement-card__label {
+    font-size: 0.85rem !important;
+    color: rgba(255, 255, 255, 0.6) !important;
+    letter-spacing: 0.1em !important;
+    text-transform: uppercase !important;
+}
+
+/* Floating Telemetry (S02 & S03) */
+.floating-telemetry {
+    position: absolute !important;
+    right: clamp(2rem, 5vw, 6rem) !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 30 !important;
+    width: 320px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.85rem !important;
+    pointer-events: none !important;
+}
+
+.telemetry-card {
+    background: rgba(8, 16, 28, 0.7) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(0, 229, 255, 0.2) !important;
+    border-radius: 12px !important;
+    padding: 1rem 1.25rem !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 1rem !important;
+    color: #fff !important;
+    pointer-events: auto !important;
+}
+
+.telemetry-card__icon {
+    font-size: 1.5rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: var(--aurora-cyan) !important;
+}
+
+.telemetry-card__content {
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 !important;
+}
+
+.telemetry-card__label {
+    font-family: var(--font-heading) !important;
+    font-size: 0.7rem !important;
+    color: rgba(255, 255, 255, 0.5) !important;
+    letter-spacing: 0.1em !important;
+    text-transform: uppercase !important;
+    margin-bottom: 0.25rem !important;
+}
+
+.telemetry-card__value {
+    font-family: var(--font-body) !important;
+    font-weight: 600 !important;
+    font-size: 1.1rem !important;
+    color: #fff !important;
+}
+
+.telemetry-card__value--green { color: var(--aurora-green) !important; }
+.telemetry-card__value--warn { color: var(--sunset-orange, #ff5555) !important; }
+
+.telemetry-bar {
+    width: 100% !important;
+    height: 4px !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-radius: 2px !important;
+    margin-top: 0.5rem !important;
+    overflow: hidden !important;
+}
+
+.telemetry-bar__fill {
+    height: 100% !important;
+    background: var(--aurora-cyan) !important;
+    width: 0% !important;
+    transition: width 0.3s ease !important;
+}
+
+.cloud-type-pills {
+    display: flex !important;
+    gap: 0.5rem !important;
+    margin-top: 0.5rem !important;
+    flex-wrap: wrap !important;
+}
+
+.cloud-type-pill {
+    font-size: 0.65rem !important;
+    padding: 0.2rem 0.5rem !important;
+    border-radius: 4px !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.cloud-type-pill.active {
+    background: rgba(0, 229, 255, 0.2) !important;
+    border-color: var(--aurora-cyan) !important;
+    color: var(--aurora-cyan) !important;
+}
+
+.telemetry-card__radial {
+    width: 60px !important;
+    height: 60px !important;
+    flex-shrink: 0 !important;
+}
+/* ============================================================
+   RESTORED S04 LAYOUT WITH ADJUSTMENTS
+   ============================================================ */
+#results .section__content {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: clamp(2rem, 4vw, 4rem) !important;
+    padding-right: clamp(2rem, 4vw, 4rem) !important;
+    padding-top: calc(var(--nav-height) + 0.5rem) !important;
+    padding-bottom: 4rem !important;
+    margin: 0 !important;
+    min-height: 100vh !important;
+    box-sizing: border-box !important;
+}
+
+#results .cinematic-text-block--centered {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    max-width: 820px !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+    transform: translateY(35px) !important;
+}
+
+#results .success-icon {
+    width: 64px !important;
+    height: 64px !important;
+    margin: 0 auto 0.5rem !important;
+}
+
+#results .section-eyebrow {
+    justify-content: center !important;
+    margin-bottom: 0.5rem !important;
+}
+
+#results .cinematic-title {
+    text-align: center !important;
+    margin-bottom: 0.5rem !important;
+    font-size: clamp(4.2rem, 7.5vw, 8rem) !important;
+    line-height: 0.88 !important;
+    letter-spacing: 0.02em !important;
+}
+
+#results .cinematic-body {
+    text-align: center !important;
+    max-width: 620px !important;
+    margin: 25px auto 1.25rem !important;
+    line-height: 1.5 !important;
+}
+
+#results .achievement-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 1rem !important;
+    width: 100% !important;
+    max-width: 780px !important;
+    margin: 0.75rem auto 1.5rem !important;
+}

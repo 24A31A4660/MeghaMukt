@@ -205,12 +205,12 @@
 
         // Magnetic hover snaps
         document.addEventListener('mouseover', e => {
-            if (e.target.closest('a, button, .cta-circle, .nav-dots__dot, .feature-pill, .achievement-card, .telemetry-card')) {
+            if (e.target.closest('a, button, .cta-circle, .nav-dots__dot, .side-nav-left__item, .feature-pill, .achievement-card, .telemetry-card')) {
                 cursor.classList.add('hovering');
             }
         });
         document.addEventListener('mouseout', e => {
-            if (e.target.closest('a, button, .cta-circle, .nav-dots__dot, .feature-pill, .achievement-card, .telemetry-card')) {
+            if (e.target.closest('a, button, .cta-circle, .nav-dots__dot, .side-nav-left__item, .feature-pill, .achievement-card, .telemetry-card')) {
                 cursor.classList.remove('hovering');
             }
         });

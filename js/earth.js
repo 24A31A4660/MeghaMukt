@@ -37,14 +37,14 @@
         /* ---------- Cinematic Camera Journey ---------- */
         // Each config is the camera state for each section
         const camJourney = [
-            { z: 2.9, xOff: -1.45,  yOff: 0.0,  name: 'hero' },      // S01 (Larger, more to the right)
-            { z: 2.2, xOff: -0.3, yOff: -0.1, name: 'challenge' }, // S02
-            { z: 3.2, xOff: -0.6,  yOff: 0.12, name: 'ai' },        // S03
-            { z: 4.5, xOff: -0.1,   yOff: 0.0,  name: 'complete' },  // S04 (Dolly out)
+            { z: 2.9, xOff: -1.28,  yOff: 0.0,  name: 'hero' },      // S01 (xOff reset, using CSS translateX instead)
+            { z: 1.8, xOff: 0.0,    yOff: 0.0,  name: 'challenge' }, // S02 (Zoomed in, centered)
+            { z: 1.6, xOff: -1.75,  yOff: 0.25, name: 'ai' },        // S03 (Significantly zoomed in on the right side)
+            { z: 2.4, xOff: -0.30,  yOff: -0.1, name: 'complete' },  // S04 (Moved DOWN and RIGHT to perfectly center behind text)
         ];
 
-        let targetCam = { z: 2.9, xOff: -1.45, yOff: 0.0 };
-        let curCam    = { z: 2.9, xOff: -1.45, yOff: 0.0 };
+        let targetCam = { z: 2.9, xOff: -1.28, yOff: 0.0 };
+        let curCam    = { z: 2.9, xOff: -1.28, yOff: 0.0 };
         let currentSectionIdx = 0;
         let mouseX = 0, mouseY = 0;
         let scrollProgress = 0;
@@ -394,7 +394,12 @@
             const beam = new THREE.Mesh(beamGeo, beamMat);
             beam.position.y = -0.25;
             satGroup.add(beam);
-            satGroup.userData = { beam };
+            // Blinking navigation light
+            const navLightMat = new THREE.MeshBasicMaterial({ color: 0xff0033, transparent: true, opacity: 1.0 });
+            const navLight = new THREE.Mesh(new THREE.SphereGeometry(0.007, 8, 8), navLightMat);
+            navLight.position.set(0.08, 0.012, 0);
+            satGroup.add(navLight);
+            satGroup.userData = { beam, navLight, lightPhase: Math.random() * Math.PI * 2 };
             return satGroup;
         }
 
@@ -509,6 +514,16 @@
                 });
             }
 
+            const canvasEl = document.getElementById('earth-canvas');
+            if (canvasEl) {
+                canvasEl.style.transition = 'transform ' + camDur + 's cubic-bezier(0.65, 0, 0.35, 1)';
+                if (idx === 0) {
+                    canvasEl.style.transform = 'translateX(180px)';
+                } else {
+                    canvasEl.style.transform = 'translateX(0px)';
+                }
+            }
+
             switch (idx) {
                 case 0: // HERO — full orbit, normal clouds
                     targetCloudOpacity      = 0.35;
@@ -555,10 +570,10 @@
                     targetGridOpacity       = 0.0;
                     targetBeamOpacity       = 0.0;
                     targetDataOpacity       = 0.0;
-                    targetAuroraOpacity     = 0.65;
-                    targetGlowIntensity     = 0.9;
+                    targetAuroraOpacity     = 0.45;
+                    targetGlowIntensity     = 0.6;
                     targetScanOpacity       = 0.0;
-                    targetAtmoIntensity     = 1.6;
+                    targetAtmoIntensity     = 1.1;
                     targetClearProgress     = 1.0;
                     break;
             }
@@ -572,19 +587,20 @@
             const t = clock.getElapsedTime();
 
             // Camera is now animated smoothly via GSAP in setSceneForSection
-            // Camera positioning with calm, premium camera breathing
-            let floatOffset = Math.sin(t * 0.8) * 0.02; // Slower, subtler breathing (was 1.5 and 0.04)
-            camera.position.x = curCam.xOff + (mouseX * 0.15);
-            camera.position.y = curCam.yOff + (mouseY * -0.15) + floatOffset;
+            // Camera perfectly static, no breathing or mouse movement
+            camera.position.x = curCam.xOff;
+            camera.position.y = curCam.yOff;
             camera.position.z = curCam.z;
             camera.lookAt(curCam.xOff * 0.25, curCam.yOff * 0.25, 0);
 
-            // Earth rotation — calm and premium
-            let rotSpeed = 0.008; // Reduced rotation for calmer feel
-            if (currentSectionIdx === 2) rotSpeed = 0.004;
+            // Earth rotation — constant automatic rotation at 0.16
+            const rotSpeed = 0.16;
             earth.rotation.y = t * rotSpeed;
+            earth.rotation.x = 0;
             clouds.rotation.y = t * rotSpeed * 0.65;
+            clouds.rotation.x = 0;
             cloudPulse.rotation.y = t * rotSpeed * 0.75;
+            cloudPulse.rotation.x = 0;
 
             // Scale based on scroll progress (gentle)
             const s = 1.0 - scrollProgress * 0.15;
@@ -696,6 +712,9 @@
                     if (sat.group.userData && sat.group.userData.beam) {
                         const beamOpacity = targetBeamOpacity * (0.5 + 0.5 * Math.sin(t * 8 + sat.angle));
                         sat.group.userData.beam.material.opacity += (beamOpacity - sat.group.userData.beam.material.opacity) * oEase;
+                    }
+                    if (sat.group.userData && sat.group.userData.navLight) {
+                        sat.group.userData.navLight.material.opacity = 0.2 + 0.8 * Math.pow(Math.sin(t * 3.0 + sat.group.userData.lightPhase), 4);
                     }
                     // Trail
                     const idx = sat.trailIdx % (sat.trailPositions.length / 3);

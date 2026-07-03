@@ -114,7 +114,7 @@
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-        const textTexture = createTextTexture(['SEE THROUGH', 'THE CLOUDS.']);
+        const textTexture = createTextTexture(['BEYOND', 'THE CLOUDS']);
 
         material = new THREE.ShaderMaterial({
             vertexShader: vertexShader,

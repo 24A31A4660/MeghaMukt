@@ -33,7 +33,7 @@
                 id: 'observation',
                 titleId: 'observation-title',
                 bodyId: 'observation-body',
-                extras: ['#telemetry-s03'],
+                extras: ['#telemetry-s03', '#holo-cards'],
             },
             {
                 id: 'results',
@@ -47,15 +47,15 @@
             const titleEl = document.getElementById(cfg.titleId);
             const bodyEl = document.getElementById(cfg.bodyId);
 
-            const titleWords = window.TextReveal ? window.TextReveal.splitToChars(titleEl, 'cinematic-title') : [];
-            const bodyWords = window.TextReveal ? window.TextReveal.splitBodyToWords(bodyEl, 'cinematic-body') : [];
+            const titleWords = []; // Disabled text animation for all headings
+            const bodyWords = []; // Disabled text animation for all body text across all sections
 
             let extraEls = cfg.extras
                 .map(sel => document.querySelector(sel))
                 .filter(Boolean);
 
             if (window.TextReveal) {
-                window.TextReveal.resetChars(titleWords);
+                if (titleWords.length > 0) window.TextReveal.resetChars(titleWords);
                 window.TextReveal.resetBodyWords(bodyWords);
             }
             if (typeof gsap !== 'undefined' && extraEls.length > 0) {
@@ -96,6 +96,18 @@
                     gsap.to('#hero-ui-overlay', { autoAlpha: 1, duration: 0.5, ease: 'power2.inOut' });
                 } else if (index !== 0 && prevIndex === 0) {
                     gsap.to('#hero-ui-overlay', { autoAlpha: 0, duration: 0.5, ease: 'power2.out' });
+                }
+
+                // Top Navbar visibility without animation
+                const mainNav = document.getElementById('main-nav');
+                if (mainNav) {
+                    if (index === 0) {
+                        gsap.set(mainNav, { yPercent: 0, opacity: 1 });
+                        mainNav.style.pointerEvents = '';
+                    } else {
+                        gsap.set(mainNav, { yPercent: -100, opacity: 0 });
+                        mainNav.style.pointerEvents = 'none';
+                    }
                 }
 
                 const curr = sectionData[index];
@@ -368,11 +380,27 @@
         });
     }
 
-    scrollContainer.addEventListener('scroll', triggerScrollCalculations);
+    let scrollTicking = false;
+    function onScroll() {
+        if (!scrollTicking) {
+            window.requestAnimationFrame(() => {
+                triggerScrollCalculations();
+                scrollTicking = false;
+            });
+            scrollTicking = true;
+        }
+    }
+    scrollContainer.addEventListener('scroll', onScroll, { passive: true });
 
-    // ---- Nav Dots ----
+    // ---- Nav Dots & Side Nav ----
     document.querySelectorAll('.nav-dots__dot').forEach(dot => {
         dot.addEventListener('click', () => scrollToSection(parseInt(dot.dataset.section, 10)));
+    });
+    document.querySelectorAll('.side-nav-left__item').forEach(item => {
+        item.addEventListener('click', () => {
+            const idx = parseInt(item.dataset.section, 10);
+            if (!isNaN(idx)) scrollToSection(idx);
+        });
     });
 
     // ---- Menu Links ----
@@ -501,6 +529,7 @@
         // Left Nav
         document.querySelectorAll('.side-nav-left__item').forEach((item, i) => {
             item.classList.toggle('active', i === index);
+            item.classList.toggle('completed', i < index);
         });
         const progressEl = document.querySelector('.side-nav-left__progress');
         if (progressEl && sections.length > 1) {
