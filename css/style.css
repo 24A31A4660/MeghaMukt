@@ -5747,3 +5747,6 @@ a, button, input, select, textarea {
     padding-top: 0vh !important; /* Remove the top padding */
     margin-top: -5vh !important; /* Pull everything up together */
 }
+
+/* Accessibility: Global Focus Ring */
+:focus-visible { outline: 2px solid var(--aurora-cyan); outline-offset: 3px; border-radius: 4px; }
