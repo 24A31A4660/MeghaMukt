@@ -5730,3 +5730,11 @@ a, button, input, select, textarea {
 #cta-results {
     margin-bottom: 4rem !important; /* Lots of space below the button to clear footer */
 }
+/* ============================================================
+   S04 SHIFT BUTTON UP
+   ============================================================ */
+
+/* Move only the button up slightly */
+#cta-results {
+    margin-top: -1.5rem !important; /* Pull it up closer to the grid */
+}

@@ -1,0 +1,8 @@
+/* ============================================================
+   S04 SHIFT BUTTON UP
+   ============================================================ */
+
+/* Move only the button up slightly */
+#cta-results {
+    margin-top: -1.5rem !important; /* Pull it up closer to the grid */
+}
