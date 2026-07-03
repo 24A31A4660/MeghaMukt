@@ -5067,3 +5067,169 @@ a, button, input, select, textarea {
     margin-left: 0 !important;
     padding-left: 0 !important;
 }
+/* ============================================================
+   HERO PERFECT MATCH (REFERENCE IMAGE ALIGNMENT)
+   ============================================================ */
+
+/* 1. Reset the entire layout flow to strictly align with the Navbar Logo */
+.hero-ui-overlay {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    padding-left: clamp(5rem, 9.5vw, 12rem) !important; /* Perfect align with Nav Logo */
+    padding-right: 2rem !important;
+    box-sizing: border-box !important;
+}
+
+.hero-content-left {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    width: 100% !important;
+    max-width: 620px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* 2. Eyebrow: Exact color, line, spacing */
+.hero-eyebrow {
+    display: flex !important;
+    align-items: center !important;
+    margin: 0 0 20px 0 !important;
+}
+
+.hero-eyebrow__line {
+    width: 40px !important;
+    height: 2px !important;
+    background-color: #00d4ff !important;
+    margin-right: 15px !important;
+    position: relative !important;
+    left: 0 !important;
+}
+
+.hero-eyebrow__text {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 0.85rem !important;
+    letter-spacing: 0.22em !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+    margin: 0 !important;
+    text-transform: uppercase !important;
+    font-weight: 500 !important;
+}
+
+/* 3. Title (BEYOND THE CLOUDS): Exact gap spacing and outline */
+#hero-title {
+    font-family: var(--font-heading) !important;
+    font-size: clamp(4.5rem, 8vw, 8rem) !important;
+    line-height: 0.8 !important;
+    text-align: left !important;
+    margin: 0 0 35px 0 !important;
+    color: #fff !important;
+    font-weight: 800 !important;
+}
+
+#hero-title .text-outline {
+    -webkit-text-stroke: 1.5px #00d4ff !important;
+    color: transparent !important;
+    display: block !important;
+    transform: none !important;
+    line-height: 0.8 !important;
+    margin-top: 5px !important; /* Tiny gap to make it look distinct like the image */
+}
+
+/* 4. Description */
+#hero-body {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 0.95rem !important;
+    line-height: 1.6 !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+    max-width: 520px !important;
+    text-align: left !important;
+    margin: 0 0 30px 0 !important;
+}
+
+/* 5. Feature Pills: Single row, exact dark background */
+#hero-feature-pills {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    gap: 15px !important;
+    margin: 0 0 35px 0 !important;
+    padding: 0 !important;
+}
+
+.feature-pill {
+    background: rgba(2, 9, 18, 0.6) !important; /* Dark space background */
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    padding: 10px 18px !important;
+    border-radius: 20px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+.feature-pill__text {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.05em !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+    text-transform: uppercase !important;
+}
+
+/* 6. CTA Buttons */
+.hero-cta-group {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 20px !important;
+    margin: 0 !important;
+}
+
+/* Primary Button (Cyan) */
+#cta-launch-hero {
+    background-color: #00d4ff !important;
+    color: #000 !important;
+    padding: 14px 28px !important;
+    border-radius: 4px !important;
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 0.85rem !important;
+    letter-spacing: 0.1em !important;
+    border: none !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+}
+
+/* Ghost Button (Dark) */
+#cta-learn-more {
+    background-color: rgba(2, 9, 18, 0.8) !important;
+    color: #fff !important;
+    padding: 14px 28px !important;
+    border-radius: 4px !important;
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 600 !important;
+    font-size: 0.85rem !important;
+    letter-spacing: 0.1em !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+}
+
+/* 7. Side Nav Refinement (Matches green/cyan look in screenshot) */
+.side-nav-left__item.active .side-nav-left__num {
+    color: #39ff14 !important; /* Green like in the image */
+}
+.side-nav-left__item.active .side-nav-left__label {
+    color: #00d4ff !important;
+    font-size: 0.5rem !important;
+    letter-spacing: 0.1em !important;
+}
+.side-nav-left__num {
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 0.95rem !important;
+    color: rgba(255, 255, 255, 0.4) !important;
+}
