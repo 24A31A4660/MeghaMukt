@@ -1,9 +1,0 @@
-/* ============================================================
-   S04 MOVE EVERYTHING UP
-   ============================================================ */
-
-/* Move the entire block of elements in S04 (text, boxes, button) up uniformly */
-#results .cinematic-text-block {
-    padding-top: 0vh !important; /* Remove the top padding */
-    margin-top: -5vh !important; /* Pull everything up together */
-}

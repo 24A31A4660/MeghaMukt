@@ -1,8 +1,0 @@
-/* ============================================================
-   S04 TITLE MOVE UP
-   ============================================================ */
-
-/* Move the heading text up a little bit */
-#results-title {
-    margin-top: -4vh !important; /* Pull the heading up */
-}

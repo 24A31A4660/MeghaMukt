@@ -1,8 +1,0 @@
-/* ============================================================
-   S01 EXACT 40PX LEFT POSITION
-   ============================================================ */
-
-/* Move the S01 hero content to exactly 40px from the left edge */
-.hero-ui-overlay {
-    padding-left: 40px !important; 
-}

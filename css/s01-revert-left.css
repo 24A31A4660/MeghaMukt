@@ -1,8 +1,0 @@
-/* ============================================================
-   S01 MOVE BACK TO LEFT (ALIGN WITH NAVBAR LOGO)
-   ============================================================ */
-
-/* Revert the S01 hero content back to the left edge of the page so it aligns with the top logo */
-.hero-ui-overlay {
-    padding-left: 135px !important; /* Move back to the left to align with MEGHAMUKT logo */
-}

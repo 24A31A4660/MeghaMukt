@@ -1,8 +1,0 @@
-/* ============================================================
-   S01 MOVE MORE TO THE LEFT (FORCE OVERRIDE)
-   ============================================================ */
-
-/* Force the S01 hero content to be much further left, aligning closely with the screen edge */
-.hero-ui-overlay {
-    padding-left: 5rem !important; /* Move it very close to the left edge of the page */
-}
