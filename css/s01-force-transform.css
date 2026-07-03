@@ -1,0 +1,14 @@
+/* ============================================================
+   S01 BRUTE FORCE TRANSFORM TO LEFT
+   ============================================================ */
+
+/* If layout engines are ignoring our paddings, we brute-force it with transform */
+.hero-content-left {
+    transform: translateX(-10vw) !important;
+}
+
+/* Also ensure the entire overlay is forced to flex-start */
+.hero-ui-overlay {
+    justify-content: flex-start !important;
+    padding-left: 0 !important;
+}
