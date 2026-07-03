@@ -1290,7 +1290,7 @@ const UploadModule = () => {
                             </div>
                             <button onClick={processUpload} disabled={!file || uploading}
                                 className={`w-full py-3 rounded-xl text-[12px] font-bold tracking-wider transition-all ${file && !uploading ? 'bg-cyan-500 hover:bg-cyan-400 text-black shadow-[0_0_20px_rgba(6,182,212,0.4)]' : 'bg-slate-800 text-slate-600 cursor-not-allowed'}`}>
-                                {uploading ? 'PROCESSING...' : '🚀 LAUNCH RECONSTRUCTION'}
+                                {uploading ? 'PROCESSING...' : 'LAUNCH RECONSTRUCTION'}
                             </button>
                         </div>
                     </Card>
