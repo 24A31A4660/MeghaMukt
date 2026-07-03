@@ -519,6 +519,8 @@
                 canvasEl.style.transition = 'transform ' + camDur + 's cubic-bezier(0.65, 0, 0.35, 1)';
                 if (idx === 0) {
                     canvasEl.style.transform = 'translateX(180px)';
+                } else if (idx === 3) {
+                    canvasEl.style.transform = 'translateX(-20px)';
                 } else {
                     canvasEl.style.transform = 'translateX(0px)';
                 }
