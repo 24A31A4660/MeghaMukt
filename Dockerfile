@@ -13,6 +13,7 @@ WORKDIR /app
 # Copy python requirements and install them globally as root
 COPY cloud-reconstruction/requirements.txt ./cloud-reconstruction/requirements.txt
 RUN pip install --no-cache-dir -r cloud-reconstruction/requirements.txt
+RUN pip install --no-cache-dir fastapi uvicorn sqlalchemy passlib bcrypt python-jose python-multipart pydantic
 
 # Copy the rest of the application
 COPY . .
