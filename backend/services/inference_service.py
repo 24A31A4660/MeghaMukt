@@ -12,7 +12,7 @@ PROJECT_ROOT = os.path.dirname(BASE_DIR)
 sys.path.insert(0, os.path.join(PROJECT_ROOT, "cloud-reconstruction"))
 
 from models.registry import build_model
-from utils.checkpoint import load_checkpoint
+from utils.checkpoint import load_checkpoint, find_best_checkpoint
 from preprocessing.cloud_detector import auto_detect_clouds, SCLCloudDetector
 from preprocessing.extractor import SafeZipExtractor, build_input_tensor
 from preprocessing.patcher import PatchExtractor, PatchMerger
@@ -90,15 +90,16 @@ class InferenceService:
         else:
             self.device = torch.device(dev_type)
             
-        print(f"[InferenceService] Loading U-Net model on device: {self.device}...")
+        print(f"[InferenceService] Loading Swin U-Net model on device: {self.device}...")
         
         # Build Model
         self.model = build_model(self.cfg).to(self.device)
         
-        # Load best checkpoint
-        ckpt_path = os.path.join(self.cfg["paths"]["checkpoints"], "best.pth")
-        if not os.path.exists(ckpt_path):
-            raise FileNotFoundError(f"[InferenceService] FATAL ERROR: Checkpoint not found at {ckpt_path}. Inference stopped. Will not use random weights.")
+        # Load best checkpoint using the utility that searches multiple naming conventions
+        ckpt_path = find_best_checkpoint(self.cfg["paths"]["checkpoints"])
+        if ckpt_path is None:
+            raise FileNotFoundError(f"[InferenceService] FATAL ERROR: No checkpoint found in {self.cfg['paths']['checkpoints']}. Inference stopped. Will not use random weights.")
+        ckpt_path = str(ckpt_path)
             
         payload = load_checkpoint(ckpt_path, self.model, device=str(self.device))
         

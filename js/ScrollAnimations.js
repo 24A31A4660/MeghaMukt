@@ -39,7 +39,7 @@
                 id: 'results',
                 titleId: 'results-title',
                 bodyId: 'results-body',
-                extras: ['#results-cta', '#cta-results', '#success-icon'],
+                extras: ['#results-title', '#results-body', '.section-eyebrow--centered', '#results-cta', '#cta-results', '#success-icon'],
             },
         ];
 
@@ -59,7 +59,7 @@
                 window.TextReveal.resetBodyWords(bodyWords);
             }
             if (typeof gsap !== 'undefined' && extraEls.length > 0) {
-                gsap.set(extraEls, { opacity: 0, y: 20 });
+                gsap.set(extraEls, { autoAlpha: 0, y: 20 });
             }
 
             sectionData.push({ titleWords, bodyWords, extraEls });
@@ -91,12 +91,7 @@
                     }
                 }
 
-                // Handle fixed hero overlay visibility
-                if (index === 0 && prevIndex !== 0) {
-                    gsap.to('#hero-ui-overlay', { autoAlpha: 1, duration: 0.5, ease: 'power2.inOut' });
-                } else if (index !== 0 && prevIndex === 0) {
-                    gsap.to('#hero-ui-overlay', { autoAlpha: 0, duration: 0.5, ease: 'power2.out' });
-                }
+                // Hero overlay is now absolute positioned and scrolls naturally
 
                 // Top Navbar visibility without animation
                 const mainNav = document.getElementById('main-nav');
@@ -121,21 +116,63 @@
                         textDur = 0.45;
                         bodyDur = 0.35;
                     } else if (index === 3) {
-                        delay = 0.2; // Fast text reveal to match "04 Mission Complete"
-                        textDur = 0.8; // Standard text reveal speed
-                        bodyDur = 0.6;
+                        delay = 3.5; // Wait for Earth cloud-clearing animation to finish
+                        textDur = 1.0; // Slow, cinematic text reveal
+                        bodyDur = 0.8;
                     }
                     
                     TR.revealChars(curr.titleWords, { delay: delay, stagger: 0.02, duration: textDur, ease: 'expo.out' });
                     TR.revealBodyWords(curr.bodyWords, { delay: delay + (index === 2 ? 0.15 : 0.4), stagger: 0.015, duration: bodyDur, ease: 'power2.out' });
                     
                     let extraDelay = delay + (index === 2 ? 0.2 : 0.5);
-                    if (index === 3) extraDelay = 0.6; // CTA appears quickly with the text
 
-                    gsap.fromTo(curr.extraEls,
-                        { opacity: 0, y: 20 },
-                        { opacity: 1, y: 0, duration: (index === 2 ? 0.4 : 0.8), ease: 'power3.out', delay: extraDelay, overwrite: 'auto' }
-                    );
+                    if (index === 3) {
+                        // Section 04: Sequenced cinematic cascade after Earth clears
+                        const successIcon = document.getElementById('success-icon');
+                        const eyebrow = document.querySelector('.section-eyebrow--centered');
+                        const title = document.getElementById('results-title');
+                        const body = document.getElementById('results-body');
+                        const grid = document.getElementById('results-cta');
+                        const cta = document.getElementById('cta-results');
+
+                        const baseDelay = 3.2; // After Earth cloud-clearing animation
+                        
+                        // GSAP handles visibility robustly via autoAlpha
+                        if (successIcon) gsap.fromTo(successIcon,
+                            { autoAlpha: 0, scale: 0.5 },
+                            { autoAlpha: 1, scale: 1, duration: 0.8, ease: 'back.out(1.7)', delay: baseDelay, overwrite: 'auto' }
+                        );
+                        if (eyebrow) gsap.fromTo(eyebrow,
+                            { autoAlpha: 0, y: 15 },
+                            { autoAlpha: 1, y: 0, duration: 0.7, ease: 'power3.out', delay: baseDelay + 0.3, overwrite: 'auto' }
+                        );
+                        if (title) {
+                            console.log("ANIMATING TITLE", title);
+                            gsap.fromTo(title,
+                                { autoAlpha: 0, y: 25 },
+                                { autoAlpha: 1, y: 0, duration: 1.0, ease: 'expo.out', delay: baseDelay + 0.7, overwrite: 'auto' }
+                            );
+                        } else {
+                            console.error("TITLE IS NULL");
+                        }
+                        if (body) gsap.fromTo(body,
+                            { autoAlpha: 0, y: 20 },
+                            { autoAlpha: 1, y: 0, duration: 0.8, ease: 'power2.out', delay: baseDelay + 1.2, overwrite: 'auto' }
+                        );
+                        if (grid) gsap.fromTo(grid,
+                            { autoAlpha: 0, y: 20 },
+                            { autoAlpha: 1, y: 0, duration: 0.8, ease: 'power3.out', delay: baseDelay + 1.8, overwrite: 'auto' }
+                        );
+                        if (cta) gsap.fromTo(cta,
+                            { autoAlpha: 0, y: 20 },
+                            { autoAlpha: 1, y: 0, duration: 0.8, ease: 'power3.out', delay: baseDelay + 2.2, overwrite: 'auto' }
+                        );
+                    } else {
+                        gsap.fromTo(curr.extraEls,
+                            { autoAlpha: 0, y: 20 },
+                            { autoAlpha: 1, y: 0, duration: (index === 2 ? 0.4 : 0.8), ease: 'power3.out', delay: extraDelay, overwrite: 'auto' }
+                        );
+                    }
                 }
             }
 
@@ -262,10 +299,10 @@
                     const pills = document.querySelectorAll('.metric-pill');
                     gsap.fromTo(pills,
                         { opacity: 0, y: 30, scale: 0.9 },
-                        { opacity: 1, y: 0, scale: 1, duration: 1.0, ease: 'power3.out', stagger: 0.15, delay: 2.2, overwrite: 'auto' }
+                        { opacity: 1, y: 0, scale: 1, duration: 1.0, ease: 'power3.out', stagger: 0.15, delay: 4.8, overwrite: 'auto' }
                     );
 
-                    gsap.timeline({ delay: 2.4 })
+                    gsap.timeline({ delay: 5.0 })
                         .to({ val: 0 }, {
                             val: 34.5, duration: 2.8, ease: 'power3.out',
                             onUpdate: function () {

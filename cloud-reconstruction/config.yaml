@@ -1,5 +1,5 @@
 # =============================================================================
-# Cloud Reconstruction System — Configuration
+# Cloud Reconstruction System — Configuration (Swin U-Net)
 # =============================================================================
 # All hyperparameters, paths, and settings are defined here.
 # Do NOT hardcode values in Python files — read from this config instead.
@@ -53,38 +53,41 @@ sentinel1:
 # Patch Extraction
 # ---------------------------------------------------------------------------
 patch:
-  size: 256            # Patch height and width in pixels
-  stride: 128          # Step between patches
-  min_cloud_fraction: 0.05   # Skip patches with < 5% cloud (not useful)
-  max_cloud_fraction: 0.99   # Skip fully-clouded patches (no ground truth)
+  size: 256            # Training patch size (256x256 recommended for RTX 4050)
+  stride: 128          # 50% overlap during extraction
+  min_cloud_fraction: 0.05
+  max_cloud_fraction: 0.99
 
 # ---------------------------------------------------------------------------
-# Model
+# Model — Swin U-Net (Swin Transformer Tiny)
 # ---------------------------------------------------------------------------
 model:
-  # Registry key: "unet" | "pix2pix" | "diffusion" | "vit"
-  name: unet
+  # Model architecture: "swin_unet" | "unet"
+  name: swin_unet
   # Input channels = n_optical + 1 (cloud mask) [+ sentinel1.channels if enabled]
   input_channels: 7
   # Output channels: reconstruct all optical bands
   output_channels: 6
-  # U-Net base filter count (doubles each encoder level)
-  base_filters: 64
-  # Number of encoder/decoder levels
-  depth: 4
-  # Use batch normalisation
-  use_batchnorm: true
-  # Dropout rate in bottleneck
-  dropout: 0.1
+  # Swin Transformer configuration
+  embed_dim: 96                  # Base embedding dimension (Swin-T = 96)
+  depths: [2, 2, 6, 2]          # Number of transformer blocks per encoder stage
+  num_heads: [3, 6, 12, 24]     # Attention heads per stage
+  window_size: 8                # Window size for shifted-window attention
+  patch_size: 4                 # Patch embedding spatial size (not training patch!)
+  pretrained: true              # Load ImageNet Swin-T weights for encoder
+  drop_path_rate: 0.1           # Stochastic depth rate
+  gradient_checkpointing: true  # Reduce VRAM ~30-40% (recomputes activations on backward)
 
 # ---------------------------------------------------------------------------
-# Training
+# Training — Optimized for RTX 4050 Laptop GPU (6GB VRAM)
 # ---------------------------------------------------------------------------
 training:
-  epochs: 128
-  batch_size: 16
-  learning_rate: 0.0001
-  weight_decay: 0.00001
+  epochs: 200
+  batch_size: 4                  # Hardware batch (6GB VRAM constraint)
+  gradient_accumulation: 4       # Effective batch size = 4 × 4 = 16
+  learning_rate: 0.0003          # 3e-4 (AdamW)
+  weight_decay: 0.00001          # 1e-5
+  optimizer: adamw
   # Automatic Mixed Precision (requires CUDA)
   amp: true
   # Gradient clipping norm
@@ -95,19 +98,23 @@ training:
   checkpoint_interval: 5
   # Resume from latest checkpoint if it exists
   resume: true
-  # Number of DataLoader workers (set to 0 on Windows to avoid memory/pagefile issues)
-  num_workers: 0
+  # DataLoader workers (2 is stable on Windows with persistent_workers)
+  num_workers: 2
   # Pin memory for faster GPU transfer
   pin_memory: true
+  persistent_workers: true
+  prefetch_factor: 2
 
 # ---------------------------------------------------------------------------
 # Loss Weights
 # ---------------------------------------------------------------------------
 loss:
-  l1:         0.4    # Pixel-wise MAE
-  ssim:       0.3    # Structural similarity
-  perceptual: 0.2    # VGG16 feature matching (on RGB subset)
-  edge:       0.1    # Sobel gradient-aware (preserves roads/boundaries)
+  l1:           0.5     # Pixel MAE — primary cloud-region objective
+  ssim:         0.3     # Structural similarity (full image)
+  perceptual:   0.1     # VGG16 feature matching (cloud region)
+  charbonnier:  0.1     # Smooth L1 / edge-preserving (cloud region)
+  spectral:     0.05    # Spectral consistency: NDVI + SR + Green/SWIR ratios
+                        # Total = 1.05 (intentionally additive at small scale)
 
 # ---------------------------------------------------------------------------
 # Device
@@ -122,15 +129,15 @@ device:
 # Inference
 # ---------------------------------------------------------------------------
 inference:
-  # Patch parameters (can differ from training)
-  patch_size: 256
-  stride: 192          # Balanced: some overlap for blending, lower memory than 128
+  # Inference uses larger sliding window than training patches for better context
+  patch_size: 256      # Changed to 256 to support 256x256 png uploads from the dashboard
+  stride: 256          # ~33% overlap for smooth blending
   # Gaussian weight blending at patch overlaps
   blend_overlap: true
   # Generate per-pixel confidence map
   output_confidence: true
   # Cloud fraction threshold below which image is considered "clear"
-  clear_threshold: 0.05
+  clear_threshold: -1.0
   # Batch inference: process multiple images at once
   batch_mode: false
   batch_dir: null
@@ -150,14 +157,14 @@ output:
   save_difference_map: true
   save_metrics_json: true
   save_processing_log: true
-  # 5-panel comparison image
+  # 7-panel comparison image
   save_comparison_preview: true
 
 # ---------------------------------------------------------------------------
 # Paths
 # ---------------------------------------------------------------------------
 paths:
-  checkpoints: "checkpoints_6band"
+  checkpoints: "checkpoints_swin"
   logs:        "logs"
   outputs:     "outputs"
   tensorboard: "logs/tensorboard"

@@ -21,7 +21,6 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 from models.registry import build_model
 from preprocessing.loader import build_dataloaders
-from preprocessing.rice_loader import build_rice_dataloaders
 from training.trainer import Trainer
 from utils.logger import setup_logger
 
@@ -79,7 +78,7 @@ def main(argv: list[str] | None = None) -> int:
         log.info("GPU: %s", torch.cuda.get_device_name(device))
         log.info("VRAM: %.1f GB", torch.cuda.get_device_properties(device).total_memory / 1e9)
 
-    # Build model
+    # Build model via registry (supports both swin_unet and unet)
     model = build_model(cfg)
     log.info("Model: %s", model.get_config())
     log.info("Parameters: %s", f"{model.count_parameters():,}")
@@ -87,11 +86,12 @@ def main(argv: list[str] | None = None) -> int:
     # Build dataloaders
     source_dir = Path(cfg["dataset"]["source_dir"])
     if "RICE" in source_dir.name or "RICE" in str(source_dir):
+        from preprocessing.rice_loader import build_rice_dataloaders
         dataset_dir = source_dir
         if not dataset_dir.exists():
             log.error("RICE dataset directory '%s' not found.", dataset_dir)
             return 1
-            
+
         loaders = build_rice_dataloaders(
             dataset_dir=dataset_dir,
             patch_size=cfg["patch"]["size"],

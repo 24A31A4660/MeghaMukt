@@ -3,8 +3,8 @@
 validate.py — Run validation / test evaluation on a checkpoint.
 
 Usage:
-    python validate.py                                    # uses best.pth
-    python validate.py --checkpoint checkpoints/epoch_0050.pth
+    python validate.py                                    # uses best_model.pth
+    python validate.py --checkpoint checkpoints_swin/epoch_0050.pth
     python validate.py --split test                       # evaluate on test set
 """
 from __future__ import annotations
@@ -17,7 +17,7 @@ from pathlib import Path
 import numpy as np
 import torch
 import yaml
-from torch.cuda.amp import autocast
+from torch.amp import autocast
 from tqdm import tqdm
 
 sys.path.insert(0, str(Path(__file__).parent))
@@ -48,7 +48,7 @@ def resolve_device(cfg: dict) -> torch.device:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Validate cloud reconstruction model.")
     parser.add_argument("--config", default="config.yaml")
-    parser.add_argument("--checkpoint", default=None, help="Checkpoint path (default: best.pth)")
+    parser.add_argument("--checkpoint", default=None, help="Checkpoint path (default: best_model.pth)")
     parser.add_argument("--split", default="validation", choices=["validation", "test"])
     parser.add_argument("--save-panels", action="store_true", help="Save comparison panels")
     parser.add_argument("--max-batches", type=int, default=None, help="Limit batches")
@@ -57,14 +57,14 @@ def main(argv: list[str] | None = None) -> int:
     cfg = load_config(args.config)
     device = resolve_device(cfg)
 
-    # Load model
+    # Load model via registry
     model = build_model(cfg)
     ckpt_path = Path(args.checkpoint) if args.checkpoint else find_best_checkpoint(Path(cfg["paths"]["checkpoints"]))
     if ckpt_path is None or not ckpt_path.exists():
         log.error("No checkpoint found. Train the model first.")
         return 1
 
-    payload = load_checkpoint(ckpt_path, model, device=str(device))
+    payload = load_checkpoint(ckpt_path, model, device=str(device), strict=False)
     model = model.to(device).eval()
     log.info("Loaded checkpoint: %s (epoch %d)", ckpt_path.name, payload.get("epoch", -1))
 
@@ -99,7 +99,7 @@ def main(argv: list[str] | None = None) -> int:
             optical = cloudy[:, :n_bands]
             mask_ch = cloudy[:, n_bands:]
 
-            with autocast(enabled=use_amp):
+            with autocast("cuda", enabled=use_amp):
                 pred = model(optical, mask_ch)
 
             # Evaluate each sample in batch

@@ -9,15 +9,27 @@ import numpy as np
 
 def get_train_transforms(patch_size: int = 256) -> A.Compose:
     """
-    Training augmentation pipeline.
-    Uses only spatial transforms (flips, rotations) which are safe for
-    multi-spectral images with arbitrary channel counts (6 and 7 channels).
+    Training augmentation pipeline tuned for cloud-removal reconstruction.
+    The transforms below preserve the spectral relationship between cloudy and
+    clear patches while increasing spatial robustness and photometric diversity.
     """
     return A.Compose(
         [
             A.HorizontalFlip(p=0.5),
             A.VerticalFlip(p=0.5),
             A.RandomRotate90(p=0.5),
+            A.RandomResizedCrop(
+                size=(patch_size, patch_size),
+                scale=(0.80, 1.00),
+                ratio=(0.90, 1.10),
+                p=0.5,
+            ),
+            A.RandomBrightnessContrast(
+                brightness_limit=0.10,
+                contrast_limit=0.10,
+                p=0.5,
+            ),
+
         ],
         additional_targets={
             "clear_image": "image",

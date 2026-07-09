@@ -1,96 +1,34 @@
-"""models/registry.py — Model registry for plug-and-play model swapping."""
-from __future__ import annotations
+"""models/registry.py — Model factory for cloud reconstruction architectures.
 
-from typing import Type
+Maps config model names to their implementing classes.
+Supports: "swin_unet" (default), "unet" (legacy).
+"""
+from __future__ import annotations
 
 import torch.nn as nn
 
-from models.base_model import BaseModel
-from models.unet import UNet
 
+def build_model(cfg: dict) -> nn.Module:
+    """Instantiate a model based on cfg["model"]["name"].
 
-# ─────────────────────────────────────────────────────────────────────────────
-# Stub classes for future models
-# ─────────────────────────────────────────────────────────────────────────────
+    Args:
+        cfg: Full configuration dict (passed through to model constructor).
 
-class Pix2Pix(BaseModel):
-    """STUB — Pix2Pix GAN model. Replace with full implementation."""
+    Returns:
+        Initialized nn.Module (not moved to device — caller handles that).
 
-    def __init__(self, cfg: dict) -> None:
-        super().__init__(cfg)
-        raise NotImplementedError(
-            "Pix2Pix is not yet implemented. Set model.name=unet in config.yaml."
-        )
-
-    def forward(self, cloudy, cloud_mask, sentinel1=None):
-        raise NotImplementedError
-
-    def get_config(self) -> dict:
-        return {"model": "Pix2Pix", "status": "stub"}
-
-
-class DiffusionModel(BaseModel):
-    """STUB — Diffusion model. Replace with full implementation."""
-
-    def __init__(self, cfg: dict) -> None:
-        super().__init__(cfg)
-        raise NotImplementedError(
-            "DiffusionModel is not yet implemented. Set model.name=unet in config.yaml."
-        )
-
-    def forward(self, cloudy, cloud_mask, sentinel1=None):
-        raise NotImplementedError
-
-    def get_config(self) -> dict:
-        return {"model": "Diffusion", "status": "stub"}
-
-
-class VisionTransformer(BaseModel):
-    """STUB — Vision Transformer (Swin-T based). Replace with full implementation."""
-
-    def __init__(self, cfg: dict) -> None:
-        super().__init__(cfg)
-        raise NotImplementedError(
-            "ViT is not yet implemented. Set model.name=unet in config.yaml."
-        )
-
-    def forward(self, cloudy, cloud_mask, sentinel1=None):
-        raise NotImplementedError
-
-    def get_config(self) -> dict:
-        return {"model": "ViT", "status": "stub"}
-
-
-# ─────────────────────────────────────────────────────────────────────────────
-# Registry
-# ─────────────────────────────────────────────────────────────────────────────
-
-MODEL_REGISTRY: dict[str, Type[BaseModel]] = {
-    "unet":      UNet,
-    "pix2pix":   Pix2Pix,
-    "diffusion": DiffusionModel,
-    "vit":       VisionTransformer,
-}
-
-
-def build_model(cfg: dict) -> BaseModel:
+    Raises:
+        ValueError: If model name is not recognized.
     """
-    Instantiate the model specified in config.yaml under model.name.
+    name = cfg["model"].get("name", "swin_unet").lower()
 
-    Usage:
-        model = build_model(cfg)
-
-    Switching models: change config.yaml model.name and call this function.
-    No other code changes required.
-    """
-    name = cfg["model"]["name"].lower()
-    if name not in MODEL_REGISTRY:
+    if name == "swin_unet":
+        from models.swin_unet import SwinUNet
+        return SwinUNet(cfg)
+    elif name == "unet":
+        from models.unet import UNet
+        return UNet(cfg)
+    else:
         raise ValueError(
-            f"Unknown model '{name}'. Available: {list(MODEL_REGISTRY.keys())}"
+            f"Unknown model name '{name}'. Supported: 'swin_unet', 'unet'."
         )
-    return MODEL_REGISTRY[name](cfg)
-
-
-def list_models() -> list[str]:
-    """Return all registered model names."""
-    return list(MODEL_REGISTRY.keys())

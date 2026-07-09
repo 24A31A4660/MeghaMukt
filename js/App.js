@@ -40,9 +40,14 @@
                 loader.style.pointerEvents = 'none';
                 setTimeout(() => {
                     if (loader.parentNode) loader.remove();
-                    // Trigger hero text reveal
+                    // Trigger hero text reveal or preserve hashed section
                     if (window.AnimationEngine && typeof window.AnimationEngine.activateSection === 'function') {
-                        window.AnimationEngine.activateSection(0, true);
+                        let sec = 0;
+                        if (typeof window.AnimationEngine.getCurrentSection === 'function') {
+                            const curr = window.AnimationEngine.getCurrentSection();
+                            if (curr !== -1) sec = curr;
+                        }
+                        window.AnimationEngine.activateSection(sec, true);
                     }
                 }, 300);
             }

@@ -186,8 +186,8 @@ def get_system_status():
         },
         "gpu": gpu_info,
         "model": {
-            "name": "U-Net Satellite Cloud Reconstruction Model",
-            "architecture": "U-Net with Multi-spectral & Cloud Mask Channels",
+            "name": "Swin U-Net Satellite Cloud Reconstruction Model",
+            "architecture": "Swin Transformer U-Net with Multi-spectral & Cloud Mask Channels",
             "status": "Ready / Resident in Memory" if model_loaded else "Standby (Lazy loading)"
         }
     }

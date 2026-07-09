@@ -29,7 +29,7 @@ from pathlib import Path
 import numpy as np
 import torch
 import yaml
-from torch.cuda.amp import autocast
+from torch.amp import autocast
 from tqdm import tqdm
 
 sys.path.insert(0, str(Path(__file__).parent))
@@ -118,7 +118,7 @@ class InferenceEngine:
         optical = batch[:, :self.n_bands]
         mask_ch = batch[:, self.n_bands:]
 
-        with autocast(enabled=use_amp):
+        with autocast("cuda", enabled=use_amp):
             pred = self.model(optical, mask_ch)
 
         result = pred.cpu().numpy()
@@ -462,7 +462,7 @@ def main(argv: list[str] | None = None) -> int:
         log.error("No checkpoint found at %s. Train the model first.", cfg["paths"]["checkpoints"])
         return 1
 
-    load_checkpoint(ckpt_path, model, device=str(device))
+    load_checkpoint(ckpt_path, model, device=str(device), strict=False)
     log.info("Loaded checkpoint: %s", ckpt_path)
 
     output_dir = Path(args.output or cfg["paths"]["outputs"])

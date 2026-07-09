@@ -18,6 +18,10 @@ app.use((req, res, next) => {
   next();
 });
 
+// Middleware for parsing JSON and form data
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 // Configure S3 Client (Template configuration for AWS S3 uploads)
 const s3Client = new S3Client({
   region: process.env.AWS_REGION || 'us-east-1',
@@ -42,6 +46,15 @@ const upload = multer({ storage });
 
 // Serve outputs statically
 app.use('/outputs', express.static(outputDir));
+app.use('/uploads', express.static(uploadDir));
+
+// Serve frontend static files
+app.use(express.static(path.join(__dirname, '..')));
+
+// Serve index.html for dashboard route
+app.get('/dashboard', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'index.html'));
+});
 
 /**
  * Uploads processed satellite image to AWS S3 Bucket
@@ -125,7 +138,7 @@ function processImage(inputPath, outputPath, callback) {
         }
 
         callback(null, {
-          engine: 'U-Net Deep Learning Model (RTX 4050 GPU)',
+          engine: 'Swin U-Net Deep Learning Model (RTX 4050 GPU)',
           metrics: {
             structuralSimilarityIndex: ssim,
             spectralFidelityRatio: fidelity,
@@ -183,11 +196,135 @@ app.post('/api/process-satellite-image', upload.single('image'), (req, res) => {
   });
 });
 
+/**
+ * POST /api/upload
+ * Frontend-compatible upload endpoint - stores file and returns upload_id
+ */
+app.post('/api/upload', upload.single('file'), (req, res) => {
+  if (!req.file) {
+    return res.status(400).json({ detail: 'No file uploaded' });
+  }
+
+  try {
+    const uploadId = Date.now().toString();
+    const satelliteName = path.basename(req.file.originalname, path.extname(req.file.originalname));
+    
+    // Store upload metadata for later reference
+    res.json({
+      upload_id: uploadId,
+      satellite_name: satelliteName,
+      filename: req.file.filename,
+      filepath: req.file.path,
+      size: req.file.size
+    });
+  } catch (err) {
+    res.status(500).json({ detail: 'Upload processing failed: ' + err.message });
+  }
+});
+
+/**
+ * POST /api/reconstruct
+ * Frontend-compatible reconstruction endpoint - processes uploaded image
+ */
+app.post('/api/reconstruct', upload.any(), (req, res) => {
+  const uploadId = req.body.upload_id;
+  const patchSize = parseInt(req.body.patch_size) || 256;
+  const stride = parseInt(req.body.stride) || 128;
+
+  if (!uploadId) {
+    return res.status(400).json({ detail: 'Missing upload_id' });
+  }
+
+  // Find the uploaded file from recent uploads
+  try {
+    const recentFiles = fs.readdirSync(uploadDir)
+      .map(f => path.join(uploadDir, f))
+      .filter(f => {
+        try {
+          return fs.statSync(f).mtime.getTime() > Date.now() - 600000; // Within 10 minutes
+        } catch {
+          return false;
+        }
+      })
+      .sort((a, b) => {
+        try {
+          return fs.statSync(b).mtime - fs.statSync(a).mtime;
+        } catch {
+          return 0;
+        }
+      });
+
+    if (recentFiles.length === 0) {
+      return res.status(404).json({ detail: 'Uploaded file not found' });
+    }
+
+    const inputPath = recentFiles[0];
+    const outputFileName = `reconstructed-${Date.now()}.png`;
+    const outputPath = path.join(outputDir, outputFileName);
+
+    // Process the image using the deep learning model
+    processImage(inputPath, outputPath, async (err, result) => {
+      if (err) {
+        console.error('[Reconstruct Error]', err);
+        return res.status(500).json({ detail: 'Reconstruction failed: ' + err.message });
+      }
+
+      try {
+        const bucketName = process.env.AWS_S3_BUCKET || 'clearsat-imagery-bucket';
+        const fileKey = `processed/${outputFileName}`;
+        const s3Url = await uploadToS3(outputPath, bucketName, fileKey);
+        const fileStem = path.basename(inputPath, path.extname(inputPath));
+        
+        let cloud_fraction = 0.0;
+        let processing_time = null;
+        try {
+          const summaryPath = path.join(outputDir, 'inference_summary.json');
+          if (fs.existsSync(summaryPath)) {
+            const summaryData = JSON.parse(fs.readFileSync(summaryPath, 'utf8'));
+            if (summaryData.length > 0) {
+              cloud_fraction = summaryData[0].cloud_fraction || 0.0;
+              processing_time = summaryData[0].time || null;
+            }
+          }
+        } catch (e) {}
+
+        res.json({
+          success: true,
+          upload_id: uploadId,
+          cloud_fraction: cloud_fraction,
+          inference_time: processing_time,
+          processing_time: processing_time,
+          reconstructed_image_url: `/outputs/${outputFileName}`,
+          paths: {
+            original: `/uploads/${path.basename(inputPath)}`,
+            reconstructed: `/outputs/${outputFileName}`,
+            mask: `/outputs/${fileStem}/cloud_mask.png`
+          },
+          s3_url: s3Url || 'Upload simulated',
+          metrics: result.metrics,
+          engine: result.engine,
+          patch_size: patchSize,
+          stride: stride
+        });
+      } catch (err) {
+        console.error('[Response Error]', err);
+        res.status(500).json({ detail: 'Response generation failed: ' + err.message });
+      }
+    });
+  } catch (err) {
+    console.error('[Reconstruct Exception]', err);
+    res.status(500).json({ detail: 'Server error: ' + err.message });
+  }
+});
+
 // Start the server
 app.listen(PORT, () => {
   console.log(`===============================================`);
   console.log(` ClearSat Image Processing Server started!     `);
   console.log(` Active Port: http://localhost:${PORT}          `);
-  console.log(` Endpoint: POST /api/process-satellite-image   `);
+  console.log(` Endpoints:                                    `);
+  console.log(`  • POST /api/upload                           `);
+  console.log(`  • POST /api/reconstruct                      `);
+  console.log(`  • POST /api/process-satellite-image          `);
   console.log(`===============================================`);
 });

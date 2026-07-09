@@ -7,7 +7,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from models.base_model import BaseModel
+
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -59,19 +59,39 @@ class EncoderBlock(nn.Module):
         return down, skip
 
 
+class AttentionGate(nn.Module):
+    """Lightweight gate that re-weights skip features before decoder fusion."""
+
+    def __init__(self, in_ch: int) -> None:
+        super().__init__()
+        self.proj = nn.Sequential(
+            nn.Conv2d(in_ch, max(1, in_ch // 2), kernel_size=1),
+            nn.ReLU(inplace=True),
+            nn.Conv2d(max(1, in_ch // 2), 1, kernel_size=1),
+            nn.Sigmoid(),
+        )
+
+    def forward(self, x: torch.Tensor, skip: torch.Tensor) -> torch.Tensor:
+        gate = self.proj(x)
+        if gate.shape[2:] != skip.shape[2:]:
+            gate = F.interpolate(gate, size=skip.shape[2:], mode="bilinear", align_corners=False)
+        return skip * gate
+
+
 class DecoderBlock(nn.Module):
-    """Transposed conv upsampling + skip connection + ConvBlock."""
+    """Transposed conv upsampling + attention-gated skip connection + ConvBlock."""
 
     def __init__(self, in_ch: int, skip_ch: int, out_ch: int, use_batchnorm: bool = True) -> None:
         super().__init__()
         self.up   = nn.ConvTranspose2d(in_ch, in_ch // 2, kernel_size=2, stride=2)
+        self.attn = AttentionGate(in_ch // 2)
         self.conv = ConvBlock(in_ch // 2 + skip_ch, out_ch, use_batchnorm)
 
     def forward(self, x: torch.Tensor, skip: torch.Tensor) -> torch.Tensor:
         x = self.up(x)
-        # Handle spatial size mismatch (pad if needed)
         if x.shape != skip.shape:
             x = F.interpolate(x, size=skip.shape[2:], mode="bilinear", align_corners=False)
+        skip = self.attn(x, skip)
         x = torch.cat([x, skip], dim=1)
         return self.conv(x)
 
@@ -126,7 +146,7 @@ class FusionGate(nn.Module):
 # U-Net
 # ─────────────────────────────────────────────────────────────────────────────
 
-class UNet(BaseModel):
+class UNet(nn.Module):
     """
     U-Net for cloud reconstruction.
 
@@ -145,7 +165,9 @@ class UNet(BaseModel):
     """
 
     def __init__(self, cfg: dict) -> None:
-        super().__init__(cfg)
+        super().__init__()
+        self.cfg = cfg
+
 
         in_ch       = cfg["model"]["input_channels"]   # 7 (6 bands + mask)
         out_ch      = cfg["model"]["output_channels"]  # 6
@@ -228,3 +250,7 @@ class UNet(BaseModel):
             "depth":           self.cfg["model"]["depth"],
             "parameters":      self.count_parameters(),
         }
+
+    def count_parameters(self) -> int:
+        """Return total number of trainable parameters."""
+        return sum(p.numel() for p in self.parameters() if p.requires_grad)

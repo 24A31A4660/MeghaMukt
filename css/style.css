@@ -222,8 +222,10 @@ img {
 }
 
 .hero-ui-overlay {
-    position: fixed;
+    position: absolute;
     inset: 0;
+    width: 100%;
+    height: 100%;
     z-index: 5; /* Above canvas, below nav */
     display: flex;
     flex-direction: column;
@@ -233,8 +235,6 @@ img {
     padding-top: var(--nav-height);
     padding-left: clamp(6rem, 12vw, 15rem);
     pointer-events: none; /* Let canvas be interactive where empty */
-    opacity: 0; /* Hidden until app-ready to prevent FOUC */
-    visibility: hidden;
 }
 
 .hero-ui-overlay > * {
@@ -5750,3 +5750,5 @@ a, button, input, select, textarea {
 
 /* Accessibility: Global Focus Ring */
 :focus-visible { outline: 2px solid var(--aurora-cyan); outline-offset: 3px; border-radius: 4px; }
+
+/* Removed overriding !important hidden state, let GSAP control visibility natively via autoAlpha */
