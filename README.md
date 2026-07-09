@@ -1,13 +1,15 @@
 ﻿# MeghaMukt: AI-Powered Satellite Cloud Reconstruction Platform
 
-![MeghaMukt Platform](docs/images/hero.png)`n`n**PS-2 â€” Generative AI-Based Cloud Removal and Reconstruction for LISS-IV Satellite Imagery**
+![MeghaMukt Platform](docs/images/hero.png)
+
+**PS-2 Ã¢â‚¬â€ Generative AI-Based Cloud Removal and Reconstruction for LISS-IV Satellite Imagery**
 
 *   **Live Demo:** [https://meghamukt.vercel.app/](https://meghamukt.vercel.app/)
 *   **Presentation PDF:** [Bah Hackathon.pdf](docs/Bah_Hackathon.pdf)
 
 MeghaMukt is an advanced AI-powered web platform developed for intelligent cloud detection and cloud-free satellite image reconstruction. Built for the Bharatiya Antariksh Hackathon, the system combines deep learning, modern web technologies, and an interactive mission-control dashboard to transform cloud-obstructed satellite imagery into analysis-ready scenes.
 
-The platform provides an end-to-end workflowâ€”from uploading Sentinel-2 imagery to cloud detection, AI reconstruction, visualization, model evaluation, and performance monitoringâ€”all through a futuristic, space-inspired user interface.
+The platform provides an end-to-end workflowÃ¢â‚¬â€from uploading Sentinel-2 imagery to cloud detection, AI reconstruction, visualization, model evaluation, and performance monitoringÃ¢â‚¬â€all through a futuristic, space-inspired user interface.
 
 ## Objective
 
@@ -15,7 +17,9 @@ MeghaMukt aims to reconstruct cloud-obscured satellite imagery while preserving 
 
 ## Landing Experience
 
-![Landing Experience](docs/images/landing.png)`n`nThe homepage is designed as an immersive space mission experience featuring an interactive 3D Earth visualization. Users are guided through the complete satellite reconstruction pipeline with cinematic animations explaining:
+![Landing Experience](docs/images/landing.png)
+
+The homepage is designed as an immersive space mission experience featuring an interactive 3D Earth visualization. Users are guided through the complete satellite reconstruction pipeline with cinematic animations explaining:
 * The challenge of cloud-covered satellite imagery
 * AI-based cloud detection
 * Neural reconstruction using deep learning
@@ -26,7 +30,10 @@ The landing page introduces the project with a modern space-themed interface tha
 
 ## AI Reconstruction Dashboard
 
-`n`nThe dashboard serves as the operational center of the application.
+![AI Reconstruction Dashboard](docs/images/reconstruction_dashboard.png)
+
+
+The dashboard serves as the operational center of the application.
 Users can:
 * Upload Sentinel-2 satellite imagery
 * Automatically detect cloud-covered regions
@@ -45,7 +52,9 @@ This side-by-side comparison allows users to visually inspect reconstruction qua
 
 ## Analytics Dashboard
 
-![Analytics Dashboard](docs/images/analytics_dashboard.png)`n`nThe Analytics section provides a comprehensive overview of reconstruction performance through interactive visualizations. It includes:
+![Analytics Dashboard](docs/images/analytics_dashboard.png)
+
+The Analytics section provides a comprehensive overview of reconstruction performance through interactive visualizations. It includes:
 * Total processed scenes
 * Average cloud coverage
 * Reconstruction quality score
@@ -60,7 +69,9 @@ The interface enables quick monitoring of overall system performance.
 
 ## Data Layers & Spectral Analysis
 
-![Data Layers and Spectral Analysis](docs/images/spectral_analysis.png)`n`nThe platform exposes multiple diagnostic data layers for satellite image analysis.
+![Data Layers and Spectral Analysis](docs/images/spectral_analysis.png)
+
+The platform exposes multiple diagnostic data layers for satellite image analysis.
 Available layers include:
 * True Color Image
 * Cloud Mask
@@ -80,7 +91,9 @@ These tools help evaluate reconstruction quality beyond simple visual inspection
 
 ## AI Model Performance Monitoring
 
-![Model Performance](docs/images/model_performance.png)`n`nThe application includes a dedicated page for monitoring deep learning model performance. Displayed information includes:
+![Model Performance](docs/images/model_performance.png)
+
+The application includes a dedicated page for monitoring deep learning model performance. Displayed information includes:
 * Model architecture
 * Best training epoch
 * Validation loss
@@ -176,7 +189,7 @@ Each processing stage is visualized within the dashboard, providing transparency
 *   `requirements.txt`: Python pip dependencies.
 *   `environment.yml`: Conda environment definition.
 
-## Ã°Å¸â€˜Â¥ Team
+## ÃƒÂ°Ã…Â¸Ã¢â‚¬ËœÃ‚Â¥ Team
 
 | Member | Role | GitHub |
 |---------|------|--------|
@@ -185,7 +198,7 @@ Each processing stage is visualized within the dashboard, providing transparency
 | **G. Akshaya** | Research, Documentation & Presentation | [@akshayagajjela](https://github.com/akshayagajjela) |
 | **T. Akshay Kountesh** | AI Model Development, Swin U-Net, Backend, Dashboard & Deployment | [@24A31A4660](https://github.com/24A31A4660) |
 
-## Ã°Å¸Â¤Â Contributors
+## ÃƒÂ°Ã…Â¸Ã‚Â¤Ã‚Â Contributors
 
 This project was developed collaboratively by Team **MeghaMukt** for the **Bharatiya Antariksh Hackathon 2026 (Problem Statement PS-2)**.
 
