@@ -1,73 +1,158 @@
-# MeghaMukt: AI-Powered Satellite Cloud Removal
+﻿# MeghaMukt: AI-Powered Satellite Cloud Reconstruction Platform
 
-## Project Overview
-MeghaMukt is a scalable, automated pipeline leveraging Generative AI to reconstruct cloud-covered regions in satellite imagery. Designed specifically for India's North Eastern Region (NER), this tool restores high-fidelity, analysis-ready multi-spectral data crucial for disaster response, Land Use / Land Cover (LULC) mapping, and infrastructure monitoring.
-
-## Problem Statement
 **PS-2 — Generative AI-Based Cloud Removal and Reconstruction for LISS-IV Satellite Imagery**
 
 *   **Live Demo:** [https://meghamukt.vercel.app/](https://meghamukt.vercel.app/)
 *   **Presentation PDF:** [Bah Hackathon.pdf](docs/Bah_Hackathon.pdf)
 
-NER of India experiences cloud cover 6–8 months per year due to persistent monsoon activity. Only 10–15% of LISS-IV acquisitions over NER are cloud-free, creating critical data gaps during floods and landslides. Traditional masking discards valuable data, while standard inpainting lacks the spectral fidelity required for scientific analysis. MeghaMukt solves this by employing Latent Diffusion Models (LDM) conditioned on cloud-penetrating Sentinel-1 SAR imagery.
+MeghaMukt is an advanced AI-powered web platform developed for intelligent cloud detection and cloud-free satellite image reconstruction. Built for the Bharatiya Antariksh Hackathon, the system combines deep learning, modern web technologies, and an interactive mission-control dashboard to transform cloud-obstructed satellite imagery into analysis-ready scenes.
+
+The platform provides an end-to-end workflow—from uploading Sentinel-2 imagery to cloud detection, AI reconstruction, visualization, model evaluation, and performance monitoring—all through a futuristic, space-inspired user interface.
+
+## Objective
+
+MeghaMukt aims to reconstruct cloud-obscured satellite imagery while preserving spatial structures and spectral characteristics, enabling researchers, disaster management teams, agricultural analysts, and environmental scientists to obtain high-quality cloud-free imagery for accurate geospatial analysis.
+
+## Landing Experience
+
+The homepage is designed as an immersive space mission experience featuring an interactive 3D Earth visualization. Users are guided through the complete satellite reconstruction pipeline with cinematic animations explaining:
+* The challenge of cloud-covered satellite imagery
+* AI-based cloud detection
+* Neural reconstruction using deep learning
+* Generation of cloud-free analysis-ready images
+* Real-time mission completion statistics
+
+The landing page introduces the project with a modern space-themed interface that reflects real satellite mission control systems.
+
+## AI Reconstruction Dashboard
+
+The dashboard serves as the operational center of the application.
+Users can:
+* Upload Sentinel-2 satellite imagery
+* Automatically detect cloud-covered regions
+* Generate cloud masks
+* Perform AI-based cloud reconstruction
+* Compare reconstructed imagery against ground truth
+* View inference results in real time
+
+The dashboard presents four synchronized visualization panels:
+1. Cloudy Satellite Image
+2. Cloud Mask
+3. AI Reconstructed Image
+4. Ground Truth Reference
+
+This side-by-side comparison allows users to visually inspect reconstruction quality.
+
+## Analytics Dashboard
+
+The Analytics section provides a comprehensive overview of reconstruction performance through interactive visualizations. It includes:
+* Total processed scenes
+* Average cloud coverage
+* Reconstruction quality score
+* Average inference time
+* Cloud coverage trends
+* Terrain analysis
+* Cloud class distribution
+* Quality metric summaries
+* Processing statistics
+
+The interface enables quick monitoring of overall system performance.
+
+## Data Layers & Spectral Analysis
+
+The platform exposes multiple diagnostic data layers for satellite image analysis.
+Available layers include:
+* True Color Image
+* Cloud Mask
+* Difference Map
+* Confidence Map
+* Cloudy Original
+* Blended Reconstruction
+
+Additional scientific visualizations include:
+* Spectral response curves
+* Multi-band quality analysis
+* Pixel histograms
+* Band-wise accuracy indicators
+* Sentinel-2 band information
+
+These tools help evaluate reconstruction quality beyond simple visual inspection.
+
+## AI Model Performance Monitoring
+
+The application includes a dedicated page for monitoring deep learning model performance. Displayed information includes:
+* Model architecture
+* Best training epoch
+* Validation loss
+* Model size
+* Saved checkpoints
+* Training progress
+* Optimizer configuration
+* Input/output channels
+* Dataset information
+* Device configuration
+
+This enables continuous monitoring of the training process and model evolution.
+
+## AI Reconstruction Pipeline
+
+The system follows a complete AI processing workflow:
+1. Satellite Image Upload
+2. Data Preprocessing
+3. Cloud Detection
+4. Binary Cloud Mask Generation
+5. AI-Based Cloud Reconstruction
+6. Post-Processing & Image Fusion
+7. Quality Assessment
+8. Final Cloud-Free Output Generation
+
+Each processing stage is visualized within the dashboard, providing transparency throughout the reconstruction process.
 
 ## Features
-*   **SAR-Guided Diffusion**: Latent Diffusion Model conditioned on Sentinel-1 SAR data provides cloud-free structural priors for any cloud density.
-*   **Multi-Spectral Fidelity**: Spectral Angle Mapper (SAM) loss forces band-wise consistency so reconstructed imagery is analysis-ready.
-*   **Automated Pipeline**: End-to-end workflow from Bhoonidhi ingest to GeoTIFF export with quality metrics—zero manual steps.
-*   **Transfer Learning**: Pretrained on SEN12MS-CR (Sentinel-2 cloud removal) then fine-tuned on LISS-IV for fast convergence.
-*   **Temporal Fusion**: Temporal reference imagery from prior cloud-free acquisitions provides additional context for ambiguous regions.
-*   **Scalable Deployment**: Docker-containerised REST API supports on-demand and batch cloud removal for operational satellite workflows.
+* AI-powered cloud removal
+* Swin U-Net based image reconstruction
+* Automatic cloud mask generation
+* Interactive satellite image comparison
+* Real-time inference monitoring
+* Spectral band visualization
+* Reconstruction quality analysis
+* Performance analytics dashboard
+* Responsive dark-themed mission control interface
+* Modern animated user experience
+* Comprehensive model evaluation and reporting
 
-## Architecture
-**DATA LAYER**
-LISS-IV (Bhoonidhi) | Sentinel-1 SAR (Copernicus) | Sentinel-2 MSI | SRTM DEM | Temporal Reference Imagery
-?
-**PREPROCESSING LAYER**
-Cloud Masking (Fmask + U-Net) ? Co-registration (GDAL) ? Radiometric Normalisation ? Patch Extraction (Albumentations)
-?
-**MODEL LAYER**
-VQ-VAE Encoder ? Dual-path SAR+Mask Conditioning ? U-Net Denoiser (Cross-attention) ? VQ-VAE Decoder
-?
-**OUTPUT LAYER**
-Cloud-free GeoTIFF | Quality Flags (PSNR/SSIM) | LULC / Disaster Monitoring / Infrastructure Analysis
+## Technologies Used
 
-## AI Pipeline
-**Process Flow:**
-1.  **Data Acquisition**: Download LISS-IV from Bhoonidhi portal. Acquire Sentinel-1 SAR (IW mode, VV/VH). Download DEM and Sentinel-2 for pretraining.
-2.  **Preprocessing**: Cloud masking with Fmask 4.0 + U-Net refinement. Co-registration (GDAL gdalwarp), TOA reflectance correction. Patch extraction: 256×256 tiles at 128px stride with Albumentations augmentation.
-3.  **Model Training & Inference**: Pretrain LDM on SEN12MS-CR, then fine-tune on LISS-IV pairs. Combined loss function: L1 + SSIM + Perceptual (VGG-19) + SAM spectral consistency. Batch inference ? Poisson-blend patches ? export cloud-free GeoTIFF.
+**Artificial Intelligence**
+* Swin U-Net
+* PyTorch
+* LPIPS
+* SSIM
+* PSNR
+* SAM
+* AdamW Optimizer
+* Mixed Precision Training (AMP)
 
-## Technology Stack
-*   **Deep Learning**: Python 3.10+, PyTorch 2.x, Hugging Face Diffusers, ONNX Runtime, Weights & Biases
-*   **Computer Vision**: OpenCV, Scikit-image, Albumentations
-*   **Geospatial Tools**: GDAL 3.x, Rasterio, QGIS, Google Earth Engine, Folium
-*   **Deployment**: Docker, FastAPI, Node.js (Frontend Dashboard)
-*   **Hardware**: GPU: NVIDIA A100 / V100 / RTX 4050
+**Satellite Data**
+* Sentinel-2 L2A Imagery / LISS-IV Imagery
+* Multi-spectral Bands
+* Cloud Masks
+* GeoTIFF Processing
 
-## Dataset
-*   **LISS-IV**: Cloudy + cloud-free pairs from the Bhoonidhi portal (3 bands: Green, Red, NIR, 5.8m resolution).
-*   **Sentinel-1 SAR**: Cloud-penetrating C-band synthetic aperture radar (Copernicus Open Access Hub).
-*   **SEN12MS-CR dataset**: Used for pretraining the foundation model before fine-tuning on LISS-IV data.
+**Frontend**
+* HTML5
+* CSS3
+* JavaScript
+* GSAP Animations
+* Three.js
+* Interactive Dashboard Components
 
-## Model
-**SAR-Conditioned Latent Diffusion Model & Swin U-Net**
-*   **Inputs**:
-    *   Channel 1 — Cloudy LISS-IV patch (256×256 pixels)
-    *   Channel 2 — Cloud mask (binary mask, 1=cloud, 0=clear)
-    *   Channel 3 — Sentinel-1 SAR patch (VV + VH polarisation)
-*   **Architecture**: VQ-VAE encoder compresses to 32×32×4 latent space. Dual-path conditioning encoder fuses SAR + mask embeddings. U-Net denoiser with cross-attention.
-*   **Output**: Cloud-free 3-band LISS-IV patch with original georeference, per-pixel confidence map, and PSNR/SSIM quality flags.
+**Backend**
+* Python
+* Flask/FastAPI (Node.js/Express implemented)
+* Image Processing Pipeline
+* REST APIs
 
-## Results
-MeghaMukt outperforms prior GANs by **3–5 dB PSNR** on thick cloud benchmarks, providing analysis-ready scientific imagery rather than just visually plausible inpainting. The Spectral Angle Mapper (SAM) loss ensures that NDVI and LULC calculations remain valid on the reconstructed pixels.
-
-## Dashboard
-The project includes a sleek, interactive frontend dashboard powered by React and Node.js. It allows users to:
-*   Upload cloudy LISS-IV satellite imagery.
-*   View the AI-generated cloud mask.
-*   Preview the SAR-conditioned cloud-free reconstruction.
-*   Download the final GeoTIFF and analysis metrics.
 
 ## Installation
 1.  Clone this repository.
@@ -91,7 +176,7 @@ The project includes a sleek, interactive frontend dashboard powered by React an
 *   `requirements.txt`: Python pip dependencies.
 *   `environment.yml`: Conda environment definition.
 
-## 👥 Team
+## ðŸ‘¥ Team
 
 | Member | Role | GitHub |
 |---------|------|--------|
@@ -100,7 +185,7 @@ The project includes a sleek, interactive frontend dashboard powered by React an
 | **G. Akshaya** | Research, Documentation & Presentation | [@akshayagajjela](https://github.com/akshayagajjela) |
 | **T. Akshay Kountesh** | AI Model Development, Swin U-Net, Backend, Dashboard & Deployment | [@24A31A4660](https://github.com/24A31A4660) |
 
-## 🤝 Contributors
+## ðŸ¤ Contributors
 
 This project was developed collaboratively by Team **MeghaMukt** for the **Bharatiya Antariksh Hackathon 2026 (Problem Statement PS-2)**.
 
@@ -152,3 +237,4 @@ Special contributions include:
 
 ## License
 MIT License. See LICENSE for details.
+
