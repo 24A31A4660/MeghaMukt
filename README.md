@@ -1,4 +1,12 @@
-﻿# MeghaMukt: AI-Powered Satellite Cloud Reconstruction Platform
+---
+title: MeghaMukt
+emoji: 🌍
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+pinned: false
+---
+# MeghaMukt: AI-Powered Satellite Cloud Reconstruction Platform
 
 ![MeghaMukt Platform](docs/images/hero.png)
 
