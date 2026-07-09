@@ -2,15 +2,15 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://akshayinfini63-meghamukt.hf.space/api/:path*"
+      "destination": "https://akshayinfini63-megha-mukt.hf.space/api/:path*"
     },
     {
       "source": "/outputs/:path*",
-      "destination": "https://akshayinfini63-meghamukt.hf.space/outputs/:path*"
+      "destination": "https://akshayinfini63-megha-mukt.hf.space/outputs/:path*"
     },
     {
       "source": "/uploads/:path*",
-      "destination": "https://akshayinfini63-meghamukt.hf.space/uploads/:path*"
+      "destination": "https://akshayinfini63-megha-mukt.hf.space/uploads/:path*"
     }
   ]
 }
