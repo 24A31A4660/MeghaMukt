@@ -12,10 +12,7 @@ WORKDIR /app
 
 # Copy python requirements and install them globally as root
 COPY cloud-reconstruction/requirements.txt ./cloud-reconstruction/requirements.txt
-# If backend has its own requirements, we should install them too
-COPY backend/requirements.txt ./backend/requirements.txt
 RUN pip install --no-cache-dir -r cloud-reconstruction/requirements.txt
-RUN pip install --no-cache-dir -r backend/requirements.txt
 
 # Copy the rest of the application
 COPY . .
