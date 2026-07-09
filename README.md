@@ -92,10 +92,49 @@ The project includes a sleek, interactive frontend dashboard powered by React an
 *   `environment.yml`: Conda environment definition.
 
 ## Team
-*   **B.N.V CHAITANYA YADAV** (Team Leader) – Pragati Engineering College, Kakinada
-*   **G. AKSHAYA** – Jawaharlal Nehru Technological University, Kakinada
-*   **B.N.L NIHARIKA** – Pragati Engineering College, Kakinada
-*   **T. AKSHAY KOUNTESH** – Pragati Engineering College, Kakinada
+
+| Name | Role |
+|------|------|
+| B.N.V. Chaitanya Yadav | Team Leader |
+| B.N.L. Niharika | Team Member |
+| G. Akshaya | Team Member |
+| T. Akshay Kountesh | Team Member |
+
+## Roles & Responsibilities
+
+### B.N.V. Chaitanya Yadav
+- Team Leadership
+- Project Planning
+- System Design
+- Integration
+- Documentation
+- Final Presentation
+
+### B.N.L. Niharika
+- Dataset Preparation
+- Data Preprocessing
+- Cloud Mask Generation
+- Testing
+- Validation
+
+### G. Akshaya
+- Research
+- Literature Survey
+- Documentation
+- Presentation Support
+- Result Analysis
+
+### T. Akshay Kountesh
+- AI Model Development
+- Swin U-Net Implementation
+- Model Training
+- Evaluation Metrics
+- Backend Integration
+- Dashboard Development
+- GitHub Repository Management
+- Deployment
+
+*This project was developed as part of the Bharatiya Antariksh Hackathon 2026 (Problem Statement PS-2: Generative AI-Based Cloud Removal and Reconstruction for LISS-IV Satellite Imagery).*
 
 ## Contributors
 *   *Open to contributions! Please submit a PR.*
