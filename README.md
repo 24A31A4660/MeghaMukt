@@ -6,6 +6,9 @@ MeghaMukt is a scalable, automated pipeline leveraging Generative AI to reconstr
 ## Problem Statement
 **PS-2 — Generative AI-Based Cloud Removal and Reconstruction for LISS-IV Satellite Imagery**
 
+*   **Live Demo:** [https://meghamukt.vercel.app/](https://meghamukt.vercel.app/)
+*   **Presentation PDF:** [Bah Hackathon.pdf](docs/Bah_Hackathon.pdf)
+
 NER of India experiences cloud cover 6–8 months per year due to persistent monsoon activity. Only 10–15% of LISS-IV acquisitions over NER are cloud-free, creating critical data gaps during floods and landslides. Traditional masking discards valuable data, while standard inpainting lacks the spectral fidelity required for scientific analysis. MeghaMukt solves this by employing Latent Diffusion Models (LDM) conditioned on cloud-penetrating Sentinel-1 SAR imagery.
 
 ## Features
