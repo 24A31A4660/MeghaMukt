@@ -49,11 +49,11 @@ app.use('/outputs', express.static(outputDir));
 app.use('/uploads', express.static(uploadDir));
 
 // Serve frontend static files
-app.use(express.static(path.join(__dirname, '..')));
+app.use(express.static(path.join(__dirname, '..', 'frontend')));
 
 // Serve index.html for dashboard route
 app.get('/dashboard', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'index.html'));
+  res.sendFile(path.join(__dirname, '..', 'frontend', 'index.html'));
 });
 
 /**
