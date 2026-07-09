@@ -91,53 +91,59 @@ The project includes a sleek, interactive frontend dashboard powered by React an
 *   `requirements.txt`: Python pip dependencies.
 *   `environment.yml`: Conda environment definition.
 
-## Team
+## 👥 Team
 
-| Name | Role |
-|------|------|
-| B.N.V. Chaitanya Yadav | Team Leader |
-| B.N.L. Niharika | Team Member |
-| G. Akshaya | Team Member |
-| T. Akshay Kountesh | Team Member |
+| Member | Role | GitHub |
+|---------|------|--------|
+| **B.N.V. Chaitanya Yadav** | Team Leader, Project Planning & System Integration | [@bogulachaitanya](https://github.com/bogulachaitanya) |
+| **B.N.L. Niharika** | Data Preprocessing, Cloud Mask Generation & Validation | [@bogulaniharika](https://github.com/bogulaniharika) |
+| **G. Akshaya** | Research, Documentation & Presentation | [@akshayagajjela](https://github.com/akshayagajjela) |
+| **T. Akshay Kountesh** | AI Model Development, Swin U-Net, Backend, Dashboard & Deployment | [@24A31A4660](https://github.com/24A31A4660) |
 
-## Roles & Responsibilities
+## 🤝 Contributors
 
-### B.N.V. Chaitanya Yadav
-- Team Leadership
-- Project Planning
-- System Design
-- Integration
-- Documentation
-- Final Presentation
+This project was developed collaboratively by Team **MeghaMukt** for the **Bharatiya Antariksh Hackathon 2026 (Problem Statement PS-2)**.
 
-### B.N.L. Niharika
-- Dataset Preparation
-- Data Preprocessing
-- Cloud Mask Generation
-- Testing
-- Validation
+Special contributions include:
 
-### G. Akshaya
-- Research
-- Literature Survey
-- Documentation
-- Presentation Support
-- Result Analysis
+- **B.N.V. Chaitanya Yadav**
+  - Team Leadership
+  - Project Planning
+  - System Architecture
+  - Team Coordination
 
-### T. Akshay Kountesh
-- AI Model Development
-- Swin U-Net Implementation
-- Model Training
-- Evaluation Metrics
-- Backend Integration
-- Dashboard Development
-- GitHub Repository Management
-- Deployment
+- **B.N.L. Niharika**
+  - Dataset Preparation
+  - Data Preprocessing
+  - Cloud Detection & Validation
+  - Testing
 
-*This project was developed as part of the Bharatiya Antariksh Hackathon 2026 (Problem Statement PS-2: Generative AI-Based Cloud Removal and Reconstruction for LISS-IV Satellite Imagery).*
+- **G. Akshaya**
+  - Research
+  - Literature Survey
+  - Documentation
+  - Presentation Design
 
-## Contributors
-*   *Open to contributions! Please submit a PR.*
+- **T. Akshay Kountesh**
+  - AI Model Development
+  - Swin U-Net Implementation
+  - Model Training & Evaluation
+  - Backend Development
+  - Dashboard Development
+  - GitHub Repository Management
+  - Deployment & Integration
+
+- B.N.V. Chaitanya Yadav
+  [![GitHub](https://img.shields.io/badge/GitHub-bogulachaitanya-181717?logo=github)](https://github.com/bogulachaitanya)
+
+- B.N.L. Niharika
+  [![GitHub](https://img.shields.io/badge/GitHub-bogulaniharika-181717?logo=github)](https://github.com/bogulaniharika)
+
+- G. Akshaya
+  [![GitHub](https://img.shields.io/badge/GitHub-akshayagajjela-181717?logo=github)](https://github.com/akshayagajjela)
+
+- T. Akshay Kountesh
+  [![GitHub](https://img.shields.io/badge/GitHub-24A31A4660-181717?logo=github)](https://github.com/24A31A4660)
 
 ## Future Improvements
 *   Implement end-to-end Dockerization for a fully portable microservices architecture.
