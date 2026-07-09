@@ -1,11 +1,11 @@
-node_modules/
+﻿node_modules/
 backend/node_modules/
 dataset/
 outputs/
 backend/uploads/
 cloud-reconstruction/logs/
 *.zip
-*.pth
+# *.pth (Now tracked via Git LFS)
 cloud-reconstruction/checkpoints_6band/
 __pycache__/
 .pytest_cache/
@@ -16,7 +16,7 @@ venv/
 *.cache
 checkpoints/
 checkpoints_swin/
-*.ckpt
+# *.ckpt (Now tracked via Git LFS)
 *.SAFE
 *.tif
 *.npy
