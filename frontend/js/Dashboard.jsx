@@ -9,7 +9,7 @@ const AppContext = createContext({});
 const useApp = () => useContext(AppContext);
 
 // ─── API Base ────────────────────────────────────────────────────────────────
-const API = 'http://localhost:8000';
+const API = '';
 
 const authFetch = (url, options = {}) => {
     const token = localStorage.getItem('meghamukt_token');

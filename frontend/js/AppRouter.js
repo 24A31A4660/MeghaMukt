@@ -271,7 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btnSubmitLogin.innerText = 'AUTHENTICATING...';
         
         try {
-            const res = await fetch('http://localhost:8000/api/login', {
+            const res = await fetch('/api/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username: emailInput, password: passwordInput })
@@ -302,7 +302,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btnSubmitSignup.innerText = 'CREATING ACCOUNT...';
         
         try {
-            const res = await fetch('http://localhost:8000/api/register', {
+            const res = await fetch('/api/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username: nameInput, email: emailInput, password: passwordInput })
